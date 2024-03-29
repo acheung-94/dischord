@@ -5,7 +5,8 @@ import './App.css'
 import { RouterProvider, createBrowserRouter } from 'react-router-dom'
 import LoginForm from './components/loginForm'
 const router = createBrowserRouter( [
-  {path: '/login', element: <LoginForm />}
+  {path: '/login', element: <LoginForm />},
+  {path: '/register', element: <LoginForm />}
   //{path: '/register', element: <NewUserForm />}
 ])
 // path /channels children: :serverId < children:channelId, @me < children: :channelId 

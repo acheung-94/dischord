@@ -1,6 +1,11 @@
+@import-normalize;
+
 @font-face {
     font-family: gg sans;
-    src: url('./assets/fonts/GGsans-Regular.ttf');
+    src: url('./assets/fonts/GGsans-Regular.ttf'),
+        url('./assets/fonts/GGsans-Bold.ttf'),
+        url('./assets/fonts/GGsans-Medium.ttf'),
+        url('./assets/fonts/GGsans-Semibold.ttf');
 }
 
 body{
