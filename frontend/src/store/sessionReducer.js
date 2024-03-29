@@ -1,4 +1,4 @@
-import { postUser } from "../utils/sessionApiUtils"
+import { postUser, postSession, deleteSession } from "../utils/sessionApiUtils"
 
 //  TYPES
 export const CREATE_SESSION = 'session/CREATE_SESSION'
