@@ -39,7 +39,7 @@ a{
     color: #00a8fc;
 }
 
-.welcome h1{
+.welcome h1, .register h1{
     color: #F2F3F5;
     align-self: center;
     font-size: 24px;
@@ -49,6 +49,7 @@ a{
 
 }
 
+
 input{
     background-color: rgba(30,31,35,255);
     color: rgba(226,227,230,255);
@@ -57,7 +58,7 @@ input{
     border-radius: 3px; 
     height: 40px;
     box-sizing: border-box;
-    margin-bottom: 20px;
+
 }
 form{
     display: flex;
@@ -117,7 +118,14 @@ button{
     width: 100%;
     border-radius: 3px;
     margin-bottom: 8px; 
+    transition: all 0.25s ease;
 }
+
+button:hover{
+    background-color: #5865f2ce;
+    cursor: pointer;
+}
+
 .error{
     color: #FA777C;
 }
@@ -126,6 +134,8 @@ button{
     font-style: italic;
     text-transform: none;
     font-weight: 100;
+    font-size: 14px;
+    margin-bottom: 8px;
 }
 /* .register{
     display: flex;

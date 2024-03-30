@@ -4,13 +4,13 @@ import { useEffect, useState } from "react"
 import { Link, useLocation, useNavigate } from "react-router-dom"
 import './auth.css'
 
-const Auth = () => {
+const Auth = ({ type }) => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
-    const location = useLocation()
 
-    const isLogin = location.pathname === '/login'
-    const isRegister = location.pathname === '/register'
+
+    const isLogin = type === 'login'
+    const isRegister = type === 'register'
 
     const formType = isLogin ? {
         credential: '',
@@ -21,15 +21,43 @@ const Auth = () => {
             password: '',
             displayName: ''
         }
+
     const [formData, setFormData] = useState(formType)
     const [errors, setErrors] = useState({
         messages: ""
     })
     
+    const [regErrors, setRegErrors] = useState({
+        email: '',
+        username: '',
+        password: ''
+    })
+
+    const formatErrors = data  => {
+        let newErrors = {}
+        if (data.email) {
+            newErrors.email = data.email[0]
+        }
+        if (data.password ){
+
+            if (data.password[0] === "can't be blank") {
+                newErrors.password = "Required"
+            }else{
+                console.log(data.password)
+                newErrors.password = data.password[0]
+            }
+        }
+        if (data.username){
+            newErrors.username = data.username[0]
+        }
+
+        setRegErrors(newErrors)
+    }
+
 
     useEffect( () => {
         setFormData(() => formType)
-    }, [location]) // oh no i have a dependency loop! can't use on a cleanup because my component won't unmount, it will only re-render. 
+    }, [type]) 
 
 
     const handleChange = field => e => (
@@ -41,12 +69,15 @@ const Auth = () => {
         if (isLogin) {
             dispatch(loginUser(formData)).catch( async res => {
                 let data = await res.json()
-                
                 setErrors( old => ({...old, messages:data.errors}))
-                console.log(`error.messages`, errors.messages)
+
             })
         } else {
-            dispatch(createUser(formData))
+            dispatch(createUser(formData)).catch( async res => {
+                let data = await res.json()
+                formatErrors(data)
+                console.log(regErrors)
+            })
         }
     }
     return(
@@ -78,15 +109,37 @@ const Auth = () => {
             </div>}
             {isRegister && 
                 <form className="register" onSubmit={handleSubmit}>
-                    <h3>Create an account</h3>
-                    <label className="required"> Email </label>
+                    <h1>Create an account</h1>
+                    <label className={regErrors.email ? "error" : "required"}> 
+                        Email 
+                        {(regErrors.email === 'Required') && (
+                        <span className="err-msg"> - {regErrors.email}</span>
+                        )}
+                    </label>
                         <input type="text" value={formData.email} onChange={handleChange('email')}/>
+                        { regErrors.email && regErrors.email !== 'Required' && (
+                            <span className="err-msg"> {regErrors.email}</span>
+                        )}
                     <label > Display Name </label>
                         <input type="text" value={formData.displayName} onChange={handleChange('displayName')}/>
-                    <label className="required"> Username </label>
+                    <label className={regErrors.username ? "error" : "required"}> Username 
+                        {(regErrors.username === 'Required') && (
+                        <span className="err-msg"> - {regErrors.username}</span>
+                        )}
+                    </label>
                         <input type="text" value={formData.username} onChange={handleChange('username')}/>
-                    <label className="required"> Password </label>
+                        { regErrors.username && regErrors.username !== 'Required' && (
+                            <span className="err-msg"> {regErrors.username}</span>
+                        )}
+                    <label className={regErrors.password ? "error" : "required"}> Password 
+                        {(regErrors.password === 'Required') && (
+                        <span className="err-msg"> - {regErrors.password}</span>
+                        )}
+                    </label>
                         <input type="password" value={formData.password} onChange={handleChange('password')}/>
+                        { regErrors.password && regErrors.password !== 'Required' && (
+                            <span className="err-msg"> {regErrors.password}</span>
+                        )}
                     <button type="submit"> Continue </button>
                     <p className="bottom"> <Link to={`/login`}> Already have an account? </Link></p>
                 </form>
@@ -99,3 +152,5 @@ const Auth = () => {
 export default Auth
 
 // Add a pseudo class for form labels to indicate 'required' and place a red asterisk at the end.
+
+//it would be kind of nice to dynamically generate these fields based on my backend fields. 

@@ -14,21 +14,20 @@ export const destroySession = () => ( { //no payload
     type: DESTROY_SESSION
 })
 //  THUNK ACION CREATORS (db interactions!)
-export const createUser = userInfo => dispatch => {
+export const createUser = userInfo => dispatch => (
     postUser(userInfo)
         .then(res => {
             if (res.ok) {
                 return res.json()
             }else {
-                throw res.json()
+                throw res
             }
         })
         .then(data => {
             sessionStorage.setItem('currentUser', JSON.stringify(data.user)) // create a new user and log in
             dispatch(createSession(data.user)) // refer to jbuilder formats
         })
-        .catch(err => console.error(err))
-}
+)
 
 export const loginUser = sessionInfo => dispatch => (
     postSession(sessionInfo)
