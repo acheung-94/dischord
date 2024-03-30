@@ -30,21 +30,20 @@ export const createUser = userInfo => dispatch => {
         .catch(err => console.error(err))
 }
 
-export const loginUser = sessionInfo => dispatch => {
+export const loginUser = sessionInfo => dispatch => (
     postSession(sessionInfo)
         .then(res => {
             if (res.ok) {
                 return res.json()
             }else {
-                throw res.json()
+                throw res
             }
         })
         .then(data => {
             sessionStorage.setItem('currentUser', JSON.stringify(data.user)) // create a new user and log in
             dispatch(createSession(data.user)) // refer to jbuilder formats
         })
-        .catch(err => console.error(err))
-}
+)
 
 export const logoutUser = () => dispatch => {
     deleteSession()

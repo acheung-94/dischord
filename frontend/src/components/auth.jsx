@@ -2,9 +2,9 @@ import { useDispatch } from "react-redux"
 import { createUser, loginUser } from "../store/sessionReducer"
 import { useEffect, useState } from "react"
 import { Link, useLocation, useNavigate } from "react-router-dom"
-import './loginForm.css'
+import './auth.css'
 
-const LoginForm = () => {
+const Auth = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const location = useLocation()
@@ -22,8 +22,10 @@ const LoginForm = () => {
             displayName: ''
         }
     const [formData, setFormData] = useState(formType)
+    const [errors, setErrors] = useState({
+        messages: ""
+    })
     
-    console.log('component is rerendering', formData, isLogin)
 
     useEffect( () => {
         setFormData(() => formType)
@@ -37,33 +39,39 @@ const LoginForm = () => {
     const handleSubmit = e => {
         e.preventDefault()
         if (isLogin) {
-            dispatch(loginUser(formData))
+            dispatch(loginUser(formData)).catch( async res => {
+                let data = await res.json()
+                
+                setErrors( old => ({...old, messages:data.errors}))
+                console.log(`error.messages`, errors.messages)
+            })
         } else {
             dispatch(createUser(formData))
         }
     }
-    const testNew = e => {
-        e.preventDefault()
-        console.log( isLogin, `login`)
-        console.log(formData)
-    }
-
     return(
-        <>
-        <div className="signin-wrapper"> 
+        <div className="page-wrapper">
+        <div className={ isLogin ? "signin-wrapper" : "register-wrapper"}> 
             {isLogin && 
             <form className="signin" onSubmit={handleSubmit}>
-                <h3>Welcome Back!</h3>
-                <p>We're so excited to see you again!</p>
-                <label > Email or username </label>
+                <div className="welcome">
+                    <h1>Welcome Back!</h1>
+                    <p>We're so excited to see you again!</p>
+                </div>
+                <label className={errors.messages ? "error" : "required"}> Email or username {errors.messages && (
+                        <span className="err-msg"> - {errors.messages}</span>)}
+                </label>
                     <input type="text" value={formData.credential} onChange={handleChange('credential')} />
                 
-                <label > Password </label>
+                <label className={errors.messages ? "error" : "required"}> Password {errors.messages && (
+                        <span className="err-msg"> - {errors.messages}</span>)}
+                </label>
                     <input type="password" value={formData.password} onChange={handleChange('password')} />
                 
                 <button type="submit"> Log In </button>
-                <p>Need an account? <Link to={`/register`}> Register </Link></p>
+                <p className="bottom">Need an account? <Link to={`/register`}> Register </Link></p>
             </form>}
+            {isLogin && <div className="separator"></div> }
             {isLogin && 
             <div className="signin-right">
                 <p>Placeholder for dummy accounts</p>
@@ -71,23 +79,23 @@ const LoginForm = () => {
             {isRegister && 
                 <form className="register" onSubmit={handleSubmit}>
                     <h3>Create an account</h3>
-                    <label > Email </label>
+                    <label className="required"> Email </label>
                         <input type="text" value={formData.email} onChange={handleChange('email')}/>
                     <label > Display Name </label>
                         <input type="text" value={formData.displayName} onChange={handleChange('displayName')}/>
-                    <label > Username </label>
+                    <label className="required"> Username </label>
                         <input type="text" value={formData.username} onChange={handleChange('username')}/>
-                    <label > Password </label>
+                    <label className="required"> Password </label>
                         <input type="password" value={formData.password} onChange={handleChange('password')}/>
                     <button type="submit"> Continue </button>
-                    <Link to={`/login`}> Already have an account? </Link>
+                    <p className="bottom"> <Link to={`/login`}> Already have an account? </Link></p>
                 </form>
             }
         </div>
-        </>
+        </div>
     )
 }
 
-export default LoginForm
+export default Auth
 
-// Add a pseudo class selector for form labels to indicate 'required' and place a red asterisk at the end.
+// Add a pseudo class for form labels to indicate 'required' and place a red asterisk at the end.
