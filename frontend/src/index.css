@@ -32,6 +32,13 @@
     font-weight: 600; 
 }
 
-body{
+@font-face{
+    font-family: 'ginto nord';
+    src: url('./assets/fonts/GintoNord-Bold.otf') format('opentype');
+    font-weight: 800;
+}
+
+html{
     font-family: gg sans;
+    color: #B5BAC1;
 }

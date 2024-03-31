@@ -39,24 +39,30 @@ const Auth = ({ type }) => {
             newErrors.email = data.email[0]
         }
         if (data.password ){
-
+            //TODO: find the source of this extra validation message and destroy it.
             if (data.password[0] === "can't be blank") {
                 newErrors.password = "Required"
             }else{
-                console.log(data.password)
                 newErrors.password = data.password[0]
             }
         }
         if (data.username){
             newErrors.username = data.username[0]
         }
-
         setRegErrors(newErrors)
     }
 
 
     useEffect( () => {
         setFormData(() => formType)
+        setRegErrors({
+            email: '',
+            username: '',
+            password: ''
+        })
+        setErrors({
+            messages: ""
+        })
     }, [type]) 
 
 

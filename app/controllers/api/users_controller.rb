@@ -18,9 +18,4 @@ class Api::UsersController < ApplicationController
         params.require(:user).permit(:username, :email, :password)
     end
 
-    def format_errors(errors)
-        errors.each do |error|
-            'this is an error'
-        end
-    end
 end

@@ -1,10 +1,12 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+
 import './App.css'
 import { RouterProvider, createBrowserRouter } from 'react-router-dom'
 import Auth from './components/auth'
+import Splash from './components/splash/splash'
+
 const router = createBrowserRouter( [
+  {path: `/`, element: <Splash />},
   {path: '/login', element: <Auth type={'login'} />},
   {path: '/register', element: <Auth type={'register'} />}
   //{path: '/register', element: <NewUserForm />}
