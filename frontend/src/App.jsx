@@ -9,7 +9,7 @@ const router = createBrowserRouter( [
   {path: `/`, element: <Splash />},
   {path: '/login', element: <Auth type={'login'} />},
   {path: '/register', element: <Auth type={'register'} />}
-  //{path: '/register', element: <NewUserForm />}
+  //{path: '/channels', children: [ /@me index true, /:serverId children:]}
 ])
 // path /channels children: :serverId < children:channelId, @me < children: :channelId 
 

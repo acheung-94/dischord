@@ -1,8 +1,9 @@
 import { useDispatch } from "react-redux"
 import { createUser, loginUser } from "../store/sessionReducer"
 import { useEffect, useState } from "react"
-import { Link, useLocation, useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import './auth.css'
+import Demo from "./demo/demo"
 
 const Auth = ({ type }) => {
     const dispatch = useDispatch()
@@ -109,10 +110,7 @@ const Auth = ({ type }) => {
                 <p className="bottom">Need an account? <Link to={`/register`}> Register </Link></p>
             </form>}
             {isLogin && <div className="separator"></div> }
-            {isLogin && 
-            <div className="signin-right">
-                <p>Placeholder for dummy accounts</p>
-            </div>}
+            {isLogin && ( <div className="signin-right"><Demo /></div> )}
             {isRegister && 
                 <form className="register" onSubmit={handleSubmit}>
                     <h1>Create an account</h1>
