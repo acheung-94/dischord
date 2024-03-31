@@ -17,8 +17,27 @@
         url('../../assets/img/right.svg') no-repeat right bottom,
         url('../../assets/img/hills.svg') #404eed no-repeat -50vw bottom / 200% auto;
 
+
+}
+
+.welcome-wrapper{
     display: flex;
+    flex-direction: column;
     align-items: center;
+    justify-content: space-between;
+    /* box-sizing: border-box; */
+    height: 100%;
+}
+.welcome-msg{
+    height: 30%;
+    width: 60%;
+    margin: 24px;
+    color:#fff;
+    font-size: 20px;
+    text-align: center;
+    display:flex;
+    flex-direction: column;
+    justify-content: space-around;
 }
 
 .welcome-msg h1{
@@ -27,5 +46,73 @@
     font-size: 56px;
     color:#fff;
     margin-bottom: 24px;
+}
+
+.welcome-msg h4{
+    font-weight: 700;
+    font-family: 'ginto nord';
+    background-color: rgba(30,31,35,255);
+    padding: 12px 24px;
+    width: fit-content;
+    border-radius: 20px;
+    align-self: center;
+}
+
+.splash-navbar{
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 80px;
+    padding-left: 80px;
+    padding-right: 80px;
+    box-sizing: border-box;
+    color: #fff;
+}
+.logo{
+    font-family: 'ginto nord';
+    color:#fff;
+    display:flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo svg{
+    font-size: 24px;
+}
+
+.links{
+    display:flex;
+    align-items: center;
+    width: 45%;
+    justify-content: space-evenly;
+}
+.splash-navbar a{
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 700;
+    color: #fff;
+}
+
+.to-login{
+    padding: 7px 16px;
+    background-color: #fff;
+    border-radius: 40px ;
+    color: rgb(35, 39, 42);
     text-align: center;
+    font-size: 14px;
+    font-family: 'gg sans';
+    font-weight: 600;
+    line-height: 24px;
+    border:none;
+    transition: all 0.2s ease;
+}
+
+.to-login:hover{
+    color: #5865f2;
+    box-shadow: 0 8px 15px rgba(0,0,0, 0.2);
+    cursor: pointer;
+}
+.welcome-footer{
+    margin: 32px;
 }
