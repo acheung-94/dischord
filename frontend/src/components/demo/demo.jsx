@@ -3,7 +3,7 @@ import './demo.css'
 import { loginUser, selectCurrentUser } from '../../store/sessionReducer'
 import { useNavigate } from 'react-router-dom'
 
-// import UserIconFull from '../userIconsFull/userIconFull'
+import UserIconFull from '../userIconsFull/userIconFull'
 // TODO broken import...
 const Demo = () => {
     const demoInfo = {
@@ -20,8 +20,13 @@ const Demo = () => {
     
     return(
         <div className="demo-login">
+            <h4>Log in as a demo user!</h4>
             <div className="user-1" onClick={handleDemo}>
-                <p> placeholder for UserIconFull </p>
+                <span className='user-1-icon'></span>
+                <span className="user-1-text">
+                <h4>sonataformftw</h4>
+                <p>Online</p>
+            </span>
             </div>
         </div>
     )

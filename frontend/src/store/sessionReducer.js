@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom"
+
 import { postUser, postSession, deleteSession } from "../utils/sessionApiUtils"
 
 //  TYPES

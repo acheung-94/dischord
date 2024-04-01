@@ -14,9 +14,7 @@ const router = createBrowserRouter( [
       {path: ':channelId', element: <h1>I'm the channel outlet</h1> }
     ]}
   ] }
-  //{path: '/channels', children: [ /@me index true, /:serverId children:]}
 ])
-// path /channels children: :serverId < children:channelId, @me < children: :channelId 
 
 function App() {
 

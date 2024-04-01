@@ -1,6 +1,6 @@
 
 const UserIconFull = ( {user} ) => {
-    console.log('inside usericonfull')
+
     return (
         <>
             <span className="user-icon-text">

@@ -2,8 +2,11 @@ import { useNavigate } from "react-router-dom";
 import './splash.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSquareGithub, faLinkedin, faDiscord } from '@fortawesome/free-brands-svg-icons'
+import { useSelector } from "react-redux";
+import { selectCurrentUser } from "../../store/sessionReducer";
 const Splash = () => {
     const navigate = useNavigate()
+    const currentUser = useSelector(selectCurrentUser)
     return(
         <>
             <div className="splash-page-wrapper">
@@ -15,7 +18,10 @@ const Splash = () => {
                         <a href="https://www.linkedin.com/in/andrea-cheung-b9b5072b2/"><FontAwesomeIcon icon={faLinkedin} /> LinkedIn  </a>
                         <a href="https://discord.com"> The Real Discord  </a>
                     </div>
-                    <button className="to-login" onClick={()=>navigate('/login')}>Login</button>
+                    <button className="to-login" onClick={
+                        ()=> currentUser ? navigate('/channels/@me') : navigate('/login')}>
+                            Login
+                    </button>
                 </div>
                 <div className="welcome-msg">
                     <h1> Imagine a place... </h1>
