@@ -20,7 +20,7 @@ const Splash = () => {
                     </div>
                     <button className="to-login" onClick={
                         ()=> currentUser ? navigate('/channels/@me') : navigate('/login')}>
-                            Login
+                         {currentUser ? "Open Discord" : "Login"}
                     </button>
                 </div>
                 <div className="welcome-msg">

@@ -9,12 +9,14 @@ import Right from "../right/right";
 import './layout.css'
 import { useEffect } from "react";
 
-const Layout = () => {
+const Layout = ({type}) => {
     const {serverId, channelId} = useParams()
     const currentUser = useSelector(selectCurrentUser)
     // if (serverId === '@me') {
     //     console.log(serverId)
     // }
+    if (type === '@me'){
+    
     return(
         <>
         {currentUser && 
@@ -26,6 +28,7 @@ const Layout = () => {
         </div>}
         </>
     )
+    }
 }
 
 export default Layout;
