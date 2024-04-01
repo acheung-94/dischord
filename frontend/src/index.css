@@ -11,13 +11,13 @@
 @font-face {
     font-family: 'gg sans';
     src: url('./assets/fonts/GGsans-Regular.ttf') format('truetype');
-    font-weight: 400; /* Normal / Regular */
+    font-weight: 400; 
 }
 
 @font-face {
     font-family: 'gg sans';
     src: url('./assets/fonts/GGsans-Bold.ttf') format('truetype');
-    font-weight: 700; /* Bold */
+    font-weight: 700; 
 }
   
 @font-face {

@@ -74,19 +74,22 @@ const Auth = ({ type }) => {
     const handleSubmit = e => {
         e.preventDefault()
         if (isLogin) {
-            dispatch(loginUser(formData)).catch( async res => {
-                let data = await res.json()
-                setErrors( old => ({...old, messages:data.errors}))
-                navigate('/channels/@me')
-            })
+            dispatch(loginUser(formData))
+                .then(()=> navigate('/channels/@me'))
+                .catch( async res => {
+                    let data = await res.json()
+                    setErrors( old => ({...old, messages:data.errors}))
+                })
         } else {
-            dispatch(createUser(formData)).catch( async res => {
-                let data = await res.json()
-                formatErrors(data)
-                navigate('/channels/@me')
-            })
+            dispatch(createUser(formData))
+                .then(()=> navigate('/channels/@me'))
+                .catch( async res => {
+                    let data = await res.json()
+                    formatErrors(data)
+                })
         }
     }
+
     return(
         <div className="page-wrapper">
         <div className={ isLogin ? "signin-wrapper" : "register-wrapper"}> 
@@ -154,6 +157,8 @@ const Auth = ({ type }) => {
 }
 
 export default Auth
+
+//TODO: modularize modularize modularize
 
 // Add a pseudo class for form labels to indicate 'required' and place a red asterisk at the end.
 

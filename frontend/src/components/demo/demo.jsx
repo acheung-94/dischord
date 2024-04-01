@@ -4,7 +4,7 @@ import { loginUser, selectCurrentUser } from '../../store/sessionReducer'
 import { useNavigate } from 'react-router-dom'
 
 // import UserIconFull from '../userIconsFull/userIconFull'
-
+// TODO broken import...
 const Demo = () => {
     const demoInfo = {
         credential: 'demo1',

@@ -12,9 +12,9 @@ import { useEffect } from "react";
 const Layout = () => {
     const {serverId, channelId} = useParams()
     const currentUser = useSelector(selectCurrentUser)
-    if (serverId === '@me') {
-        console.log(serverId)
-    }
+    // if (serverId === '@me') {
+    //     console.log(serverId)
+    // }
     return(
         <>
         {currentUser && 
