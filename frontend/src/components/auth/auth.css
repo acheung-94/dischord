@@ -31,11 +31,6 @@
     border-radius: 5px;
     box-shadow: 0 2px 10px rgb(48, 48, 48);
 }
-/* body{
-    background-image: url('../assets/Frame.png');
-    background-size: 100% auto;
-    color: #B5BAC1;
-} */
 
 a{
     color: #00a8fc;
@@ -145,3 +140,4 @@ form button:hover{
     justify-content: center;
     align-items: center;
 } */
+

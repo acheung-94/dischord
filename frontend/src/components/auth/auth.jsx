@@ -97,7 +97,7 @@ const Auth = ({ type }) => {
     }else{
         return(
             <div className="page-wrapper">
-            <div className={ isLogin ? "signin-wrapper" : "register-wrapper"}> 
+            <div className={ isLogin ? "signin-wrapper active" : "register-wrapper active"}> 
                 {isLogin && 
                 <form className="signin" onSubmit={handleSubmit}>
                     <div className="welcome">

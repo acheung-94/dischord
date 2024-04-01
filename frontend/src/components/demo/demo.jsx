@@ -3,15 +3,13 @@ import './demo.css'
 import { loginUser, selectCurrentUser } from '../../store/sessionReducer'
 import { useNavigate } from 'react-router-dom'
 
-import UserIconFull from '../userIconsFull/userIconFull'
-// TODO broken import...
 const Demo = () => {
     const demoInfo = {
         credential: 'demo1',
         password: 'themostsecure'
     }
     const dispatch = useDispatch()
-    // const currentUser = useSelector(selectCurrentUser)
+
     const navigate = useNavigate()
     const handleDemo = () => {
         dispatch(loginUser(demoInfo))
