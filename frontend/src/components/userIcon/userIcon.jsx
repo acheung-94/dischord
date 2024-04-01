@@ -1,7 +1,7 @@
-const UserIcon = ({user}) => {
+const Banana = ({user}) => {
     return(
-        <span className="user-icon"> <img src={user.imgPath} /></span>
+        <h1>Banana...</h1>
     )
 }
 
-export const UserIcon;
+export default Banana; 

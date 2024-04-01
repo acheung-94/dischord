@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom"
 import { postUser, postSession, deleteSession } from "../utils/sessionApiUtils"
 
 //  TYPES
@@ -40,7 +41,7 @@ export const loginUser = sessionInfo => dispatch => (
         })
         .then(data => {
             sessionStorage.setItem('currentUser', JSON.stringify(data.user)) // create a new user and log in
-            dispatch(createSession(data.user)) // refer to jbuilder formats
+            dispatch(createSession(data.user))// refer to jbuilder formats
         })
 )
 

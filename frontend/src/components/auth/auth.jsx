@@ -1,9 +1,9 @@
 import { useDispatch } from "react-redux"
-import { createUser, loginUser } from "../store/sessionReducer"
+import { createUser, loginUser } from "../../store/sessionReducer"
 import { useEffect, useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import './auth.css'
-import Demo from "./demo/demo"
+import Demo from "../demo/demo"
 
 const Auth = ({ type }) => {
     const dispatch = useDispatch()
@@ -77,13 +77,13 @@ const Auth = ({ type }) => {
             dispatch(loginUser(formData)).catch( async res => {
                 let data = await res.json()
                 setErrors( old => ({...old, messages:data.errors}))
-
+                navigate('/channels/@me')
             })
         } else {
             dispatch(createUser(formData)).catch( async res => {
                 let data = await res.json()
                 formatErrors(data)
-                console.log(regErrors)
+                navigate('/channels/@me')
             })
         }
     }

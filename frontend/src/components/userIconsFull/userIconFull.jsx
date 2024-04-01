@@ -1,16 +1,15 @@
-import { UserIcon } from "../userIcon/userIcon"
 
-const UserIconFull = ( {user}) => {
+const UserIconFull = ( {user} ) => {
+    console.log('inside usericonfull')
     return (
-        <div className="user-1">
-        <UserIcon user = {user}/>
-        <span className="user-1-text">
-            <p>Log in as</p>
-            <h4>sonataformftw</h4>
-        </span>
-        </div>
+        <>
+            <span className="user-icon-text">
+                <h4>{ user ? user.username : 'sonataformftw'}</h4>
+                <p>{user.status || 'placeholder status'}</p>
+            </span>
+        </>
 
     )
 }
 
-export const UserIconFull
+export default UserIconFull;

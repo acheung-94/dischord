@@ -1,6 +1,9 @@
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import './demo.css'
-import { loginUser } from '../../store/sessionReducer'
+import { loginUser, selectCurrentUser } from '../../store/sessionReducer'
+import { useNavigate } from 'react-router-dom'
+
+// import UserIconFull from '../userIconsFull/userIconFull'
 
 const Demo = () => {
     const demoInfo = {
@@ -8,16 +11,18 @@ const Demo = () => {
         password: 'themostsecure'
     }
     const dispatch = useDispatch()
+    // const currentUser = useSelector(selectCurrentUser)
+    const navigate = useNavigate()
+    const handleDemo = () => {
+        dispatch(loginUser(demoInfo))
+        navigate('/channels/@me')
+    }
+    
     return(
         <div className="demo-login">
-            <div className="user-1" onClick={()=> dispatch(loginUser(demoInfo))}>
-                <span className="user-1-icon"></span>
-                <span className="user-1-text">
-                    <p>Log in as</p>
-                    <h4>sonataformftw</h4>
-                </span>
+            <div className="user-1" onClick={handleDemo}>
+                <p> placeholder for UserIconFull </p>
             </div>
-
         </div>
     )
 }
