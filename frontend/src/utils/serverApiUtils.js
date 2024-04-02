@@ -8,18 +8,22 @@ export const postServer = (serverInfo) => (
 )
 
 export const destroyServer = (serverId) => (
-    csrfFetch(`api/servers/${serverId}`, {
+    csrfFetch(`/api/servers/${serverId}`, {
         method: 'delete'
     })
 )
 
 export const getServer = (serverId) => (
-    csrfFetch(`api/servers/${serverId}`)
+    csrfFetch(`/api/servers/${serverId}`)
 )
 
 export const patchServer = (server) => (
-    csrfFetch(`api/servers/${server.id}`, {
-        method: 'patch',
+    csrfFetch(`/api/servers/${server.id}`, {
+        method: 'PATCH',
         body: JSON.stringify(server)
     })
+)
+
+export const getServers = () => (
+    fetch(`/api/servers`)
 )

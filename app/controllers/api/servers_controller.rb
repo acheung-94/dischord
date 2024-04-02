@@ -27,7 +27,7 @@ class Api::ServersController < ApplicationController
 
     def update
         @server = find_server
-        if @server&.update
+        if @server&.update(server_params)
             render :show
         else
             render json: {errors: @server.errors}, status: 422
