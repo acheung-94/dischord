@@ -8,6 +8,8 @@ import { Provider } from 'react-redux'
 import {restoreSession} from './utils/csrfUtils.js'
 import { deleteSession, postSession, postUser } from './utils/sessionApiUtils.js';
 import { createSession, createUser, destroySession, loginUser, logoutUser } from './store/sessionReducer.js';
+import { createServer } from './store/serverReducer.js'
+
 const initializeApp = () => {
   const store = configureStore()
   window.store = store
@@ -17,6 +19,7 @@ const initializeApp = () => {
   window.createUser = createUser
   window.loginUser = loginUser
   window.logoutUser = logoutUser
+  window.createServer = createServer
     ReactDOM.createRoot(document.getElementById('root')).render(
     
       <React.StrictMode>
