@@ -1,0 +1,21 @@
+=> 
+[[32m#<User:0x00007fd8ab4b7e50[0m
+  id: [34m[1m2[0m,
+  username: [31m[1m"[0m[31mdemo2[0m[31m[1m"[0m,
+  display_name: [31m[1m"[0m[31mdemo user 2[0m[31m[1m"[0m,
+  email: [31m[1m"[0m[31mdemo2@demo.com[0m[31m[1m"[0m,
+  password_digest: [31m[1m"[0m[31m[FILTERED][0m[31m[1m"[0m,
+  session_token: [31m[1m"[0m[31m[FILTERED][0m[31m[1m"[0m,
+  created_at: Mon, 01 Apr 2024 22:51:24.647483000 UTC +00:00,
+  updated_at: Mon, 01 Apr 2024 22:51:24.647483000 UTC +00:00,
+  img_path: [36m[1mnil[0m[32m>[0m,
+ [32m#<User:0x00007fd8ab4b7d88[0m
+  id: [34m[1m3[0m,
+  username: [31m[1m"[0m[31msdlkjf[0m[31m[1m"[0m,
+  display_name: [31m[1m"[0m[31mblab[0m[31m[1m"[0m,
+  email: [31m[1m"[0m[31mblah@blah.com[0m[31m[1m"[0m,
+  password_digest: [31m[1m"[0m[31m[FILTERED][0m[31m[1m"[0m,
+  session_token: [31m[1m"[0m[31m[FILTERED][0m[31m[1m"[0m,
+  created_at: Mon, 01 Apr 2024 23:13:08.061408000 UTC +00:00,
+  updated_at: Mon, 01 Apr 2024 23:13:08.061408000 UTC +00:00,
+  img_path: [36m[1mnil[0m[32m>[0m]

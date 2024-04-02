@@ -1,3 +1,17 @@
+# == Schema Information
+#
+# Table name: users
+#
+#  id              :bigint           not null, primary key
+#  username        :string           not null
+#  display_name    :string
+#  email           :string           not null
+#  password_digest :string           not null
+#  session_token   :string           not null
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#  img_path        :string
+#
 class User < ApplicationRecord
     before_validation :ensure_session_token
     has_secure_password
@@ -15,6 +29,21 @@ class User < ApplicationRecord
         uniqueness: {scope: :email, message: 'Account already exists with this email.'},  
         format: { with: URI::MailTo::EMAIL_REGEXP, message: 'Not a valid email format.'}
 
+## ASSOCIATIONS
+    has_many :servers,
+        dependent: :destroy,
+        foreign_key: :owner_id,
+        inverse_of: :owner
+
+    has_many :memberships,
+        dependent: :destroy,
+        inverse_of: :user
+
+    has_many :member_servers,
+        through: :memberships,
+        source: :server
+
+## UTILS
     def self.find_by_credentials(credential, password)
         credential_type = credential.match?( URI::MailTo::EMAIL_REGEXP ) ? :email : :username
         user = User.find_by(credential_type => credential)
@@ -35,6 +64,13 @@ class User < ApplicationRecord
         self.session_token ||= generate_session_token
     end
 
+    def all_owned_servers
+        servers.includes(:memberships)
+    end
+    
+    def all_member_servers
+        member_servers.includes(:memberships)
+      end
     private
 
     def generate_session_token
