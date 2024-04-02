@@ -1,0 +1,28 @@
+.server-icon{
+    background: #313338;
+    width: 48px;
+    height: 48px;
+    border-radius: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.1s ease-out;
+    /* margin-bottom: 8px; */
+}
+
+.server-icon:hover{
+    border-radius: 18px;
+    background-color: #5865F2 ;
+    color: #fff;
+    cursor: pointer;
+}
+.pill-wrapper{
+    width: 8px;
+    height: 48px;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.server-icon-wrapper{
+    display: flex;
+}

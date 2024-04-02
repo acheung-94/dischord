@@ -1,5 +1,21 @@
 .server-list{
-    flex: 1 1 auto;
+    /* flex: 1 1 auto; */
     border: 1px solid gray;
     height: 100vh;
+    width: auto;
+    padding-right: 10px;
+    padding-top: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #1E1F22;
+    gap: 8px;
 }
+
+.server-separator{
+    height: 2px;
+    width: 32px;
+    border-radius: 1px;
+    background-color: hsl(228 calc( 1 * 6%) 32.5% / 0.48);
+}
+

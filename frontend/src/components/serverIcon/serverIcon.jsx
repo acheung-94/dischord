@@ -1,41 +1,39 @@
 import { useSelector } from "react-redux"
 import { selectServer } from "../../store/serverReducer"
-
+import './serverIcon.css'
 const ServerIcon = ({serverId}) => {
     const server = useSelector(selectServer(serverId))
 
     const conditionalImage = () => {
-        if (server.imgPath) {
+        if (serverId) {
+            if (server.imgPath) {
+                return (
+                    <img className="server-image" src={server.imgPath} />
+                )
+            }else {
+                return (
+                    <div className="no-server-image"> 
+                        {server.name.substring(0,1).toUpperCase()} 
+                    </div>
+                )
+            }
+        } else {
             return (
-                <img className="server-image" src={`${server.imgPath}`} />
-            )
-        }else {
-            return (
-                <div className="no-server-image"> 
-                    {server.name.substring(0,1).toUpperCase()} 
-                </div>
+                <img src="/src/assets/icons/Vector.png" />
             )
         }
     }
 
-    if (serverId) {
-        return (
-            <>
-                <div className="server-pill"></div>
-                <div className="server-icon">
-                    { conditionalImage() }
-                </div>
-            </>
-        )
-    } else {
-        return(
-            <>
-                <div className="dm-icon">
-                    <img src="" />
-                </div>
-            </>
-        )
-    }
+
+    return (
+        <div className="server-icon-wrapper">
+            <div className="pill-wrapper"><span className="pill"></span></div>
+            <div className="server-icon">
+                { conditionalImage() }
+            </div>
+        </div>
+    )
+
 }
 
 export default ServerIcon

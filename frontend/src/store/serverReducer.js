@@ -70,7 +70,7 @@ export const removeServer = (serverId) => (dispatch) => (
     })
 )
 //SELECTORS
-export const currentUserServers = state => state.servers
+export const currentUserServers = state => Object.values(state.servers)
 export const selectServer = (serverId) => (state) => state.servers[serverId]
 // REDUCER
 const serverReducer = (state = {}, action) => {
@@ -79,7 +79,7 @@ const serverReducer = (state = {}, action) => {
         case ADD_SERVER:
             return { ...newState, [action.serverInfo.id]: action.serverInfo};
         case RECEIVE_SERVERS:
-            return {...newState, ...action.servers}
+            return action.servers
         case DELETE_SERVER:
             delete newState[action.serverId]
             return newState
