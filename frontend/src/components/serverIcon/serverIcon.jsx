@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux"
 import { selectServer } from "../../store/serverReducer"
 import './serverIcon.css'
-const ServerIcon = ({serverId}) => {
+const ServerIcon = ({serverId, type }) => {
     const server = useSelector(selectServer(serverId))
 
     const conditionalImage = () => {
@@ -28,12 +28,20 @@ const ServerIcon = ({serverId}) => {
     return (
         <div className="server-icon-wrapper">
             <div className="pill-wrapper"><span className="pill"></span></div>
-            <div className="server-icon">
+            { (type === "new") ? (
+                <div className="server-icon new">
+                    +                    
+                </div>
+            ) : (<div className="server-icon">
                 { conditionalImage() }
-            </div>
+            </div>) }
+            
         </div>
     )
 
 }
 
 export default ServerIcon
+
+
+//<img src="/src/assets/icons/green-plus.png"/>

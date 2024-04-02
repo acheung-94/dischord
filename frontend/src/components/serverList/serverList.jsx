@@ -14,7 +14,7 @@ const ServerList = () => {
             <ServerIcon />
             <div className='server-separator'></div>
             {servers.map( server => <ServerIcon serverId={server.id} key={server.id} />)}
-            <div> new </div>
+            <ServerIcon type = {'new'}/>
         </div>
     )
 }

@@ -17,5 +17,6 @@
     width: 32px;
     border-radius: 1px;
     background-color: hsl(228 calc( 1 * 6%) 32.5% / 0.48);
+    margin-left: 8px;
 }
 
