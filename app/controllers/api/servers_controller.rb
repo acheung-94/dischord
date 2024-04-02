@@ -17,16 +17,40 @@ class Api::ServersController < ApplicationController
     end
 
     def show
-        @server = Server.find_by(id: params[:id])
+        @server = find_server
         if @server
             render :show
         else
             render json: {errors: 'Could not find a server with that name'}, status: 404
         end
     end
-    
+
+    def update
+        @server = find_server
+        if @server&.update
+            render :show
+        else
+            render json: {errors: @server.errors}, status: 422
+        end
+    end
+
+    def destroy
+        @server = find_server
+        if @server&.owner == current_user
+            @server.destroy
+            head :no_content
+        else
+            render json: {errors: "#{@server.name} is not yours to delete."}, status: 401
+        end
+                
+    end
+
     private
     def server_params
         params.require(:server).permit(:name, :img_path)
+    end
+
+    def find_server
+        Server.find_by(id: params[:id])
     end
 end

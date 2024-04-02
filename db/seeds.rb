@@ -29,6 +29,6 @@ Server.create(name: 'Wow!', owner_id: 1)
 
 Membership.create(user_id: 2, server_id: 2)
 Membership.create(user_id: 2, server_id: 1)
-Membership.create(user_id: 1, server_id: 1)
-Membership.create(user_id: 1, server_id: 3)
+Membership.create(user_id: 1, server_id: 1) #owner
+Membership.create(user_id: 1, server_id: 3) #owner
 Membership.create(user_id: 1, server_id: 2)

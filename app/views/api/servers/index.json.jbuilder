@@ -1,15 +1,8 @@
-
+#json.extract! @user, :username
 json.servers do
-    @user.all_member_servers.each do |server|
+    @user.member_servers.each do |server|
         json.set! server.id do
-            json.extract! server, :id, :name
-            json.members server.members.map(&:id)
-        end
-    end
-
-    @user.all_owned_servers.each do |server|
-        json.set! server.id do
-            json.extract! server, :id, :name
+            json.extract! server, :id, :name, :owner_id
             json.members server.members.map(&:id)
         end
     end

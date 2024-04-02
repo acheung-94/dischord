@@ -64,13 +64,6 @@ class User < ApplicationRecord
         self.session_token ||= generate_session_token
     end
 
-    def all_owned_servers
-        servers.includes(:memberships)
-    end
-    
-    def all_member_servers
-        member_servers.includes(:memberships)
-      end
     private
 
     def generate_session_token

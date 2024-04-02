@@ -1,1 +1,5 @@
-json.extract! @server, :id, :name
+json.extract! @server, :id, :name, :owner_id
+
+json.members do
+    json.array! @server.members.map(&:id)
+end
