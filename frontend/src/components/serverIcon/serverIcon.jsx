@@ -1,9 +1,10 @@
 import { useSelector } from "react-redux"
 import { selectServer } from "../../store/serverReducer"
 import './serverIcon.css'
+import { useNavigate } from "react-router-dom"
 const ServerIcon = ({serverId, type }) => {
     const server = useSelector(selectServer(serverId))
-
+    const navigate = useNavigate()
     const conditionalImage = () => {
         if (serverId) {
             if (server.imgPath) {
@@ -24,9 +25,8 @@ const ServerIcon = ({serverId, type }) => {
         }
     }
 
-
     return (
-        <div className="server-icon-wrapper">
+        <div className="server-icon-wrapper" >
             <div className="pill-wrapper"><span className="pill"></span></div>
             { (type === "new") ? (
                 <div className="server-icon new">
@@ -35,7 +35,6 @@ const ServerIcon = ({serverId, type }) => {
             ) : (<div className="server-icon">
                 { conditionalImage() }
             </div>) }
-            
         </div>
     )
 

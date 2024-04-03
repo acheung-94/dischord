@@ -15,6 +15,7 @@ const Layout = ({type}) => {
     // if (serverId === '@me') {
     //     console.log(serverId)
     // }
+    //types = @me, server
     if (type === '@me'){
     
     return(
@@ -22,9 +23,9 @@ const Layout = ({type}) => {
         {currentUser && 
         <div className="layout">
             <ServerList />
-            <Left />
-            <Middle />
-            <Right />
+            <Left type='@me'/>
+            <Middle type='@me'/>
+            <Right type='@me'/>
         </div>}
         </>
     )
