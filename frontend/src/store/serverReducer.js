@@ -1,3 +1,4 @@
+import {createSelector} from "reselect"
 import { destroyServer, getServers, patchServer, postMembership, postServer } from "../utils/serverApiUtils"
 
 const ADD_SERVER = 'servers/ADD_SERVER'
@@ -84,7 +85,9 @@ export const removeServer = (serverId) => (dispatch) => (
     })
 )
 //SELECTORS
-export const currentUserServers = state => Object.values(state.servers)
+
+export const currentUserServers2 = createSelector(state => state.servers, servers => Object.values(servers))
+
 export const selectServer = (serverId) => (state) => state.servers[serverId]
 // REDUCER
 const serverReducer = (state = {}, action) => {

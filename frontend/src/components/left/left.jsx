@@ -2,8 +2,9 @@ import { useDispatch, useSelector } from 'react-redux'
 import './left.css'
 import { selectCurrentUser, logoutUser } from '../../store/sessionReducer'
 import { useNavigate } from 'react-router-dom'
+import TopLeft from '../topLeft/topLeft'
 // import { UserIconFull } from '../userIconsFull/userIconFull'
-const Left = () => {
+const Left = ( {type}) => {
     const currentUser = useSelector(selectCurrentUser)
     const dispatch = useDispatch()
     const navigate = useNavigate()
@@ -13,10 +14,8 @@ const Left = () => {
         navigate('/')
     }
     return(
-        <div className="left-panel">
-            Left panel!
-            <h1>{currentUser.username}</h1>
-
+        <div className="left-base">
+            <TopLeft type={type}/>
             <button onClick={handleLogout}>Log out placeholder!</button>
         </div>
     )

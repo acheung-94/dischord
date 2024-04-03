@@ -1,11 +1,11 @@
 import './serverList.css'
 import { useDispatch, useSelector } from 'react-redux'
 import ServerIcon from '../serverIcon/serverIcon'
-import { currentUserServers, getUserServers } from '../../store/serverReducer'
+import { currentUserServers2, getUserServers } from '../../store/serverReducer'
 import { useEffect, useState } from 'react'
 import NewServer from '../newServer/newServer'
 const ServerList = () => {
-    const servers = useSelector(currentUserServers)
+    const servers = useSelector(currentUserServers2)
     const dispatch = useDispatch()
     const [modalState, setModalState] = useState(null)
 

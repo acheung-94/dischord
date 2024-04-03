@@ -1,4 +1,4 @@
-.middle-panel{
-    flex: 2 1 auto;
-    border: 1px solid gray;
+.middle-base{
+    grid-area: middle;
+    background-color: #313338;
 }

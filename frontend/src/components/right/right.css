@@ -1,0 +1,11 @@
+.thick{
+    grid-area: right-panel;
+    background-color: #2b2d31;
+    
+}
+
+.thin{
+    grid-area: right-panel;
+    background-color: blue;
+    width: 240px;
+}

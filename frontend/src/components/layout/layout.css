@@ -1,4 +1,15 @@
 .layout{
     display: flex;
-    justify-content: space-evenly;
+    /* justify-content: space-evenly; */
 }
+
+.main-grid{
+    display: grid;
+    width: 100%;
+    grid-template-columns: 240px auto 340px;
+    grid-template-rows: 48px auto;
+    grid-template-areas:
+        "left header header"
+        "left middle right-panel";
+}
+

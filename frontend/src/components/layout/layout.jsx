@@ -6,6 +6,7 @@ import ServerList from "../serverList/serverList";
 import Left from "../left/left";
 import Middle from "../middle/middle";
 import Right from "../right/right";
+import Top from "../top/top";
 import './layout.css'
 import { useEffect } from "react";
 
@@ -16,16 +17,19 @@ const Layout = ({type}) => {
     //     console.log(serverId)
     // }
     //types = @me, server
-    if (type === '@me'){
+    if (type === '@me'){ //this will be handled in the router eventually
     
     return(
         <>
         {currentUser && 
         <div className="layout">
             <ServerList />
-            <Left type='@me'/>
-            <Middle type='@me'/>
-            <Right type='@me'/>
+            <div className="main-grid">
+                <Left type='@me'/>
+                <Middle type='@me'/>
+                <Top type='@me' />
+                <Right type='@me'/>
+            </div>
         </div>}
         </>
     )
