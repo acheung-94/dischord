@@ -87,8 +87,8 @@ export const removeServer = (serverId) => (dispatch) => (
 //SELECTORS
 
 export const currentUserServers2 = createSelector(state => state.servers, servers => Object.values(servers))
+export const selectServer = serverId => state => state.servers[serverId]
 
-export const selectServer = (serverId) => (state) => state.servers[serverId]
 // REDUCER
 const serverReducer = (state = {}, action) => {
     const newState = {...state}

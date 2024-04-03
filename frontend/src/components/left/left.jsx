@@ -3,6 +3,7 @@ import './left.css'
 import { selectCurrentUser, logoutUser } from '../../store/sessionReducer'
 import { useNavigate } from 'react-router-dom'
 import TopLeft from '../topLeft/topLeft'
+import BottomLeft from '../bottomLeft/bottomLeft'
 // import { UserIconFull } from '../userIconsFull/userIconFull'
 const Left = ( {type}) => {
     const currentUser = useSelector(selectCurrentUser)
@@ -16,7 +17,9 @@ const Left = ( {type}) => {
     return(
         <div className="left-base">
             <TopLeft type={type}/>
+            <h1>DM list placeholder</h1>
             <button onClick={handleLogout}>Log out placeholder!</button>
+            <BottomLeft />
         </div>
     )
 }

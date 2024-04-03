@@ -17,7 +17,7 @@ const Layout = ({type}) => {
     //     console.log(serverId)
     // }
     //types = @me, server
-    if (type === '@me'){ //this will be handled in the router eventually
+     //this will be handled in the router eventually
     
     return(
         <>
@@ -25,15 +25,15 @@ const Layout = ({type}) => {
         <div className="layout">
             <ServerList />
             <div className="main-grid">
-                <Left type='@me'/>
-                <Middle type='@me'/>
-                <Top type='@me' />
-                <Right type='@me'/>
+                <Left type={type}/>
+                <Middle type={type}/>
+                <Top type={type} />
+                <Right type={type}/>
             </div>
         </div>}
         </>
     )
-    }
+   
 }
 
 export default Layout;

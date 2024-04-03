@@ -7,11 +7,16 @@ const BottomLeft = () => {
     return(
         <div className='bottom-left'>
             <div className="user-icon">
-                <img src="../../assets/avatar-gold.png" />
+                <img className="avatar" src="/src/assets/icons/avatar-gold.png" />
+                <img className='status' src="/src/assets/icons/icon-on.png" />
+                <div className="user-icon-text">
+                    <h4>{currentUser.username}</h4>
+                    <p>Online</p>
+                </div>
+            
             </div>
-            <div className="user-icon-text">
-                <h4>{currentUser.username}</h4>
-                <p>status</p>
+            <div className='user-options'>
+                <img src="/src/assets/icons/icon-gear.png" alt="" />
             </div>
         </div>
     )
