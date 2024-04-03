@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux"
 import { selectCurrentUser } from "../../store/sessionReducer"
-import { createServer } from "../../store/serverReducer"
+import { createMembership, createServer } from "../../store/serverReducer"
 import { useState } from "react"
 import './newServer.css'
 

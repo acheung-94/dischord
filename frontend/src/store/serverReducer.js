@@ -1,4 +1,4 @@
-import { destroyServer, getServers, patchServer, postServer } from "../utils/serverApiUtils"
+import { destroyServer, getServers, patchServer, postMembership, postServer } from "../utils/serverApiUtils"
 
 const ADD_SERVER = 'servers/ADD_SERVER'
 const DELETE_SERVER = 'servers/DELETE_SERVER'
@@ -32,12 +32,26 @@ export const createServer = (serverInfo) => (dispatch) => (
         }else{
             throw res
         }
-    }).then(data => dispatch(addServer(data)))
+    }).then(data => {
+        console.log(data)
+        dispatch(addServer(data))
+    })
 )
 
 export const getUserServers = () => (dispatch) => (
     getServers().then(res => {
         if (res.ok) {
+            return res.json()
+        }else{
+            throw res
+        }
+    }).then(servers => dispatch(receiveServers(servers)))
+)
+
+export const createMembership = (membership) => (dispatch) => (
+    postMembership(membership).then(res => { // post membership should return an updated server list? 
+        if (res.ok) {
+            console.log(res)
             return res.json()
         }else{
             throw res

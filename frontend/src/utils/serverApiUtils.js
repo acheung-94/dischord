@@ -27,3 +27,10 @@ export const patchServer = (server) => (
 export const getServers = () => (
     fetch(`/api/servers`)
 )
+
+export const postMembership = (membership) => (
+    csrfFetch('/api/memberships', {
+        method: 'post',
+        body: JSON.stringify(membership)
+    })
+)
