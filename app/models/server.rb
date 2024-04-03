@@ -24,4 +24,6 @@ class Server < ApplicationRecord
     has_many :members,
         through: :memberships,
         source: :user
+
+    has_one_attached :server_icon
 end

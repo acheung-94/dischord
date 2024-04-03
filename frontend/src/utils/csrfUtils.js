@@ -1,11 +1,13 @@
 export const restoreSession = async () => { // returns a promise
-    let res = await fetch('/api/session') //hit the session#show endpoint to obtain the csrf token
-    let token = res.headers.get('X-CSRF-Token') // get teh csrf token
+    let res = await fetch('/api/session')
+ //hit the session#show endpoint to obtain the csrf token
+    let token = res.headers.get('X-CSRF-Token')
+ // get teh csrf token
     sessionStorage.setItem('X-CSRF-Token', token) // store csrf token in sessionStorage for access from other utils.
     let sessionData = await res.json()
     sessionStorage.setItem('currentUser', JSON.stringify(sessionData.user))
   }
-
+//
 export const csrfFetch = async (url, options = {}) => {
     // set options.method to 'GET' if there is no method
     options.method = options.method || 'GET';

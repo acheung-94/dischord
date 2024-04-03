@@ -43,6 +43,8 @@ class User < ApplicationRecord
         through: :memberships,
         source: :server
 
+    has_one_attached :avatar
+    
 ## UTILS
     def self.find_by_credentials(credential, password)
         credential_type = credential.match?( URI::MailTo::EMAIL_REGEXP ) ? :email : :username
