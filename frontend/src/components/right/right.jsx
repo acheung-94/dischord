@@ -1,7 +1,9 @@
-const Right = () => {
+import './right.css'
+const Right = ({type}) => {
     return(
-        <div className="right-panel">
+        <div className={type === '@me' ? "right-base thick" : "right-base thin"}>
             Right panel!
+            yay width fixed
         </div>
     )
 }

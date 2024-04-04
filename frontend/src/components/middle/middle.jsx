@@ -1,7 +1,7 @@
 import './middle.css'
 const Middle = () => {
     return(
-        <div className="middle-panel">
+        <div className="middle-base">
             MIddle panel!
         </div>
     )

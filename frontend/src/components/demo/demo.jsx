@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux'
 import './demo.css'
-import { loginUser, selectCurrentUser } from '../../store/sessionReducer'
+import { loginUser } from '../../store/sessionReducer'
 import { useNavigate } from 'react-router-dom'
 
 const Demo = () => {

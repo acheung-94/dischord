@@ -1,0 +1,65 @@
+.server-icon{
+    background: #313338;
+    width: 48px;
+    height: 48px;
+    border-radius: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.1s ease;
+    font-weight: 600;
+    /* margin-bottom: 8px; */
+}
+a.active .server-icon{
+    border-radius: 18px;
+    background-color: #5865F2 ;
+    /* transition: all 0.2s ease; */
+}
+.server-icon:hover{
+    border-radius: 18px;
+    background-color: #5865F2 ;
+    color: #fff;
+    cursor: pointer;
+}
+.pill-wrapper{
+    width: 8px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    margin-right: 4px;
+}
+
+.server-icon-wrapper{
+    display: flex;
+}
+
+.server-icon-wrapper:hover .pill{
+    background-color: #fff;
+    width: 100%;
+    height: 20px;
+    margin-right: 4px;
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 6px;
+    position: relative;
+}
+a.active .pill{
+    background-color: #fff;
+    width: 100%;
+    height: 75%;
+    margin-right: 4px;
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 6px;
+    position: relative;
+    transition: all 0.1s ease;
+}
+.new{
+    color: #3da45c;
+    line-height: 24px;
+    font-size: 36px;
+    font-weight: 400;
+}
+
+.new:hover{
+    color: #fff;
+    background-color: #3da45c;
+}

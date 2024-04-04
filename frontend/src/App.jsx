@@ -12,7 +12,9 @@ const router = createBrowserRouter( [
   {path: '/register', element: <Auth type={'register'} />},
   {path: '/channels', children: [
     { index: true, element: <Splash /> }, 
-    { path: '@me', element: <Layout type={'@me'}/> }]}
+    { path: '@me', element: <Layout type='@me'/> },
+    { path: ':serverId', element: <Layout type='server'/>}
+  ]}
 ])
 
 function App() {

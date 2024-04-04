@@ -8,15 +8,32 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
+require 'open-uri'
+
+ActiveRecord::Base.connection.tables.each do |t|
+     ActiveRecord::Base.connection.reset_pk_sequence!(t)
+end
 demo_1 = User.create(
      username: 'demo1',
      display_name: 'demo user 1',
      password: 'themostsecure',
      email: 'demo1@demo.com',
-     img_path: '../../assets/img/demo1.png'
+     img_path: 'https://dischord-clone-seeds.s3.us-west-1.amazonaws.com/demo1.png'
      ) # will be cloud data, but for now...
+# file = URI.open('https://dischord-clone-seeds.s3.us-west-1.amazonaws.com/demo1.png')
+# demo_1.avatar.attach(io: file, filename: 'demo1.jpg')
 demo_2 = User.create(
     username: 'demo2', 
     display_name: 'demo user 2', 
     password: 'themostsecure2', 
     email: 'demo2@demo.com' )
+
+Server.create(name: 'test server', owner_id: 1)
+Server.create(name: 'App Academy Lite', owner_id: 2)
+Server.create(name: 'Wow!', owner_id: 1)
+
+Membership.create(user_id: 2, server_id: 2)
+Membership.create(user_id: 2, server_id: 1)
+Membership.create(user_id: 1, server_id: 1) #owner
+Membership.create(user_id: 1, server_id: 3) #owner
+Membership.create(user_id: 1, server_id: 2)
