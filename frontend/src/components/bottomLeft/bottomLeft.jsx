@@ -1,9 +1,10 @@
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import './bottomLeft.css'
-import { selectCurrentUser } from '../../store/sessionReducer';
+import { logoutUser, selectCurrentUser } from '../../store/sessionReducer';
 
 const BottomLeft = () => {
     const currentUser = useSelector(selectCurrentUser)
+    const dispatch = useDispatch()
     return(
         <div className='bottom-left'>
             <div className="user-icon">
@@ -15,8 +16,9 @@ const BottomLeft = () => {
                 </div>
             
             </div>
-            <div className='user-options'>
-                <img src="/src/assets/icons/icon-gear.png" alt="" />
+            <div className='user-options'
+                    onClick={() => dispatch(logoutUser())}>
+                <img src="/src/assets/icons/leaving.png" />
             </div>
         </div>
     )

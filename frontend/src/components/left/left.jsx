@@ -10,15 +10,12 @@ const Left = ( {type}) => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
-    const handleLogout=()=>{
-        dispatch(logoutUser())
-        navigate('/')
-    }
+
     return(
         <div className="left-base">
             <TopLeft type={type}/>
             <h1>DM list placeholder</h1>
-            <button onClick={handleLogout}>Log out placeholder!</button>
+
             <BottomLeft />
         </div>
     )

@@ -24,20 +24,31 @@ const ServerIcon = ({serverId, type }) => {
             )
         }
     }
-
-    return (
-        <NavLink className="server-icon-wrapper"
-            to={`/channels/${serverId}`} >
-            <div className="pill-wrapper"><span className="pill"></span></div>
-            { (type === "new") ? (
+    
+    
+    if (type === 'new'){
+        return (
+            <div className="server-icon-wrapper"
+                to={`/channels/${serverId}`} >
+                <div className="pill-wrapper"><span className="pill"></span></div>
+                
                 <div className="server-icon new">
                     +                    
                 </div>
-            ) : (<div className="server-icon">
-                { conditionalImage() }
-            </div>) }
-        </NavLink>
-    )
+            </div>
+        )
+    }else{
+        return (
+            <NavLink className="server-icon-wrapper"
+                to={ serverId ? `/channels/${serverId}` : `/channels/@me`} >
+                <div className="pill-wrapper"><span className="pill"></span></div>
+                <div className="server-icon">
+                    { conditionalImage() }
+                </div> 
+            </NavLink>
+        )
+    }
+
 
 }
 

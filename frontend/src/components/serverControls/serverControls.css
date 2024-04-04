@@ -1,0 +1,25 @@
+.server-controls{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+    color: #fff;
+    font-weight: 600;
+    padding: 10px;
+    position: relative;
+    transition: all 0.1s linear;
+    
+}
+
+.server-controls img{
+    width: 24px;
+}
+.server-controls:hover{
+    background-color: #35373c;
+    cursor:pointer;
+}
+
+.top-left .active {
+    background-color: #35373c;
+    cursor:pointer
+}

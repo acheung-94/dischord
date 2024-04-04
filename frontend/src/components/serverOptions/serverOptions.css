@@ -1,0 +1,37 @@
+.server-options-modal{
+    position: absolute;
+    background-color: rgba(30,31,35,255);
+    top: 125%;
+    width: 90%;
+    padding: 10px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    color:#B5BAC1;
+    font-size: 14px;
+    
+}
+
+.server-options-modal div{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 4px;
+    transition: all 0.1s linear;
+}
+
+.server-options-modal div:hover{
+    background-color: #b5bac11f;
+}
+.server-options-modal img{
+    width: 18px;
+    padding: 2px;
+}
+
+.invite-people{
+    color: #949CF7;
+}
+.leave-server{
+    color: #E93848;
+}
