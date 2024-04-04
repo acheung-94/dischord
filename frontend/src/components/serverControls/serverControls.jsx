@@ -10,14 +10,13 @@ const ServerControls = () => {
     const dispatch = useDispatch()
     const server = useSelector(selectServer(serverId))
     const [serverModal, setServerModal] = useState(null)
-    console.log('rerendering', server)
     // no access / not fetching servers after refreshing. why? 
     if (server) {
         return(
             <div className={serverModal ? "server-controls active" : "server-controls"}
             onClick={()=> setServerModal(!serverModal)} > 
                 <h1 className='server-name'>{server.name}</h1>
-                <img src="/src/assets/icons/guildDropdownMenu.png" />
+                <img className='server-controls-img' src="/src/assets/icons/guildDropdownMenu.png" />
                 { serverModal && (
                     <ServerOptions server = {server} />
                 )}

@@ -13,7 +13,7 @@
     
 }
 
-.server-options-modal div{
+.server-options-modal span{
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -21,10 +21,10 @@
     transition: all 0.1s linear;
 }
 
-.server-options-modal div:hover{
+.server-options-modal span:hover{
     background-color: #b5bac11f;
 }
-.server-options-modal img{
+.server-options-modal .options-icons{
     width: 18px;
     padding: 2px;
 }

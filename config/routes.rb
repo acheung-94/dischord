@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     resource :session, only: [:create, :destroy, :show]
     resources :servers, only: [:index, :create, :show, :update, :destroy]
     resources :memberships, only: [:create]
+    delete '/memberships/:serverId', to: 'memberships#destroy'
   end
   
 end

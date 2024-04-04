@@ -18,11 +18,6 @@ const Layout = ({type}) => {
     const navigate = useNavigate()
     const dispatch = useDispatch()
 
-    // if (serverId === '@me') {
-    //     console.log(serverId)
-    // }
-    //types = @me, server
-     //this will be handled in the router eventually
      useEffect( ()=>{
         console.log('fetching servers...')
         dispatch(getUserServers())

@@ -1,47 +1,69 @@
-import { removeServer, selectServer } from '../../store/serverReducer'
+import { leaveServer, removeServer, selectServer } from '../../store/serverReducer'
 import { selectCurrentUser } from '../../store/sessionReducer'
 import './serverOptions.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useState } from 'react'
+import NewServer from '../newServer/newServer'
 const ServerOptions = ( {server}) => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const serverId = useParams()
     // const server = useSelector(selectServer(serverId))
     const currentUser = useSelector(selectCurrentUser)
-    const [modalState, setModalState] = useState(null) 
+    const [modalState, setModalState] = useState(false) 
 
     const handleDelete = () => {
         dispatch(removeServer(server.id))
         navigate('/channels/@me')
     }
 
+    const handleLeaving = () => {
+        console.log(typeof serverId.serverId)
+        dispatch(leaveServer(parseInt(serverId.serverId)))
+        navigate('/channels/@me')
+    }
+
+    const showEdit = (e) => {
+        e.stopPropagation()
+        setModalState(true)
+    }
+
     return(
+    <>
         <div className="server-options-modal">
-            <div className="invite-people">
+            <span className="invite-people">
                 Invite People
-                <img src='/src/assets/icons/guildInvitePeople.png' />
-            </div>
-            <div className="edit-server">
-                Edit Server Profile
-                <img src='/src/assets/icons/icon-edit.png' />
-            </div>
+                <img className='options-icons' src='/src/assets/icons/guildInvitePeople.png' />
+            </span>
+            <span className="edit-server"
+                    onClick={showEdit}>
+                Edit Server
+                <img className='options-icons' src='/src/assets/icons/icon-edit.png' />
+            </span>
 
             { currentUser.id === server.ownerId && (
-                <div className="delete-server"
+                <span className="delete-server"
                     onClick={handleDelete}>
                     Delete Server
-                    <img src='/src/assets/icons/guildDeleteServer.png' />
-                </div>
+                    <img className='options-icons' src='/src/assets/icons/guildDeleteServer.png' />
+                </span>
             )}
             
-            <div className="leave-server"
-                    >
+            <span className="leave-server"
+                    onClick={handleLeaving}>
                 Leave Server
-                <img src="/src/assets/icons/leaving.png" />
-            </div>
+                <img className='options-icons' src="/src/assets/icons/leaving.png" />
+            </span>
+
         </div>
+            { modalState && (
+                <NewServer 
+                    type = { modalState } 
+                    setModalState={setModalState} 
+                    server={ server }/>
+            ) }
+    </>
     )
 }
 

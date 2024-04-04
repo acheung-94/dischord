@@ -1,5 +1,5 @@
 import {createSelector} from "reselect"
-import { destroyServer, getServers, patchServer, postMembership, postServer } from "../utils/serverApiUtils"
+import { destroyServer, getServers, patchServer, postMembership, postServer, deleteMembership } from "../utils/serverApiUtils"
 
 const ADD_SERVER = 'servers/ADD_SERVER'
 const DELETE_SERVER = 'servers/DELETE_SERVER'
@@ -79,6 +79,17 @@ export const removeServer = (serverId) => (dispatch) => (
     destroyServer(serverId).then(res => {
         if (res.ok) {
             return dispatch(deleteServer(serverId))
+        }else{
+            throw res
+        }
+    })
+)
+
+export const leaveServer = (serverId) => (dispatch) => (
+    deleteMembership(serverId).then(res => {
+        console.log(res)
+        if (res.ok){
+            dispatch(getUserServers()) //refresh server list?
         }else{
             throw res
         }

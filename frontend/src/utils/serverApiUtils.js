@@ -3,7 +3,7 @@ import { csrfFetch } from "./csrfUtils";
 export const postServer = (serverInfo) => (
     csrfFetch('/api/servers', {
         method: 'post',
-        body: JSON.stringify(serverInfo)
+        body: JSON.stringify(serverInfo)  // CHANGE THIS WHEN IMG
     })
 )
 
@@ -20,7 +20,7 @@ export const getServer = (serverId) => (
 export const patchServer = (server) => (
     csrfFetch(`/api/servers/${server.id}`, {
         method: 'PATCH',
-        body: JSON.stringify(server)
+        body: JSON.stringify(server) // CHANGE THIS WHEN IMG
     })
 )
 
@@ -32,5 +32,11 @@ export const postMembership = (membership) => (
     csrfFetch('/api/memberships', {
         method: 'post',
         body: JSON.stringify(membership)
+    })
+)
+
+export const deleteMembership = serverId => (
+    csrfFetch(`/api/memberships/${serverId}`, {
+        method: 'delete'
     })
 )
