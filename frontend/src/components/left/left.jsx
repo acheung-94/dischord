@@ -14,8 +14,7 @@ const Left = ( {type}) => {
     return(
         <div className="left-base">
             <TopLeft type={type}/>
-            <h1>DM list placeholder</h1>
-
+            <h1>DM/Channel list placeholder</h1>
             <BottomLeft />
         </div>
     )

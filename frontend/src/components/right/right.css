@@ -6,6 +6,6 @@
 
 .thin{
     grid-area: right-panel;
-    background-color: blue;
+    background-color: #2b2d31;
     width: 240px;
 }

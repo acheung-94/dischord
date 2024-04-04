@@ -28,7 +28,7 @@ const Layout = ({type}) => {
 
         <div className="layout">
             <ServerList />
-            <div className="main-grid">
+            <div className={ type === '@me' ? "main-grid-thick" : "main-grid-thin"}>
                 <Left type={type}/>
                 <Middle type={type}/>
                 <Top type={type} />
@@ -45,3 +45,4 @@ const Layout = ({type}) => {
 }
 
 export default Layout;
+

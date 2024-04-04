@@ -34,7 +34,6 @@ export const createServer = (serverInfo) => (dispatch) => (
             throw res
         }
     }).then(data => {
-        console.log(data)
         dispatch(addServer(data))
     })
 )
@@ -52,7 +51,6 @@ export const getUserServers = () => (dispatch) => (
 export const createMembership = (membership) => (dispatch) => (
     postMembership(membership).then(res => { // post membership should return an updated server list? 
         if (res.ok) {
-            console.log(res)
             return res.json()
         }else{
             throw res
@@ -87,7 +85,7 @@ export const removeServer = (serverId) => (dispatch) => (
 
 export const leaveServer = (serverId) => (dispatch) => (
     deleteMembership(serverId).then(res => {
-        console.log(res)
+
         if (res.ok){
             dispatch(getUserServers()) //refresh server list?
         }else{
