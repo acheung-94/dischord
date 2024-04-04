@@ -9,17 +9,25 @@ import Right from "../right/right";
 import Top from "../top/top";
 import './layout.css'
 import { useEffect } from "react";
-
+import { useDispatch } from "react-redux";
+import { getUserServers } from "../../store/serverReducer";
 
 const Layout = ({type}) => {
     const {serverId, channelId} = useParams()
     const currentUser = useSelector(selectCurrentUser)
     const navigate = useNavigate()
+    const dispatch = useDispatch()
+
     // if (serverId === '@me') {
     //     console.log(serverId)
     // }
     //types = @me, server
      //this will be handled in the router eventually
+     useEffect( ()=>{
+        console.log('fetching servers...')
+        dispatch(getUserServers())
+    },[])
+    
     if (currentUser) {
         return(
 
