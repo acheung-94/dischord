@@ -18,7 +18,10 @@ const ServerList = () => {
         <div className="server-list">
             <ServerIcon />
             <div className='server-separator'></div>
-            {servers.map( server => <ServerIcon serverId={server.id} key={server.id} />)}
+            {servers.map( server => <ServerIcon 
+                serverId={server.id} 
+                server = {server}
+                key={server.id} />)}
             <div onClick={()=>setModalState('new')}><ServerIcon type = {'new'}/></div>
             {modalState && (
                 <NewServer modalState={modalState} 

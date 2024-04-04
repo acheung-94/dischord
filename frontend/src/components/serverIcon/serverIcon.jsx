@@ -2,9 +2,8 @@ import { useSelector } from "react-redux"
 import { selectServer } from "../../store/serverReducer"
 import './serverIcon.css'
 import { NavLink, useNavigate } from "react-router-dom"
-const ServerIcon = ({serverId, type }) => {
-    const server = useSelector(selectServer(serverId))
-    const navigate = useNavigate()
+const ServerIcon = ({server, serverId, type }) => {
+    // const server = useSelector(selectServer(serverId))
     const conditionalImage = () => {
         if (serverId) {
             if (server.imgPath) {
@@ -38,15 +37,22 @@ const ServerIcon = ({serverId, type }) => {
             </div>
         )
     }else{
-        return (
+        console.log(server)
+        //if i console log server.name anywhere here it says server is undefined
+        if (server) {
+            console.log(server.name)
+            return (
             <NavLink className="server-icon-wrapper"
                 to={ serverId ? `/channels/${serverId}` : `/channels/@me`} >
                 <div className="pill-wrapper"><span className="pill"></span></div>
-                <div className="server-icon">
+                <div className="server-icon"
+                    title={server.name}>
                     { conditionalImage() }
                 </div> 
             </NavLink>
         )
+        }
+        
     }
 
 
@@ -55,4 +61,3 @@ const ServerIcon = ({serverId, type }) => {
 export default ServerIcon
 
 
-//<img src="/src/assets/icons/green-plus.png"/>
