@@ -36,11 +36,19 @@ const ServerIcon = ({server, serverId, type }) => {
                 </div>
             </div>
         )
+    }else if (type === '@me') {
+        return(
+            <NavLink className="server-icon-wrapper"
+                to={ serverId ? `/channels/${serverId}` : `/channels/@me`} >
+                <div className="pill-wrapper"><span className="pill"></span></div>
+                <div className="server-icon"
+                    >
+                    { conditionalImage() }
+                </div> 
+            </NavLink>
+        )
     }else{
-        console.log(server)
-        //if i console log server.name anywhere here it says server is undefined
         if (server) {
-            console.log(server.name)
             return (
             <NavLink className="server-icon-wrapper"
                 to={ serverId ? `/channels/${serverId}` : `/channels/@me`} >

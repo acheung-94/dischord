@@ -8,22 +8,37 @@ import Middle from "../middle/middle";
 import Right from "../right/right";
 import Top from "../top/top";
 import './layout.css'
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { getUserServers } from "../../store/serverReducer";
 
 const Layout = ({type}) => {
-    const {serverId, channelId} = useParams()
+
     const currentUser = useSelector(selectCurrentUser)
     const navigate = useNavigate()
     const dispatch = useDispatch()
+    const [isLoading, setIsLoading] = useState(true)
 
-     useEffect( ()=>{
+    useEffect( ()=>{
+        if(currentUser){
         console.log('fetching servers...')
         dispatch(getUserServers())
-    },[])
+        setIsLoading(true)}
+    },[currentUser])
+
+    useEffect(()=> {
+        if (currentUser){
+            setIsLoading(false)
+        }
+    }, [currentUser])
+
+    useEffect( () => {
+        if (!currentUser && !isLoading){
+            navigate('/')
+        }
+    }, [currentUser, isLoading])
     
-    if (currentUser) {
+    if (currentUser && !isLoading) {
         return(
 
         <div className="layout">
@@ -35,12 +50,9 @@ const Layout = ({type}) => {
                 <Right type={type}/>
             </div>
         </div>
-
-    )
-    }else{
-        navigate('/')
+    )}else if (isLoading) {
+        return(<h1>Loading....</h1>)
     }
-    
    
 }
 
