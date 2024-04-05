@@ -1,5 +1,5 @@
 import { useState } from 'react'
-
+import { Outlet } from 'react-router-dom'
 import './App.css'
 import { RouterProvider, createBrowserRouter } from 'react-router-dom'
 import Auth from './components/auth/auth'
@@ -13,7 +13,9 @@ const router = createBrowserRouter( [
   {path: '/channels', children: [
     { index: true, element: <Splash /> }, 
     { path: '@me', element: <Layout type='@me'/> },
-    { path: ':serverId', element: <Layout type='server'/>}
+    { path: ':serverId', element: <Outlet />, children: [
+        {path: ':channelId', element: <Layout type='channel' />}
+    ]}
   ]}
 ])
 

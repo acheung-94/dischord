@@ -13,11 +13,13 @@ import { useDispatch } from "react-redux";
 import { getUserServers } from "../../store/serverReducer";
 
 const Layout = ({type}) => {
-
+    // STATE
     const currentUser = useSelector(selectCurrentUser)
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const [isLoading, setIsLoading] = useState(true)
+    const {serverId, channelId} = useParams()
+    // AFTER RENDER
 
     useEffect( ()=>{
         if(currentUser){
@@ -37,7 +39,17 @@ const Layout = ({type}) => {
             navigate('/')
         }
     }, [currentUser, isLoading])
+
+    useEffect( () => {
+        if (type === 'channels'){
+            console.log(serverId)
+            dispatch(getChannels(serverId))
+        }
+    }, [serverId])
     
+    console.log(type)
+    // RENDER
+
     if (currentUser && !isLoading) {
         return(
 

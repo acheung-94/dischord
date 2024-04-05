@@ -3,10 +3,11 @@ import {thunk} from "redux-thunk"
 import logger from "redux-logger"
 import sessionReducer from "./sessionReducer"
 import serverReducer from "./serverReducer"
-// import channelReducer from "./channelReducer"
+import channelReducer from "./channelReducer"
 const rootReducer = combineReducers({
     session: sessionReducer,
-    servers: serverReducer
+    servers: serverReducer,
+    channels: channelReducer
 })
 
 const configureStore = (initialState = {}) => (
