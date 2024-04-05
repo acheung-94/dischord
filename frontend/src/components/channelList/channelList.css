@@ -18,6 +18,10 @@
     font-weight: 600;
     line-height: 16px;
     letter-spacing: 0.1em;
+    padding-bottom: 8px;
+    padding-top: 8px;
+    align-items: center;
+    border-bottom: 1px solid #4d505783;
 }
 
 .channel-list a{

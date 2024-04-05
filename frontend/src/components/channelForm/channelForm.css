@@ -57,3 +57,7 @@
     font-style: italic;
     height: 100%;
 }
+
+.channel-submit:disabled{
+    cursor: not-allowed;
+}

@@ -43,12 +43,10 @@ const Layout = ({type}) => {
 
     useEffect( () => {
         if (type === 'channel'){
-            console.log(serverId)
             dispatch(getServerChannels(serverId))
         }
     }, [serverId])
-    
-    console.log(type)
+
     // RENDER
 
     if (currentUser && !isLoading) {
@@ -64,7 +62,7 @@ const Layout = ({type}) => {
             </div>
         </div>
     )}else if (isLoading) {
-        return(<h1>Loading....</h1>)
+        return(<h1 className="loading">Loading....</h1>)
     }
    
 }

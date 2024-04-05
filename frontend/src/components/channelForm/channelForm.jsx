@@ -2,10 +2,11 @@ import { createChannel, updateChannel } from '../../store/channelReducer';
 import { useState } from 'react';
 import './channelForm.css'
 import { useDispatch } from 'react-redux';
-import { useParams } from 'react-router';
+import { useNavigate, useParams } from 'react-router';
 
-const ChannelForm = ( { modalState, setModalState, channel }) => {
+const ChannelForm = ( { modalState, setModalState, channel, server }) => {
     const dispatch = useDispatch()
+    const navigate = useNavigate()
     const {serverId }= useParams()
     const [name, setName] = useState(
         modalState === 'edit' ? channel.name : ''
@@ -17,10 +18,13 @@ const ChannelForm = ( { modalState, setModalState, channel }) => {
             console.log('name:', name, channel)
             dispatch(updateChannel({...channel, name: name}))
             setModalState(false)
+            navigate(`/channels/${serverId}/${channel.id}`)
         }else{
-            console.log(serverId, typeof parseInt(serverId))
-            dispatch(createChannel({name, serverId: parseInt(serverId)})) //something's not working with my snake case transformation...
-            setModalState(false)
+            dispatch(createChannel({name, serverId: parseInt(serverId)}))
+                .then( (data) => {
+                    setModalState(false)
+                    navigate(`/channels/${serverId}/${data.id}`)
+                }) 
         }
     }
     const handleClose = e => {
@@ -47,7 +51,9 @@ const ChannelForm = ( { modalState, setModalState, channel }) => {
                         </div>
                        
                         <p>Text channel: Send messages, opinions, and puns </p>
-                        <button type="submit" className='channelSubmit'> {modalState === 'new' ? 'Create Channel' : 'Save'}</button>
+                        <button type="submit" className='channel-submit'
+                            disabled={ name ? false : true}
+                            > {modalState === 'new' ? 'Create Channel' : 'Save'}</button>
                     </form>
                 )}
 

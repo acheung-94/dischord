@@ -32,7 +32,10 @@ export const createChannel = (channelInfo) => (dispatch) => (
             }else{
                 throw res
             }
-        }).then(channel => dispatch(addChannel(channel)))
+        }).then(channel => {
+            dispatch(addChannel(channel))
+            return channel
+        })
 )
 
 export const getServerChannels = (serverId) => (dispatch) => (
