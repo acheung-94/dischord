@@ -58,9 +58,6 @@ export const createMembership = (membership) => (dispatch) => (
     }).then(servers => dispatch(receiveServers(servers)))
 )
 
-// export const getOneServer = (serverId) => (dispatch) => (
-//     getServer(serverId).then
-// )
 
 export const updateServer = (server) => (dispatch) => (
     patchServer(server).then(res => {
@@ -105,12 +102,12 @@ const serverReducer = (state = {}, action) => {
         case ADD_SERVER:
             return { ...newState, [action.serverInfo.id]: action.serverInfo};
         case RECEIVE_SERVERS:
-            return action.servers
+            return action.servers;
         case DELETE_SERVER:
             delete newState[action.serverId]
-            return newState
+            return newState;
         default:
-            return state
+            return state;
     }
 }
 export default serverReducer;
