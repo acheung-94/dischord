@@ -51,7 +51,7 @@ const ServerIcon = ({server, serverId, type }) => {
         if (server) {
             return (
             <NavLink className="server-icon-wrapper"
-                to={ serverId ? `/channels/${serverId}` : `/channels/@me`} >
+                to={ serverId ? `/channels/${serverId}/${server.channels[0]}` : `/channels/@me`} >
                 <div className="pill-wrapper"><span className="pill"></span></div>
                 <div className="server-icon"
                     title={server.name}>

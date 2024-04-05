@@ -11,6 +11,7 @@ import './layout.css'
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { getUserServers } from "../../store/serverReducer";
+import { getServerChannels } from "../../store/channelReducer";
 
 const Layout = ({type}) => {
     // STATE
@@ -41,9 +42,9 @@ const Layout = ({type}) => {
     }, [currentUser, isLoading])
 
     useEffect( () => {
-        if (type === 'channels'){
+        if (type === 'channel'){
             console.log(serverId)
-            dispatch(getChannels(serverId))
+            dispatch(getServerChannels(serverId))
         }
     }, [serverId])
     

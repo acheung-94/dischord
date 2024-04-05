@@ -1,5 +1,5 @@
 import { postChannel, getChannels, destroyChannel, patchChannel } from "../utils/channelApiUtils"
-
+import { createSelector } from "reselect"
 // TYPES
 const ADD_CHANNEL = 'channels/ADD_CHANNEL'
 const RECEIVE_CHANNELS = 'channels/RECEIVE_CHANNELS'
@@ -69,7 +69,7 @@ export const updateChannel = (channel) => (dispatch) => (
 )
 // SELECTORS
 
-
+export const currentChannels = createSelector(state => state.channels, channels => Object.values(channels))
 
 
 // REDUCER
