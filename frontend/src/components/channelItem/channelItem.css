@@ -1,0 +1,56 @@
+
+.channel-item{
+    width: 100%;
+    display: flex;
+    align-items:center;
+    justify-content: space-between;
+    padding: 8px;
+    gap:4px;
+    box-sizing: border-box;
+    transition: all 0.1s ease;
+}
+
+.channel-item:hover{
+    background-color: #bbc1c91c;
+    border-radius: 10px;
+    color:#B5BAC1;
+    cursor: pointer;
+}
+
+.channel-item:hover .channel-setting{
+    visibility: visible;
+}
+
+.channel-setting{
+    width: 18px;
+    visibility: hidden;
+    padding: 4px;
+    
+}
+
+.channel-item:hover .channel-setting:hover{
+    background-color: #ffffff1e;
+    /* border:1px solid #B5BAC1;  */
+    border-radius: 4px;
+}
+
+.channel-icon{
+    width: 22px;
+}
+
+.channel-name{
+    width: 100%;
+    font-weight: 600;
+    padding-left: 8px;
+}
+
+a.active .channel-item{
+    background-color: #bbc1c91c;
+    border-radius: 10px;
+    color:#B5BAC1;
+    cursor: pointer;
+}
+
+a.active .channel-setting{
+    visibility: visible;
+}

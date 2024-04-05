@@ -2,6 +2,7 @@
     display: flex;
     width: 100vw;
     height: 100vh;
+    background-color: #313338
 }
 
 .main-grid-thick{
@@ -24,4 +25,14 @@
     grid-template-areas:
         "left header header"
         "left middle right-panel";
+}
+
+.loading{
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    background-color: #313338;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
 }

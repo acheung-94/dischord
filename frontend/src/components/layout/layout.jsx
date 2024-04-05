@@ -11,13 +11,16 @@ import './layout.css'
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { getUserServers } from "../../store/serverReducer";
+import { getServerChannels } from "../../store/channelReducer";
 
 const Layout = ({type}) => {
-
+    // STATE
     const currentUser = useSelector(selectCurrentUser)
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const [isLoading, setIsLoading] = useState(true)
+    const {serverId, channelId} = useParams()
+    // AFTER RENDER
 
     useEffect( ()=>{
         if(currentUser){
@@ -37,7 +40,15 @@ const Layout = ({type}) => {
             navigate('/')
         }
     }, [currentUser, isLoading])
-    
+
+    useEffect( () => {
+        if (type === 'channel'){
+            dispatch(getServerChannels(serverId))
+        }
+    }, [serverId])
+
+    // RENDER
+
     if (currentUser && !isLoading) {
         return(
 
@@ -51,7 +62,7 @@ const Layout = ({type}) => {
             </div>
         </div>
     )}else if (isLoading) {
-        return(<h1>Loading....</h1>)
+        return(<h1 className="loading">Loading....</h1>)
     }
    
 }
