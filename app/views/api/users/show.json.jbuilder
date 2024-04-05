@@ -6,6 +6,9 @@ json.servers do
     json.array! @user.member_servers.map(&:id)
 end
 
+json.channels do
+    json.array! @user.channels.map(&:id)
+end
 # if @user.avatar.attached?
 #     json.avatarUrl url_for(@user.avatar)
 # end

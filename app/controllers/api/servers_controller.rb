@@ -48,7 +48,7 @@ class Api::ServersController < ApplicationController
 
     private
     def server_params
-        params.require(:server).permit(:name, :img_path)
+        params.require(:server).permit(:name, :server_icon)
     end
 
     def find_server

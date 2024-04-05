@@ -37,3 +37,12 @@ Membership.create(user_id: 2, server_id: 1)
 Membership.create(user_id: 1, server_id: 1) #owner
 Membership.create(user_id: 1, server_id: 3) #owner
 Membership.create(user_id: 1, server_id: 2)
+
+Channel.create(name: 'general', server_id: 1)
+Channel.create(name: 'cats only', server_id: 1)
+Channel.create(name: 'dogs only', server_id: 1)
+Channel.create(name: 'general', server_id: 2)
+Channel.create(name: 'general', server_id: 3)
+Channel.create(name: 'DM-test', user_id: 1)
+Channel.create(name: 'DM-test', user_id: 1)
+

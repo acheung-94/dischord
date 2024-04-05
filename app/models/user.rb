@@ -43,6 +43,15 @@ class User < ApplicationRecord
         through: :memberships,
         source: :server
 
+    has_many :channels,
+        dependent: :destroy,
+        foreign_key: :user_id,
+        inverse_of: :user
+    
+    has_many :server_channels,
+        through: :servers,
+        source: :channels
+        
     has_one_attached :avatar
     
 ## UTILS
