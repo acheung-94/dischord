@@ -6,9 +6,9 @@ const ServerIcon = ({server, serverId, type }) => {
     // const server = useSelector(selectServer(serverId))
     const conditionalImage = () => {
         if (serverId) {
-            if (server.imgPath) {
+            if (server.iconUrl) {
                 return (
-                    <img className="server-image" src={server.imgPath} />
+                    <img className="server-image" src={server.iconUrl} />
                 )
             }else {
                 return (
