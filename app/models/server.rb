@@ -26,9 +26,9 @@ class Server < ApplicationRecord
         source: :user
 
     has_many :channels,
-dependent: :destroy,
-inverse_of: :server,
-foreign_key: :server_id
+        dependent: :destroy,
+        inverse_of: :server,
+        foreign_key: :server_id
     
     has_one_attached :server_icon
 end

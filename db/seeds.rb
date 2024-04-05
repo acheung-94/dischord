@@ -18,19 +18,21 @@ demo_1 = User.create(
      display_name: 'demo user 1',
      password: 'themostsecure',
      email: 'demo1@demo.com',
-     img_path: 'https://dischord-clone-seeds.s3.us-west-1.amazonaws.com/demo1.png'
-     ) # will be cloud data, but for now...
-# file = URI.open('https://dischord-clone-seeds.s3.us-west-1.amazonaws.com/demo1.png')
-# demo_1.avatar.attach(io: file, filename: 'demo1.jpg')
+     ) 
+file = URI.open('https://dischord-clone-seeds.s3.us-west-1.amazonaws.com/demo1.png')
+demo_1.avatar.attach(io: file, filename: 'demo1.jpg')
 demo_2 = User.create(
     username: 'demo2', 
     display_name: 'demo user 2', 
     password: 'themostsecure2', 
     email: 'demo2@demo.com' )
 
-Server.create(name: 'test server', owner_id: 1)
-Server.create(name: 'App Academy Lite', owner_id: 2)
-Server.create(name: 'Wow!', owner_id: 1)
+s1 = Server.create(name: 'test server', owner_id: 1)
+s2 = Server.create(name: 'App Academy Lite', owner_id: 2)
+s3 = Server.create(name: 'Wow!', owner_id: 1)
+file2 = URI.open('https://dischord-clone-seeds.s3.us-west-1.amazonaws.com/20230620_101013.jpg')
+s3.server_icon.attach(io: file2, filename: 'wowdog.jpg')
+
 
 Membership.create(user_id: 2, server_id: 2)
 Membership.create(user_id: 2, server_id: 1)
