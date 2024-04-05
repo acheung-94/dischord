@@ -1,0 +1,5 @@
+.channel-list{
+    display: flex;
+    flex-direction: column;
+    align-self: flex-start;
+}
