@@ -1,6 +1,6 @@
 json.extract! @channel, :id, :name
 if @channel.server_id
-    json.serverId @channel.server_id
+    json.server_id @channel.server_id
 else
-    json.userId @channel.user_id
+    json.user_id @channel.user_id
 end

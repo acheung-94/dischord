@@ -1,4 +1,6 @@
 class Api::ChannelsController < ApplicationController
+    wrap_parameters include: Channel.attribute_names + ['serverId', 'userId']
+    
     def index
         server_id = params[:server_id]
 

@@ -2,4 +2,29 @@
     display: flex;
     flex-direction: column;
     align-self: flex-start;
+    height: 100%;
+    width: 100%;
+    padding: 10px;
+    gap: 2px;
+    box-sizing:border-box;
+    color: #949BA4;
+}
+
+.channel-header{
+    display: flex;
+    justify-content: space-between;
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 16px;
+    letter-spacing: 0.1em;
+}
+
+.channel-list a{
+    text-decoration: none;
+    color: #B5BAC1;
+}
+
+.add-channel:hover{
+    cursor:pointer;
 }

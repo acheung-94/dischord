@@ -70,7 +70,7 @@ export const updateChannel = (channel) => (dispatch) => (
 // SELECTORS
 
 export const currentChannels = createSelector(state => state.channels, channels => Object.values(channels))
-
+export const currentChannel = channelId => state => state.channels[channelId]
 
 // REDUCER
 

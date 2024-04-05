@@ -1,26 +1,38 @@
-import { useState } from 'react';
+import ChannelForm from '../channelForm/channelForm';
 import './channelList.css'
+import ChannelItem from '../channelItem/channelItem';
+import { useState } from 'react';
+const ChannelList = ( { channels, server, currentUser } ) => {
+    const [modalState, setModalState] = useState(false)
 
-const ChannelList = ( { channels } ) => {
-    const [modalState, setModalState] = useState()
     //at this point maybe consider adding modal state to your global state Hmmm...
-    return(
-        <div className='channel-list'>
-            <div className="channel-header">
-                Text Channels
-                <img className='add-channel' 
-                    src="/src/assets/icons/green-plus.png" 
-                    //OnClick
-                     />
-            </div>
-            {channels.map((channel) => (
-                <div className="channel-item">
-                    <img src="/src/assets/icons/channelTextThread.png" className="channel-icon" />
-                    <h1>{channel.name}</h1>
+    if (channels) {
+        return(
+            <>
+            <div className='channel-list'>
+                <div className="channel-header">
+                    Text Channels
+                    <img className='add-channel' 
+                        src="/src/assets/icons/green-plus.png" 
+                        onClick={()=> setModalState('new')}//OnClick
+                         />
                 </div>
-            ))}
-        </div>
-    )
+                {channels.map((channel) => (
+                    <ChannelItem 
+                        channel={channel}
+                        server={server}
+                        currentUser={currentUser} 
+                        key={channel.id} />
+                ))}
+            </div>
+            {modalState === 'new' && (
+                 <ChannelForm 
+                    modalState={modalState} 
+                    setModalState={setModalState}
+                /> )}
+            </>
+        )
+    }
 }
 
 export default ChannelList;
