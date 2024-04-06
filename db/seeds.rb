@@ -34,7 +34,7 @@ file2 = URI.open('https://dischord-clone-seeds.s3.us-west-1.amazonaws.com/202306
 s3.server_icon.attach(io: file2, filename: 'wowdog.jpg')
 
 
-Membership.create(user_id: 2, server_id: 2)
+Membership.create(user_id: 2, server_id: 2) #owner
 Membership.create(user_id: 2, server_id: 1)
 Membership.create(user_id: 1, server_id: 1) #owner
 Membership.create(user_id: 1, server_id: 3) #owner
@@ -48,3 +48,8 @@ Channel.create(name: 'general', server_id: 3)
 Channel.create(name: 'DM-test', user_id: 1)
 Channel.create(name: 'DM-test', user_id: 1)
 
+Message.create(body: 'first message!', channel_id: 1, author_id: 1)
+Message.create(body: 'wow this is sooooo cool', channel_id: 1, author_id: 2)
+Message.create(body: 'what am i doing', channel_id: 5, author_id: 1)
+Message.create(body: 'meow~', channel_id: 2, author_id: 1)
+Message.create(body: 'wooof!', channel_id: 3, author_id: 2)

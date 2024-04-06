@@ -19,5 +19,7 @@ class Message < ApplicationRecord
 
   belongs_to :channel
 
+  has_many_attached :images
+
   # UTILS
 end

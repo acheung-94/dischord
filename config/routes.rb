@@ -12,10 +12,16 @@ Rails.application.routes.draw do
     resources :users, only: [:create, :show]
     resource :session, only: [:create, :destroy, :show]
     resources :servers, only: [:index, :create, :show, :update, :destroy] do
-      resources :channels, only: [:index, :create, :show, :destroy, :update]
+      resources :channels, only: [:index, :create, :show, :destroy, :update] #TODO shorten as below
     end
+    resources :channels, only: [:show] do
+      resources :messages, only: [:index]
+    end
+    resources :messages, except: [:edit, :new, :index]
     resources :memberships, only: [:create]
     delete '/memberships/:serverId', to: 'memberships#destroy'
   end
   
 end
+
+#which channel resources are necessary to nest under servers? can all the rest be un-nested?
