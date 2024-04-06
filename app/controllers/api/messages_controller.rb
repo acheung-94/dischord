@@ -4,7 +4,7 @@ class Api::MessagesController < ApplicationController
     def index #all messages for a channel
         @channel = Channel.find_by(id: params[:channel_id])
         if @channel
-            @messages = @channel.messages
+            @messages = @channel.messages.includes(:author)
             render :index
         else
             render json: {errors: 'Channel not found'}, status: 404
@@ -49,7 +49,7 @@ class Api::MessagesController < ApplicationController
     end
 
     def find_message
-        Message.find_by(id: params[:id])
+       @message = Message.find_by(id: params[:id])
     end
-    
+
 end

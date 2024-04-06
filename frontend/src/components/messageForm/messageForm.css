@@ -1,0 +1,21 @@
+.message-form{
+    background-color: #383a40;
+    display: flex;
+    align-items: center;
+    padding: 4px;
+    box-sizing: border-box;
+    border-radius: 8px;
+    
+}
+
+.message-form img{
+    width: 24px;
+    margin-left:10px;
+    margin-right: 10px;
+}
+.message-input{
+    background-color: #383a40;
+}
+.message-input:focus{
+    outline: none;
+}

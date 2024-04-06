@@ -1,0 +1,33 @@
+.message-list{
+    display: flex;
+    flex-direction:column;
+    gap: 12px;
+    overflow-y:scroll;
+    box-sizing: border-box;
+}
+
+.new-channel-thing{
+    background-color: #41434a;
+    width: 70px;
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 36px;
+    box-sizing: border-box;
+}
+
+.new-channel-thing img{
+    height: 36px;
+}
+
+.message-list-welcome{
+    font-size: 30px;
+    font-weight: 700;
+    color: #fff;
+}
+
+.list-separator{
+    width: 100%;
+    box-shadow: 0 1px 1px 1px rgba(255, 255, 255, 0.2);
+}
