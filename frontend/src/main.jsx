@@ -6,7 +6,7 @@ import './index.css'
 import configureStore from './store/store.js';
 import { Provider } from 'react-redux'
 import {restoreSession} from './utils/csrfUtils.js'
-import { destroyChannel, getChannels, patchChannel, postChannel } from './utils/channelApiUtils.js'
+import { getChannelMessages, createMessage, removeMessage, updateMessage } from './store/messageReducer.js'
 // import { deleteSession, postSession, postUser } from './utils/sessionApiUtils.js';
 // import { createSession, createUser, destroySession, loginUser, logoutUser } from './store/sessionReducer.js';
 // import { createServer, getUserServers, removeServer, updateServer } from './store/serverReducer.js'
@@ -15,10 +15,10 @@ import { destroyChannel, getChannels, patchChannel, postChannel } from './utils/
 const initializeApp = () => {
   const store = configureStore()
   window.store = store
-  window.getChannels = getChannels
-  window.postChannel = postChannel
-  window.destroyChannel = destroyChannel
-  window.patchChannel = patchChannel
+  window.getChannelMessages = getChannelMessages
+  window.createMessage = createMessage
+  window.removeMessage = removeMessage
+  window.updateMessage = updateMessage
   
     ReactDOM.createRoot(document.getElementById('root')).render(
     

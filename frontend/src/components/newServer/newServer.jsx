@@ -3,11 +3,12 @@ import { selectCurrentUser } from "../../store/sessionReducer"
 import { createMembership, createServer, updateServer } from "../../store/serverReducer"
 import { useEffect, useState } from "react"
 import './newServer.css'
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 
 
 const NewServer = ( {modalState, setModalState, type, server}) => {
     const currentUser = useSelector(selectCurrentUser)
+    const navigate = useNavigate()
     const serverId = useParams()
     const dispatch = useDispatch()
     const [serverData, setServerData] = useState(
@@ -29,9 +30,10 @@ const NewServer = ( {modalState, setModalState, type, server}) => {
         if (type) {
             dispatch(updateServer({...server, ...serverData}))
         }else{
-            dispatch(createServer(serverData))
+            dispatch(createServer(serverData)).then(newServer => (
+                navigate(`/channels/${newServer.id}/${newServer.channels[0]}`)
+            ))
         }
-        //don't forget to create a membership too!
         setModalState(null)
     }
     const closeModal = e => {

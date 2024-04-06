@@ -35,6 +35,7 @@ export const createServer = (serverInfo) => (dispatch) => (
         }
     }).then(data => {
         dispatch(addServer(data))
+        return data
     })
 )
 

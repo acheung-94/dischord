@@ -26,7 +26,7 @@ class Api::MessagesController < ApplicationController
 
     def update
         @message = find_message
-        if @message&.update
+        if @message&.update(message_params)
             render :show
         else
             render json: {errors: @message.errors}, status: 422
@@ -45,7 +45,7 @@ class Api::MessagesController < ApplicationController
 
     private
     def message_params
-        params.require(:message).permit(:body, :author_id, :channel_id)
+        params.require(:message).permit(:id, :body, :author_id, :channel_id)
     end
 
     def find_message
