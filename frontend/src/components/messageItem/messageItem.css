@@ -1,25 +1,43 @@
 .message-item{
     display: flex;
-    gap: 8px;
-    align-items: center;
+    text-wrap: wrap;
+    position: relative;
 }
 
-.message-body, .message-author{
+.message-header{
     font-size: 16px;
+    display: inline-flex;
+    width: auto;
+    height: 20px;
+    gap: 10px;
+
 }
 
 .message-author{
     font-weight: 500;
     color: #f2f3f5;
+    display: flex;
+    align-items: center;
+    margin-right: 8px;
 }
 
 .message-body{
     color: #DBDEE1;
+    text-wrap: wrap;
+    line-height: 20px;
+    margin-left: 80px;
+    vertical-align: middle;
 }
 
 .message-time{
     font-size: 12px;
-    text-align: end;
+    text-align: right;
     margin-left: 8px;
-    margin-right: 8px;
+    display: flex;
+    align-items: baseline;
+    position: absolute;
+    left: 20px;
+    top: 1px;
+    color:#B5BAC1;
+    font-weight: 500;
 }
