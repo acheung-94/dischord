@@ -13,7 +13,7 @@ const ChannelItem = ( { channel, server, currentUser } ) => {
     const [modalState, setModalState] = useState()
 
     const handleDelete = () => {
-        dispatch(removeChannel(serverId, channel.id))
+        dispatch(removeChannel(channel.id))
             .then( () =>  
                 navigate(`/channels/${serverId}/${server.channels[0]}`)
             )
