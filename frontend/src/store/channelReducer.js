@@ -49,8 +49,8 @@ export const getServerChannels = (serverId) => (dispatch) => (
         }).then(channels => dispatch(receiveChannels(channels)))
 )
 
-export const removeChannel = (serverId, channelId) => (dispatch) => (
-    destroyChannel(serverId, channelId)
+export const removeChannel = (channelId) => (dispatch) => (
+    destroyChannel(channelId)
         .then(res => {
             if (res.ok){
                 dispatch(deleteChannel(channelId))

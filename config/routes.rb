@@ -12,9 +12,9 @@ Rails.application.routes.draw do
     resources :users, only: [:create, :show]
     resource :session, only: [:create, :destroy, :show]
     resources :servers, only: [:index, :create, :show, :update, :destroy] do
-      resources :channels, only: [:index, :create, :show, :destroy, :update] #TODO shorten as below
+      resources :channels, only: [:index] #TODO shorten as below
     end
-    resources :channels, only: [:show] do
+    resources :channels, only: [:show, :create, :destroy, :update] do
       resources :messages, only: [:index]
     end
     resources :messages, except: [:edit, :new, :index]
