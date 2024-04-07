@@ -1,16 +1,24 @@
 import { useDispatch } from 'react-redux'
 import './messageForm.css'
+import { useParams } from 'react-router-dom';
+import { selectCurrentUser } from '../../store/sessionReducer'
 import { useEffect, useState } from 'react'
+import { currentChannel } from '../../store/channelReducer';
 import { createMessage } from '../../store/messageReducer'
-
-const MessageForm = ({channel, currentUser, messageState, oldMessage, setMessageState }) => {
+import { useSelector } from 'react-redux';
+const MessageForm = ({messageState, oldMessage, setMessageState }) => {
     const dispatch = useDispatch()
+    const { channelId } = useParams()
+    const currentUser = useSelector(selectCurrentUser)
+    const channel = useSelector(currentChannel(channelId))
     const [message, setMessage] = useState(
         messageState ? oldMessage : {
             body: '',
             authorId: currentUser.id,
             channelId: channel.id
     })
+
+
     const handleChange = (e) => {
         setMessage( old => ({
             ...old,
@@ -18,12 +26,17 @@ const MessageForm = ({channel, currentUser, messageState, oldMessage, setMessage
         }))
     }
     useEffect(()=>{
-        //make sure to reset the state since it doesn't automatically change with channel
-        setMessage({
-            body: '',
-            authorId: currentUser.id,
-            channelId: channel.id
-    })
+        //make sure to reset the state since it doesn't automatically change with channel ... or does it
+        if(currentUser && channel){
+            if (messageState) {
+                setMessage(oldMessage)
+            }else{
+                setMessage( old => ({
+                    ...old,
+                    body: ''
+                }))
+            }
+        }
     }, [channel])
 
 
@@ -37,8 +50,6 @@ const MessageForm = ({channel, currentUser, messageState, oldMessage, setMessage
                 setMessageState(false)
             
             }else{
-                console.log(messageState)
-                console.log(channel.id)
                 dispatch(createMessage(message))
             }
             setMessage(old => ({...old, body: ''}))
@@ -49,27 +60,33 @@ const MessageForm = ({channel, currentUser, messageState, oldMessage, setMessage
         if (e.shiftKey && e.key == 'Enter') {
             e.preventDefault()
             // enter new line... but how?
-            console.log('yer')
             setMessage(old => ({...old, body: `${old.body}\n`}))
-            console.log(message)
+        }
+        if (e.keyCode === 27){ // press esc to cancel edit
+            setMessageState(false)
         }
     }
 
-    return(
-        <div className='message-form-wrapper'>
-            <form className="message-form" onSubmit={handleSubmit}>
-                { !messageState && 
-                (<img src="/src/assets/icons/chatAttachment.png" />)}
-                
-                <input type="textarea"
-                    className='message-input'
-                    onChange={handleChange}
-                    value={message.body}
-                    onKeyDown={handleKeyPress}
-                    placeholder={ messageState ? '' : `Message #${channel.name}...`}/>
-            </form>
-        </div>
-    )
+        return(
+            <div className='message-form-wrapper'>
+                <form className="message-form" onSubmit={handleSubmit}>
+                    { !messageState && 
+                    (<img src="/src/assets/icons/chatAttachment.png" />)}
+                    
+                    <input type="textarea"
+                        className='message-input'
+                        onChange={handleChange}
+                        value={message.body}
+                        onKeyDown={handleKeyPress}
+                        placeholder={ messageState ? '' : `Message #${channel.name}...`}/>
+                </form>
+                { messageState && (
+                <p className='edit-inst'> 
+                    <span>escape</span> to cancel • <span>enter</span> to save 
+                </p>)}
+            </div>
+        )
+
 }
 
 export default MessageForm;

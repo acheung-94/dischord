@@ -12,6 +12,7 @@ const MessageItem = ({message, currentUser}) => {
     }
 
     const handleEdit = () => {
+        console.log('clicked edit!')
         setMessageState('edit')
     }
 

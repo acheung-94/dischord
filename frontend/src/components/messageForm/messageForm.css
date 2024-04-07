@@ -23,3 +23,11 @@
 .message-form-wrapper{
     position: relative;
 }
+
+.edit-inst{
+    font-size: 12px;
+}
+
+.edit-inst span{
+    color: #00a8fc;
+}

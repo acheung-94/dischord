@@ -30,7 +30,6 @@ export const csrfFetch = async (url, options = {}) => {
       delete options.headers['Content-Type']
       options.headers['X-CSRF-Token'] = sessionStorage.getItem('X-CSRF-Token');
     }
-    console.log(options)
     // call fetch with the url and the updated options hash
     const res = await fetch(url, options);
   
