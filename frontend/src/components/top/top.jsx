@@ -9,6 +9,10 @@ const Top = ( {type} ) => {
     const dispatch = useDispatch()
     const channel = useSelector(currentChannel(channelId))
 
+    const handleClick = () =>{
+        //dispatch(toggleRightPanel())
+    }
+
     if (channel) {
         return(
             <div className="top-base">

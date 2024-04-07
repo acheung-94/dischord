@@ -1,36 +1,54 @@
 import { useDispatch, useSelector } from "react-redux"
 import { selectCurrentUser } from "../../store/sessionReducer"
 import { createMembership, createServer, updateServer } from "../../store/serverReducer"
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import './newServer.css'
 import { useNavigate, useParams } from "react-router-dom"
 
 
 const NewServer = ( {modalState, setModalState, type, server}) => {
     const currentUser = useSelector(selectCurrentUser)
+    const hiddenUpload = useRef()
     const navigate = useNavigate()
     const serverId = useParams()
     const dispatch = useDispatch()
     const [serverData, setServerData] = useState(
         type ? {
+            id: server.id,
             name: server.name,
+            serverIcon: server.serverIcon
         } : {
-            name: ''
-        // eventually user uploaded img
+            name: '',
+            serverIcon: null
         })
+    
+     
 
 
+    const triggerUpload = () => hiddenUpload.current.click()
+    const handleFile = (e) => {
+        const file = e.currentTarget.files[0]
+        setServerData( old => ( {...old, serverIcon : file } ))
+    }
     const handleChange = e => {
         setServerData( old => ( {...old, name : e.target.value} ))
+        console.log(serverData)
     }
-    console.log("serverId", serverId)
+
 
     const handleSubmit = (e) => {
         e.preventDefault()
+        const serverFormObj = new FormData();
+        serverFormObj.append('server[name]', serverData.name)
+        if (serverData.serverIcon){
+            serverFormObj.append('server[serverIcon]', serverData.serverIcon)
+        }
+
         if (type) {
-            dispatch(updateServer({...server, ...serverData}))
+            
+            dispatch(updateServer(serverFormObj, server.id))
         }else{
-            dispatch(createServer(serverData)).then(newServer => (
+            dispatch(createServer(serverFormObj)).then(newServer => (
                 navigate(`/channels/${newServer.id}/${newServer.channels[0]}`)
             ))
         }
@@ -58,7 +76,8 @@ const NewServer = ( {modalState, setModalState, type, server}) => {
                     )}
                    
                 </div>
-                <div className="upload-icon">
+                <div className="upload-icon" onClick={triggerUpload}>
+                    <input type="file" className="hidden-upload" ref={hiddenUpload} onChange={handleFile}/>
                     <img src="/src/assets/icons/guildChooseRoleIcon.png"/>
                     <p>upload</p>
                     <img src="/src/assets/icons/guildCreateChannel.png" className="upload-plus" />

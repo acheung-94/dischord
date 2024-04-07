@@ -3,8 +3,11 @@ import { csrfFetch } from "./csrfUtils";
 export const postServer = (serverInfo) => (
     csrfFetch('/api/servers', {
         method: 'post',
-        body: JSON.stringify(serverInfo)  // CHANGE THIS WHEN IMG
-    })
+        body: serverInfo  // IMG ATTACHED, FORMDATA OBJ
+        // headers: {
+        //     'Content-Type': 'multipart/form-data' 
+        // }
+    }).catch(err => console.error(err))
 )
 
 export const destroyServer = (serverId) => (
@@ -17,10 +20,10 @@ export const getServer = (serverId) => (
     csrfFetch(`/api/servers/${serverId}`)
 )
 
-export const patchServer = (server) => (
-    csrfFetch(`/api/servers/${server.id}`, {
+export const patchServer = (server, id) => (
+    csrfFetch(`/api/servers/${id}`, {
         method: 'PATCH',
-        body: JSON.stringify(server) // CHANGE THIS WHEN IMG
+        body: server // CHANGE THIS WHEN IMG
     })
 )
 

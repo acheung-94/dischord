@@ -60,8 +60,8 @@ export const createMembership = (membership) => (dispatch) => (
 )
 
 
-export const updateServer = (server) => (dispatch) => (
-    patchServer(server).then(res => {
+export const updateServer = (server, id) => (dispatch) => (
+    patchServer(server, id).then(res => {
         if (res.ok) {
             return res.json()
         }else{
