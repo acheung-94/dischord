@@ -2,19 +2,17 @@
     height: 100%;
     overflow:auto;
     border: 1px solid pink;
-
+    /* DO NOT MAKE THIS A FLEX CONTAINER */
 }
-/* oh my god i'm going to cry */
+
 
 .message-list-inner{
-    display: flex;
-    /* flex-grow: 1; */
-    flex-direction:column;
-    justify-content: flex-end;
-    
+    min-height: 100%; 
     box-sizing: border-box;
     border: 2px solid green;
-    /* overflow:auto; */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
 }
 
 .new-channel-thing{
@@ -26,6 +24,7 @@
     align-items: center;
     border-radius: 36px;
     box-sizing: border-box;
+    margin-left: 8px;
 }
 
 .new-channel-thing img{
@@ -36,11 +35,38 @@
     font-size: 30px;
     font-weight: 700;
     color: #fff;
+    margin: 8px;
+}
+
+.message-start{
+    margin: 8px;
 }
 
 .list-separator{
+    width: 90%;
+    /* border: 1px solid aqua; */
+    /* box-shadow: 0 1px 1px 1px rgba(255, 255, 255, 0.2); */
+    box-sizing: border-box;
+    align-self: center;
+    margin: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+    font-weight: 600;
+}
+.list-separator span{
+    border-image: linear-gradient(to right,rgba(156, 100, 109, 0.582), rgba(128, 72, 128, 0.493)) 30;
+    border-width: 1px;
+    border-style: solid;
     width: 100%;
-    box-shadow: 0 1px 1px 1px rgba(255, 255, 255, 0.2);
+}
+
+.list-separator div{
+    width: auto;
+    text-wrap:nowrap;
+    margin-left: 8px;
+    margin-right: 8px;
 }
 
 ::-webkit-scrollbar{
