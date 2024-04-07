@@ -13,7 +13,6 @@ const MessageItem = ({message, currentUser}) => {
 
     const handleEdit = () => {
         setMessageState('edit')
-        console.log(messageState)
     }
 
     return(

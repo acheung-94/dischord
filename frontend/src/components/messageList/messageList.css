@@ -1,7 +1,6 @@
 .message-list{
     height: 100%;
     overflow:auto;
-    border: 1px solid pink;
     /* DO NOT MAKE THIS A FLEX CONTAINER */
 }
 
@@ -9,7 +8,7 @@
 .message-list-inner{
     min-height: 100%; 
     box-sizing: border-box;
-    border: 2px solid green;
+
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
@@ -44,8 +43,6 @@
 
 .list-separator{
     width: 90%;
-    /* border: 1px solid aqua; */
-    /* box-shadow: 0 1px 1px 1px rgba(255, 255, 255, 0.2); */
     box-sizing: border-box;
     align-self: center;
     margin: 8px;

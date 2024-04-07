@@ -1,5 +1,7 @@
 import './messageList.css'
 import MessageItem from '../messageItem/messageItem';
+import { Fragment } from 'react';
+
 const MessageList = ( {messages, currentUser, channel}) => {
 
     return(
@@ -17,17 +19,16 @@ const MessageList = ( {messages, currentUser, channel}) => {
                 { messages.map( (message, idx) => {
                     if (idx === 0 || message.date !== messages[idx - 1].date){
                         return (
-                            <>
-                            <span className="list-separator"> 
-                                <span></span>
-                                <div>{message.date} </div>
-                                <span></span>
-                            </span>
-                            <MessageItem key = {message.id} 
-                                            message={message} 
-                                            currentUser={currentUser} 
-                                            channel={channel}/>
-                            </>
+                            <Fragment key = {message.id}>
+                                <span  className="list-separator"> 
+                                    <span></span>
+                                    <div>{message.date} </div>
+                                    <span></span>
+                                </span>
+                                <MessageItem message={message} 
+                                                currentUser={currentUser} 
+                                                channel={channel}/>
+                            </Fragment>
                         )
                     }else{
                         return (
