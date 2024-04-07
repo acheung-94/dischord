@@ -1,15 +1,18 @@
-.message-list-wrapper{
-    flex: 1;
-    overflow-y:auto;
-}
-
 .message-list{
-    display: flex;
     height: 100%;
+    overflow:auto;
+}
+/* oh my god i'm going to cry */
+
+.message-list-inner{
+    display: flex;
+    flex-grow: 1;
     flex-direction:column;
     justify-content: flex-end;
     gap: 12px;
     box-sizing: border-box;
+    /* border: 2px solid green; */
+    /* overflow:auto; */
 }
 
 .new-channel-thing{
@@ -45,11 +48,10 @@
 ::-webkit-scrollbar-track {
     background: #2b2d31;
     border-radius: 4px;
-  }
+}
 
-  ::-webkit-scrollbar-thumb {
-    background: #1a1b1e;
-    width: 4px;
-    border-radius: 4px;
-  }
-  
+::-webkit-scrollbar-thumb {
+background: #1a1b1e;
+width: 4px;
+border-radius: 4px;
+}

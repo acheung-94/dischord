@@ -5,7 +5,7 @@
     padding: 4px;
     box-sizing: border-box;
     border-radius: 8px;
-    
+    /* border: 2px solid red; */
 }
 
 .message-form img{
@@ -18,4 +18,7 @@
 }
 .message-input:focus{
     outline: none;
+}
+.message-form-wrapper{
+    position: relative;
 }

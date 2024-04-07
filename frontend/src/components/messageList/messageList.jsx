@@ -3,8 +3,9 @@ import MessageItem from '../messageItem/messageItem';
 const MessageList = ( {messages, channelId, channel}) => {
 
     return(
-        <div className="message-list-wrapper">
-            <div className="message-list">
+
+        <div className="message-list">
+            <div className="message-list-inner">
                 <div className="new-channel-thing">
                     <img src="/src/assets/icons/channelTextWhite.png" />
                 </div>

@@ -26,10 +26,16 @@ const Middle = ({type}) => {
     if ( type === 'channel') { // yikers there's gotta be a simpler way of ensuring channel and messages
         if (channel && messages) {
             return(
+                // <div className="middle-base">
+                //     <MessageList channelId = {channelId}
+                //         messages = {messages}
+                //         channel={channel} />
+                //     <MessageForm channel={channel} currentUser={currentUser} />
+                // </div>
                 <div className="middle-base">
                     <MessageList channelId = {channelId}
                         messages = {messages}
-                        channel={channel} />
+                         channel={channel} />
                     <MessageForm channel={channel} currentUser={currentUser} />
                 </div>
             )
