@@ -1,6 +1,6 @@
 import './messageList.css'
 import MessageItem from '../messageItem/messageItem';
-const MessageList = ( {messages, channelId, channel}) => {
+const MessageList = ( {messages, currentUser, channel}) => {
 
     return(
 
@@ -15,7 +15,10 @@ const MessageList = ( {messages, channelId, channel}) => {
                 <p>This is the start of the #{channel.name} channel.</p>
                 <span className="list-separator"></span>
                 { messages.map( message => (
-                    <MessageItem message={message}/>
+                    <MessageItem key = {message.id} 
+                    message={message} 
+                    currentUser={currentUser} 
+                    channel={channel}/>
                 )) }
 
             </div>

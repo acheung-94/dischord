@@ -3,6 +3,17 @@
     text-wrap: wrap;
     position: relative;
     box-sizing: border-box;
+    padding: 6px;
+    
+}
+
+.message-item:hover{
+    background-color: rgba(30,31,35, 0.2);
+    /* border: 2px solid salmon; */
+}
+
+.message-item:hover .message-options{
+    visibility: visible;
 }
 
 .message-header{
@@ -28,6 +39,8 @@
     line-height: 20px;
     margin-left: 80px;
     vertical-align: middle;
+    /* border: 1px solid aqua; */
+    width: 100%;
 }
 
 .message-time{
@@ -38,7 +51,33 @@
     align-items: baseline;
     position: absolute;
     left: 20px;
-    top: 1px;
+    top: 6px;
     color:#B5BAC1;
     font-weight: 500;
+}
+
+.message-options{
+    position:absolute;
+    right: 10px;
+    top: -28px;
+    display: flex;
+
+    /* border: 1px solid gold; */
+    background-color: #242529;
+    border-radius: 8px;
+    visibility: hidden;
+    transition: all 0.2s ease;
+
+}
+
+.message-options img{
+    width: 18px;
+    padding: 8px;
+    /* border: 1px solid red; */
+}
+
+.message-options img:hover{
+    background-color: #44474e6c;
+    border-radius: 6px;
+    cursor:pointer;
 }

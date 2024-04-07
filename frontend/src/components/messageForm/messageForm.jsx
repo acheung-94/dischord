@@ -1,14 +1,15 @@
 import { useDispatch } from 'react-redux'
 import './messageForm.css'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { createMessage } from '../../store/messageReducer'
 
-const MessageForm = ({channel, currentUser}) => {
+const MessageForm = ({channel, currentUser, messageState, oldMessage, setMessageState }) => {
     const dispatch = useDispatch()
-    const [message, setMessage] = useState({
-        body: '',
-        authorId: currentUser.id,
-        channelId: channel.id
+    const [message, setMessage] = useState(
+        messageState ? oldMessage : {
+            body: '',
+            authorId: currentUser.id,
+            channelId: channel.id
     })
     const handleChange = (e) => {
         setMessage( old => ({
@@ -16,12 +17,30 @@ const MessageForm = ({channel, currentUser}) => {
             body: e.target.value
         }))
     }
+    useEffect(()=>{
+        //make sure to reset the state since it doesn't automatically change with channel
+        setMessage({
+            body: '',
+            authorId: currentUser.id,
+            channelId: channel.id
+    })
+    }, [channel])
+
 
     const handleSubmit = (e) => {
-        console.log(e)
+        
         e.preventDefault()
         if (message.body){
-            dispatch(createMessage(message))
+            if (messageState) {
+                
+                dispatch(updateMessage(message))
+                setMessageState(false)
+            
+            }else{
+                console.log(messageState)
+                console.log(channel.id)
+                dispatch(createMessage(message))
+            }
             setMessage(old => ({...old, body: ''}))
         }
     }
@@ -39,13 +58,15 @@ const MessageForm = ({channel, currentUser}) => {
     return(
         <div className='message-form-wrapper'>
             <form className="message-form" onSubmit={handleSubmit}>
-                <img src="/src/assets/icons/chatAttachment.png" />
+                { !messageState && 
+                (<img src="/src/assets/icons/chatAttachment.png" />)}
+                
                 <input type="textarea"
                     className='message-input'
                     onChange={handleChange}
                     value={message.body}
                     onKeyDown={handleKeyPress}
-                    placeholder={`Message #${channel.name}...`}/>
+                    placeholder={ messageState ? '' : `Message #${channel.name}...`}/>
             </form>
         </div>
     )
