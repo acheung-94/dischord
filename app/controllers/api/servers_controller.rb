@@ -1,6 +1,6 @@
 class Api::ServersController < ApplicationController
     before_action :require_logged_in
-    
+    wrap_parameters include: Server.attribute_names + ['serverIcon']
     def index
         @user = current_user
         render :index

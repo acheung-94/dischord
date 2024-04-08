@@ -1,7 +1,7 @@
 .message-list{
     height: 100%;
     overflow:auto;
-    /* DO NOT MAKE THIS A FLEX CONTAINER */
+    /* DO NOT MAKE THIS ONE A FLEX CONTAINER */
 }
 
 
@@ -55,7 +55,7 @@
 .list-separator span{
     border-image: linear-gradient(to right,rgba(156, 100, 109, 0.582), rgba(128, 72, 128, 0.493)) 30;
     border-width: 1px;
-    border-style: solid;
+    border-top-style: solid;
     width: 100%;
 }
 

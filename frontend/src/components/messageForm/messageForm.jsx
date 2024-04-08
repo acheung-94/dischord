@@ -57,6 +57,7 @@ const MessageForm = ({messageState, oldMessage, setMessageState }) => {
     }
 
     const handleKeyPress = e => {
+        e.stopPropagation();
         if (e.shiftKey && e.key == 'Enter') {
             e.preventDefault()
             // enter new line... but how?

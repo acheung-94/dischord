@@ -16,7 +16,7 @@ const NewServer = ( {modalState, setModalState, type, server}) => {
         type ? {
             id: server.id,
             name: server.name,
-            serverIcon: server.serverIcon
+            serverIcon: server.iconUrl //should be server.iconUrl
         } : {
             name: '',
             serverIcon: null
@@ -35,9 +35,10 @@ const NewServer = ( {modalState, setModalState, type, server}) => {
         console.log(serverData)
     }
 
-
+    //when hitting enter to submit....
     const handleSubmit = (e) => {
-        e.preventDefault()
+        e.preventDefault() // it's not actually preventing default when i hit enter
+
         const serverFormObj = new FormData();
         serverFormObj.append('server[name]', serverData.name)
         if (serverData.serverIcon){
@@ -45,7 +46,6 @@ const NewServer = ( {modalState, setModalState, type, server}) => {
         }
 
         if (type) {
-            
             dispatch(updateServer(serverFormObj, server.id))
         }else{
             dispatch(createServer(serverFormObj)).then(newServer => (
@@ -76,23 +76,35 @@ const NewServer = ( {modalState, setModalState, type, server}) => {
                     )}
                    
                 </div>
-                <div className="upload-icon" onClick={triggerUpload}>
+                <div className={type ? 'upload-icon edit' : 'upload-icon'} onClick={triggerUpload}>
                     <input type="file" className="hidden-upload" ref={hiddenUpload} onChange={handleFile}/>
-                    <img src="/src/assets/icons/guildChooseRoleIcon.png"/>
-                    <p>upload</p>
-                    <img src="/src/assets/icons/guildCreateChannel.png" className="upload-plus" />
+                    {type ? 
+                    <>
+                        <img src={server.iconUrl} className="preloaded" />
+                        <img src="/src/assets/icons/icon-edit.png" className="preloaded-overlay" />
+                    </>
+                        : <>
+                        <img src="/src/assets/icons/guildChooseRoleIcon.png" className="pic-icon"/>
+                        <p>upload</p>
+                        <img src="/src/assets/icons/guildCreateChannel.png" className="upload-plus" /> 
+                     </>}
+                    
                 </div>      
                     
-                <form className="new-server-form">
+                <form className="new-server-form" onSubmit={handleSubmit}>
                     <label > server name </label>
                     <input type="text"
                         placeholder={ `${currentUser.username}'s server` }
                         value={serverData.name}
                         onChange={handleChange} />
-                </form>
                 <div className="new-server-footer">
-                    <button type="submit" disabled={ serverData.name ? false : true} onClick={handleSubmit}>{type ? "Save" : "Create"}</button>
+                    <button type="submit" 
+                        disabled={ serverData.name ? false : true} 
+                        >
+                            {type ? "Save" : "Create"}
+                    </button>
                 </div>
+                </form>
             </div>
         </div>
     )
