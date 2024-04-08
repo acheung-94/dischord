@@ -39,3 +39,19 @@
 .upload-attachment:hover{
     cursor: pointer;
 }
+
+.attachment-preview{
+    position: absolute;
+    box-sizing: border-box;
+    bottom: 100%;
+    width: 100%;
+    border: 1px solid green;
+    padding: 18px;
+    background-color:#383a40;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.attachment-preview img{
+    width: 30%; /* TODO scale with multiple attachments*/
+}

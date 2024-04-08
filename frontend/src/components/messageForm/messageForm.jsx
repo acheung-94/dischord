@@ -12,6 +12,8 @@ const MessageForm = ({messageState, oldMessage, setMessageState }) => {
     const attachRef = useRef()
     const currentUser = useSelector(selectCurrentUser)
     const channel = useSelector(currentChannel(channelId))
+
+    const [filePreview, setFilePreview] = useState(null)
     const [message, setMessage] = useState(
         messageState ? oldMessage : {
             body: '',
@@ -26,12 +28,13 @@ const MessageForm = ({messageState, oldMessage, setMessageState }) => {
             ...old,
             body: e.target.value
         }))
-        console.log(message)
+
     }
     const triggerUpload = () => attachRef.current.click()
     const handleFile = (e) => {
         const file = e.currentTarget.files[0]
         setMessage( old => ( {...old, attachment : file } ))
+        setFilePreview(URL.createObjectURL(file))
     }
 
     useEffect(()=>{
@@ -39,11 +42,13 @@ const MessageForm = ({messageState, oldMessage, setMessageState }) => {
         if(currentUser && channel){
             if (messageState) {
                 setMessage(oldMessage)
+                setFilePreview(null)
             }else{
                 setMessage( old => ({
                     ...old,
                     body: ''
                 }))
+                setFilePreview(null)
             }
         }
     }, [channel])
@@ -67,6 +72,7 @@ const MessageForm = ({messageState, oldMessage, setMessageState }) => {
             
             }else{
                 dispatch(createMessage(messageFormObj))
+                setFilePreview(null)
             }
             setMessage(old => ({...old, body: ''}))
         }
@@ -86,6 +92,11 @@ const MessageForm = ({messageState, oldMessage, setMessageState }) => {
 
         return(
             <div className='message-form-wrapper'>
+                {filePreview && (
+                    <div className="attachment-preview">
+                        <img src={filePreview} />
+                    </div>
+                )}
                 <form className="message-form" onSubmit={handleSubmit}>
                     { !messageState && 
                     (<>
