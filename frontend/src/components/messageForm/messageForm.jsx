@@ -2,17 +2,18 @@ import { useDispatch } from 'react-redux'
 import './messageForm.css'
 import { useParams } from 'react-router-dom';
 import { selectCurrentUser } from '../../store/sessionReducer'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { currentChannel } from '../../store/channelReducer';
 import { createMessage } from '../../store/messageReducer'
 import { useSelector } from 'react-redux';
 const MessageForm = ({messageState, oldMessage, setMessageState }) => {
     const dispatch = useDispatch()
     const { channelId } = useParams()
+    const attachRef = useRef()
     const currentUser = useSelector(selectCurrentUser)
     const channel = useSelector(currentChannel(channelId))
     const [message, setMessage] = useState(
-        messageState ? {body: oldMessage.body, attachment: null}: {
+        messageState ? oldMessage : {
             body: '',
             authorId: currentUser.id,
             channelId: channel.id,
@@ -25,8 +26,9 @@ const MessageForm = ({messageState, oldMessage, setMessageState }) => {
             ...old,
             body: e.target.value
         }))
+        console.log(message)
     }
-
+    const triggerUpload = () => attachRef.current.click()
     const handleFile = (e) => {
         const file = e.currentTarget.files[0]
         setMessage( old => ( {...old, attachment : file } ))
@@ -52,12 +54,14 @@ const MessageForm = ({messageState, oldMessage, setMessageState }) => {
         e.preventDefault()
         let messageFormObj = new FormData()
         messageFormObj.append('message[body]', message.body)
+        messageFormObj.append('message[authorId]', message.authorId)
+        messageFormObj.append('message[channelId]', message.channelId)
+
         if (message.attachment){
             messageFormObj.append('message[attachment]', message.attachment)
         }
         if (message.body){
             if (messageState) {
-                console.log(oldMessage.id, typeof oldMessage.id)
                 dispatch(updateMessage(messageFormObj, oldMessage.id))
                 setMessageState(false)
             
@@ -84,7 +88,10 @@ const MessageForm = ({messageState, oldMessage, setMessageState }) => {
             <div className='message-form-wrapper'>
                 <form className="message-form" onSubmit={handleSubmit}>
                     { !messageState && 
-                    (<img src="/src/assets/icons/chatAttachment.png" />)}
+                    (<>
+                    <input type="file" className='hidden-message-input' ref={attachRef} onChange={handleFile} />
+                    <img className='upload-attachment' src="/src/assets/icons/chatAttachment.png" onClick={triggerUpload} />
+                    </>)}
                     
                     <input type="textarea"
                         className='message-input'

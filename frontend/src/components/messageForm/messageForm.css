@@ -31,3 +31,11 @@
 .edit-inst span{
     color: #00a8fc;
 }
+
+.hidden-message-input{
+    display: none;
+}
+
+.upload-attachment:hover{
+    cursor: pointer;
+}

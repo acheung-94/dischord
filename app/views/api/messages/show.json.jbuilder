@@ -3,3 +3,7 @@ json.author @message.author.username
 json.timestamp @message.created_at.to_time.localtime.strftime('%l:%M %p')
 json.date @message.created_at.to_time.localtime.strftime('%B%_e, %Y')
 #add clause for attached images
+
+if @message.attachment.attached?
+    json.attachmentUrl url_for(@message.attachment)
+end

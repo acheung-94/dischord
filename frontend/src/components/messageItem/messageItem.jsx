@@ -28,7 +28,12 @@ const MessageItem = ({message, currentUser}) => {
             <MessageForm oldMessage={message} 
                 messageState={messageState} 
                 setMessageState={setMessageState}/> }
+            
+        {message.attachmentUrl && (
+            <div className="message-attachment">
+                <img src={message.attachmentUrl}/>
             </div>
+        )}</div>
         <span className='message-options'>
             {
                 currentUser.id === message.authorId && (
