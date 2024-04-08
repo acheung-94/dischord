@@ -7,7 +7,7 @@ export const getMessages = (channelId) => (
 export const postMessage = (messageInfo) => (
     csrfFetch(`/api/messages`, {
         method: 'post',
-        body: JSON.stringify(messageInfo) 
+        body: messageInfo
     })
 )
 
@@ -17,13 +17,9 @@ export const destroyMessage = (messageId) => (
     })
 )
 
-// export const getChannel = (serverId, channelId) => (
-//     csrfFetch(`/api/servers/${serverId}/channels/${channelId}`)
-// )
-
-export const patchMessage = (messageInfo) => (
-    csrfFetch(`/api/messages/${messageInfo.id}`, {
+export const patchMessage = (messageInfo, messageId) => (
+    csrfFetch(`/api/messages/${messageId}`, {
         method: 'PATCH',
-        body: JSON.stringify(messageInfo)
+        body: messageInfo
     })
 )

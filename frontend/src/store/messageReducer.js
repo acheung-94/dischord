@@ -44,8 +44,8 @@ export const getChannelMessages = (channelId) => (dispatch) => (
         }).then(messages => dispatch(receiveMessages(messages)))
 )
 
-export const updateMessage = (message) => (dispatch) => (
-    patchMessage(message)
+export const updateMessage = (message, id) => (dispatch) => (
+    patchMessage(message, id)
         .then(res => {
             if (res.ok){
                 return res.json()

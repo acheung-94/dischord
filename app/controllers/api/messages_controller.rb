@@ -45,7 +45,7 @@ class Api::MessagesController < ApplicationController
 
     private
     def message_params
-        params.require(:message).permit(:id, :body, :author_id, :channel_id)
+        params.require(:message).permit(:id, :body, :author_id, :channel_id, :attachment)
     end
 
     def find_message

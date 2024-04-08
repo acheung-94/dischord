@@ -12,10 +12,11 @@ const MessageForm = ({messageState, oldMessage, setMessageState }) => {
     const currentUser = useSelector(selectCurrentUser)
     const channel = useSelector(currentChannel(channelId))
     const [message, setMessage] = useState(
-        messageState ? oldMessage : {
+        messageState ? {body: oldMessage.body, attachment: null}: {
             body: '',
             authorId: currentUser.id,
-            channelId: channel.id
+            channelId: channel.id,
+            attachment: null
     })
 
 
@@ -25,8 +26,14 @@ const MessageForm = ({messageState, oldMessage, setMessageState }) => {
             body: e.target.value
         }))
     }
+
+    const handleFile = (e) => {
+        const file = e.currentTarget.files[0]
+        setMessage( old => ( {...old, attachment : file } ))
+    }
+
     useEffect(()=>{
-        //make sure to reset the state since it doesn't automatically change with channel ... or does it
+        //make sure to update the state between channels
         if(currentUser && channel){
             if (messageState) {
                 setMessage(oldMessage)
@@ -43,14 +50,19 @@ const MessageForm = ({messageState, oldMessage, setMessageState }) => {
     const handleSubmit = (e) => {
         
         e.preventDefault()
+        let messageFormObj = new FormData()
+        messageFormObj.append('message[body]', message.body)
+        if (message.attachment){
+            messageFormObj.append('message[attachment]', message.attachment)
+        }
         if (message.body){
             if (messageState) {
-                
-                dispatch(updateMessage(message))
+                console.log(oldMessage.id, typeof oldMessage.id)
+                dispatch(updateMessage(messageFormObj, oldMessage.id))
                 setMessageState(false)
             
             }else{
-                dispatch(createMessage(message))
+                dispatch(createMessage(messageFormObj))
             }
             setMessage(old => ({...old, body: ''}))
         }
