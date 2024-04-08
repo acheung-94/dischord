@@ -7,7 +7,7 @@ const RECEIVE_MESSAGES = 'messages/RECEIVE_MESSAGES'
 const DELETE_MESSAGE = 'messages/DELETE_MESSAGE'
 
 // REG ACTIONS
-const addMessage = (message) => ( {
+export const addMessage = (message) => ( {
     type: ADD_MESSAGE,
     message
 })
@@ -24,13 +24,6 @@ const deleteMessage = (messageId) => ( {
 // THUNK ACTIONS
 export const createMessage = (message) => (dispatch) => (
     postMessage(message)
-        .then(res => {
-            if (res.ok){
-                return res.json()
-            }else{
-                throw res
-            }
-        }).then(message => dispatch(addMessage(message)))
 )
 
 export const getChannelMessages = (channelId) => (dispatch) => (

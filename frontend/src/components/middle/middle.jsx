@@ -3,10 +3,14 @@ import './middle.css'
 import { useDispatch, useSelector } from 'react-redux';
 import { currentChannel } from '../../store/channelReducer';
 import { useEffect } from 'react';
-import { getChannelMessages, currentMessages } from '../../store/messageReducer';
+import { getChannelMessages, currentMessages, addMessage } from '../../store/messageReducer';
 import MessageList from '../messageList/messageList';
 import MessageForm from '../messageForm/messageForm';
 import { selectCurrentUser } from '../../store/sessionReducer';
+
+import consumer from '../../utils/consumer';
+
+
 const Middle = ({type}) => {
     // STATE
     const dispatch = useDispatch()
@@ -14,11 +18,20 @@ const Middle = ({type}) => {
     const messages = useSelector(currentMessages)
     const channel = useSelector(currentChannel(channelId))
     const currentUser = useSelector(selectCurrentUser)
-    // HOOKS
+    // POST-RENDER
     useEffect(() => {
         if (type === 'channel') {
+            console.log('firing useEffect from middle!')
             dispatch(getChannelMessages(channelId))
-            
+            const sub = consumer.subscriptions.create( {
+                channel: 'ChannelsChannel',
+                channelId
+            }, {
+                received(message){
+                    dispatch(addMessage(message))
+                }
+            })
+            return () => consumer.subscriptions.remove(sub)
         }
     }, [channelId])
     // RENDER
