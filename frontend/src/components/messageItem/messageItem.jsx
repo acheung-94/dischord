@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { removeMessage } from '../../store/messageReducer';
-import { currentUserServers2 } from '../../store/serverReducer';
+
 import './messageItem.css'
 import { useDispatch } from 'react-redux'
 import MessageForm from '../messageForm/messageForm';
@@ -12,7 +12,6 @@ const MessageItem = ({message, currentUser}) => {
     }
 
     const handleEdit = () => {
-        console.log('clicked edit!')
         setMessageState('edit')
     }
 

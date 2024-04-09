@@ -3,7 +3,7 @@ import './middle.css'
 import { useDispatch, useSelector } from 'react-redux';
 import { currentChannel } from '../../store/channelReducer';
 import { useEffect } from 'react';
-import { getChannelMessages, currentMessages, addMessage } from '../../store/messageReducer';
+import { getChannelMessages, currentMessages, addMessage, deleteMessage } from '../../store/messageReducer';
 import MessageList from '../messageList/messageList';
 import MessageForm from '../messageForm/messageForm';
 import { selectCurrentUser } from '../../store/sessionReducer';
@@ -28,7 +28,14 @@ const Middle = ({type}) => {
                 channelId
             }, {
                 received(message){
-                    dispatch(addMessage(message))
+                    console.log(message)
+                    if (message.type === 'delete'){
+                        console.log('message has been destroyed!')
+                        dispatch(deleteMessage(message.messageId))
+                    }else{
+                        console.log('received this message')
+                        dispatch(addMessage(message))
+                    }
                 }
             })
             return () => consumer.subscriptions.remove(sub)

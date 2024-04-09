@@ -38,7 +38,16 @@ class Api::MessagesController < ApplicationController
     def update
         @message = find_message
         if @message&.update(message_params)
-            render :show
+            ChannelsChannel.broadcast_to(@message.channel, {
+                id: @message.id,
+                body: @message.body,
+                authorId: @message.author_id,
+                channelId: @message.channel_id,
+                # attachmentUrl: url_for(@message.attachment),
+                author: @message.author.username,
+                timestamp: @message.created_at.to_time.localtime.strftime('%l:%M %p'),
+                date: @message.created_at.to_time.localtime.strftime('%B%_e, %Y')
+            })
         else
             render json: {errors: @message.errors}, status: 422
         end        
@@ -48,7 +57,10 @@ class Api::MessagesController < ApplicationController
         @message = find_message
         if @message&.author == current_user
             @message.destroy
-            head :no_content
+            ChannelsChannel.broadcast_to(@message.channel, {
+                type: 'delete',
+                messageId: @message.id
+            })
         else
             render json: {errors: 'Not yours to delete'}, status: 401
         end
