@@ -11,7 +11,6 @@ const MessageItem = ({message, currentUser, isLast, newTime}) => {
     const lastMsg = useRef()
     
     useEffect(()=>{
-        console.log(lastMsg)
         if (lastMsg.current){
             lastMsg.current.scrollIntoView()
         }

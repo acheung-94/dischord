@@ -27,3 +27,7 @@
 .search-bar-container{
     width: 20%;
 }
+
+.member-list-toggle{
+    cursor: pointer;
+}

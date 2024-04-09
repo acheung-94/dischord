@@ -7,7 +7,7 @@ import { getChannelMessages, currentMessages, addMessage, deleteMessage } from '
 import MessageList from '../messageList/messageList';
 import MessageForm from '../messageForm/messageForm';
 import { selectCurrentUser } from '../../store/sessionReducer';
-
+import Right from '../right/right';
 import consumer from '../../utils/consumer';
 
 
@@ -47,13 +47,15 @@ const Middle = ({type}) => {
     if ( type === 'channel') { // yikers there's gotta be a simpler way of ensuring channel and messages
         if (channel && messages) {
 
-            return(
+            return(<div className='middle-base-wrapper'>
                 <div className="middle-base">
                     <MessageList currentUser = {currentUser}
                         messages = {messages}
                          channel={channel} />
                     <MessageForm channel={channel} currentUser={currentUser} />
                 </div>
+                <Right type={type} />
+            </div>
             )
         }
     }else if (type === '@me') {

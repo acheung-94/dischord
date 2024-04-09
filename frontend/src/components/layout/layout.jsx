@@ -58,7 +58,7 @@ const Layout = ({type}) => {
                 <Left type={type}/>
                 <Middle type={type}/>
                 <Top type={type} />
-                <Right type={type}/>
+                {/* <Right type={type}/> */}
             </div>
         </div>
     )}else if (isLoading) {

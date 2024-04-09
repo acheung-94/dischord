@@ -3,6 +3,7 @@ import './top.css'
 import { useDispatch, useSelector } from 'react-redux';
 import { currentChannel } from '../../store/channelReducer';
 import SearchBar from '../searchBar/searchBar';
+import { togglePanel } from '../../store/uiReducer';
 import { useEffect } from 'react';
 const Top = ( {type} ) => {
     const {channelId} = useParams()
@@ -10,7 +11,7 @@ const Top = ( {type} ) => {
     const channel = useSelector(currentChannel(channelId))
 
     const handleClick = () =>{
-        //dispatch(toggleRightPanel())
+        dispatch(togglePanel())
     }
 
     if (channel) {
@@ -21,7 +22,10 @@ const Top = ( {type} ) => {
                         <div className="channel-bar">
                             <img className = "channel-bar-icons" src="/src/assets/icons/channelText.png" />
                             <h1 className='channel-bar-title' >{channel.name}</h1>
-                            <img className = "channel-bar-icons" src="/src/assets/icons/guildDefaultRolePermissions.png" />
+                            <div className="member-list-toggle"
+                                onClick={handleClick}>
+                                <img className = "channel-bar-icons" src="/src/assets/icons/guildDefaultRolePermissions.png" />
+                            </div>
                             <div className='searchbar-container'>
                                 <SearchBar></SearchBar>
                             </div>

@@ -9,3 +9,12 @@
     background-color: #2b2d31;
     width: 240px;
 }
+
+.right-base{
+    display: none;
+}
+
+.visible{
+    display: block;
+    width: fit-content;
+}
