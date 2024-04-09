@@ -1,8 +1,9 @@
 .user-icon{
     position:relative;
-    width: 35px;
+    width: 100%;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
+    align-items: center;
     gap: 8px;
     margin: 2px;
 }
@@ -14,14 +15,29 @@
 
 .user-icon-text h4{
     font-weight: 600;
-    color: #fff
+    color: #fff;
+    width: 100%;
+}
+.user-icon-text{
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
 }
 
 .user-icon .status{
     width: 9px;
     position: absolute;
-    bottom: -2px;
+    bottom: 0;
     right: 0;
     border: 3px solid #1E1F22;
     border-radius: 10px; 
+}
+
+.icon-img{
+    position: relative;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    padding: 4px;
 }
