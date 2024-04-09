@@ -16,7 +16,7 @@ const NewServer = ( {modalState, setModalState, type, server}) => {
         type ? {
             id: server.id,
             name: server.name,
-            serverIcon: server.iconUrl //should be server.iconUrl
+            serverIcon: null //was server.iconUrl
         } : {
             name: '',
             serverIcon: null

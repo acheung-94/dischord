@@ -20,7 +20,7 @@ class Api::MessagesController < ApplicationController
                 body: @message.body,
                 authorId: @message.author_id,
                 channelId: @message.channel_id,
-                attachmentUrl: @message.attachment.attached ? url_for(@message.attachment) : nil,
+                attachmentUrl: @message.attachment.attached? ? url_for(@message.attachment) : nil,
                 author: @message.author.username,
                 timestamp: @message.created_at.to_time.localtime.strftime('%l:%M %p'),
                 date: @message.created_at.to_time.localtime.strftime('%B%_e, %Y')
@@ -43,7 +43,7 @@ class Api::MessagesController < ApplicationController
                 body: @message.body,
                 authorId: @message.author_id,
                 channelId: @message.channel_id,
-                attachmentUrl: @message.attachment.attached ? url_for(@message.attachment) : nil,
+                attachmentUrl: @message.attachment.attached? ? url_for(@message.attachment) : nil,
                 author: @message.author.username,
                 timestamp: @message.created_at.to_time.localtime.strftime('%l:%M %p'),
                 date: @message.created_at.to_time.localtime.strftime('%B%_e, %Y')

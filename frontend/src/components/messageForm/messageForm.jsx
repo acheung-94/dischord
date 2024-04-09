@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import { selectCurrentUser } from '../../store/sessionReducer'
 import { useEffect, useRef, useState } from 'react'
 import { currentChannel } from '../../store/channelReducer';
-import { createMessage } from '../../store/messageReducer'
+import { createMessage, updateMessage } from '../../store/messageReducer'
 import { useSelector } from 'react-redux';
 const MessageForm = ({messageState, oldMessage, setMessageState, channel }) => {
     const dispatch = useDispatch()
@@ -95,13 +95,18 @@ const MessageForm = ({messageState, oldMessage, setMessageState, channel }) => {
         }
     }
 
+    const handleDetach = e => {
+        e.stopPropagation()
+        setFilePreview(null)
+        setMessage(old => ({...old, attachment: null}))
+    }
         return(
             <div className='message-form-wrapper'>
                 {filePreview && (
                     <div className="attachment-preview">
                         <div className='preview-wrapper'>
                             <img  src={filePreview} />
-                            <span className='delete-attach'> <img src="/src/assets/icons/chatContextMenuDeleteMessage.png" /></span>
+                            <span className='delete-attach' onClick={handleDetach}> <img src="/src/assets/icons/chatContextMenuDeleteMessage.png" /></span>
                          </div>
                     </div>
                 )}

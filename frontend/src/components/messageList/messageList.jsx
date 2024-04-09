@@ -3,7 +3,11 @@ import MessageItem from '../messageItem/messageItem';
 import { Fragment } from 'react';
 
 const MessageList = ( {messages, currentUser, channel}) => {
-
+    const conditionalTimestamp = (message, idx) => {
+        let diffTime = message.timestamp !== messages[idx-1].timestamp
+        let diffUser = message.authorId !== messages[idx-1].authorId
+        return ( diffTime || diffUser)
+    }
     return(
 
         <div className="message-list">
@@ -40,7 +44,7 @@ const MessageList = ( {messages, currentUser, channel}) => {
                                         currentUser={currentUser} 
                                         channel={channel}
                                         isLast={(idx === messages.length-1) ? true : false}
-                                        newTime={message.timestamp !== messages[idx-1].timestamp ? true : false}/>
+                                        newTime={conditionalTimestamp(message, idx) ? true : false}/>
                         )
                     }
                 }) }
