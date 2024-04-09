@@ -11,7 +11,7 @@ const MessageForm = ({messageState, oldMessage, setMessageState, channel }) => {
     const { channelId } = useParams()
     const attachRef = useRef()
     const currentUser = useSelector(selectCurrentUser)
-
+    const editRef = useRef()
 
     const [filePreview, setFilePreview] = useState(null)
     const [message, setMessage] = useState(
@@ -57,7 +57,11 @@ const MessageForm = ({messageState, oldMessage, setMessageState, channel }) => {
         
     }, [channel])
 
-
+    useEffect( () => {
+        if(messageState) {
+            editRef.current.focus()
+        }
+    }, [])
 
     const handleSubmit = (e) => {
         
@@ -122,6 +126,7 @@ const MessageForm = ({messageState, oldMessage, setMessageState, channel }) => {
                         onChange={handleChange}
                         value={message.body}
                         onKeyDown={handleKeyPress}
+                        ref={ messageState ? editRef : null }
                         placeholder={ messageState ? '' : `Message #${channel.name}...`}/>
                 </form>
                 { messageState && (

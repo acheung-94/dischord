@@ -47,7 +47,7 @@ const Layout = ({type}) => {
     }, [currentUser])
 
     useEffect( () => {
-        if (!currentUser || !isLoading){
+        if (!currentUser && !isLoading){
             navigate('/')
         }
     }, [currentUser, isLoading])
