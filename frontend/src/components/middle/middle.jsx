@@ -9,6 +9,7 @@ import MessageForm from '../messageForm/messageForm';
 import { selectCurrentUser } from '../../store/sessionReducer';
 import Right from '../right/right';
 import consumer from '../../utils/consumer';
+import { setPanel } from '../../store/uiReducer';
 
 
 const Middle = ({type}) => {
@@ -42,6 +43,12 @@ const Middle = ({type}) => {
         }
     }, [channelId])
 
+    useEffect(() => {
+        if(type === '@me'){
+            dispatch( setPanel())
+        }
+    }, [])
+    
     // RENDER
     
     if ( type === 'channel') { // yikers there's gotta be a simpler way of ensuring channel and messages
@@ -60,8 +67,12 @@ const Middle = ({type}) => {
         }
     }else if (type === '@me') {
         return (
-            <div className="middle-base">
-                <h1>Placeholder for friends list ?</h1>
+            <div className="middle-base-wrapper">
+                <div className="middle-base">
+                    <h1>Placeholder for friends list ?</h1>
+                    
+                </div>
+                <Right type={type} />
             </div>
         )
     }

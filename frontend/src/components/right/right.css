@@ -1,4 +1,4 @@
-.thick{
+/* .thick{
     grid-area: right-panel;
     background-color: #2b2d31;
     
@@ -8,7 +8,7 @@
     grid-area: right-panel;
     background-color: #2b2d31;
     width: 240px;
-}
+} */
 
 .right-base{
     display: none;
