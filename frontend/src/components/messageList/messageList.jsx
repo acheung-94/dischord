@@ -28,8 +28,9 @@ const MessageList = ( {messages, currentUser, channel}) => {
                                 <MessageItem message={message} 
                                             currentUser={currentUser} 
                                             channel={channel}
-                                            idx={idx}
-                                            lastIdx= {messages.length - 1}/>
+                                            newTime={true}
+                                            isLast={(idx === messages.length-1) ? true : false}
+                                            />
                             </Fragment>
                         )
                     }else{
@@ -38,8 +39,8 @@ const MessageList = ( {messages, currentUser, channel}) => {
                                         message={message} 
                                         currentUser={currentUser} 
                                         channel={channel}
-                                        idx={idx}
-                                        lastIdx= {messages.length - 1}/>
+                                        isLast={(idx === messages.length-1) ? true : false}
+                                        newTime={message.timestamp !== messages[idx-1].timestamp ? true : false}/>
                         )
                     }
                 }) }
