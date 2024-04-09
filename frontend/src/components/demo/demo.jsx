@@ -3,16 +3,24 @@ import './demo.css'
 import { loginUser } from '../../store/sessionReducer'
 import { useNavigate } from 'react-router-dom'
 
-const Demo = () => {
-    const demoInfo = {
+const Demo = ({user}) => {
+    const demoInfo1 = {
         credential: 'demo1',
         password: 'themostsecure'
+    }
+    const demoInfo2 = {
+        credential: 'demo2',
+        password: 'themostsecure2'
     }
     const dispatch = useDispatch()
 
     const navigate = useNavigate()
     const handleDemo = () => {
-        dispatch(loginUser(demoInfo))
+        if (user === 1){
+            dispatch(loginUser(demoInfo1))
+        }else if (user === 2){
+            dispatch(loginUser(demoInfo2))
+        }
         navigate('/channels/@me')
     }
     
@@ -20,10 +28,22 @@ const Demo = () => {
         <div className="demo-login">
             <h4>Log in as a demo user!</h4>
             <div className="user-1" onClick={handleDemo}>
-                <span className='user-1-icon'></span>
+                { user === 1 ? 
+                    (<span className='user-1-icon'></span>) : 
+                    (<span className='user-2-icon'></span>)}
                 <span className="user-1-text">
-                <h4>sonataformftw</h4>
-                <p>Online</p>
+                { user === 1 && (
+                    <>
+                        <h4>demo1</h4>
+                        <p></p>
+                    </>
+                )}
+                { user === 2 && (
+                    <>
+                    <h4>demo2</h4>
+                    <p></p>
+                </>
+                )}
             </span>
             </div>
         </div>

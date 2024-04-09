@@ -39,7 +39,7 @@ console.log(filePreview)
     }
     const handleChange = e => {
         setServerData( old => ( {...old, name : e.target.value} ))
-        console.log(serverData)
+
     }
 
     //when hitting enter to submit....
@@ -65,7 +65,7 @@ console.log(filePreview)
         e.stopPropagation()
         setModalState(null)
     }
-    //this is awful.
+
     const doNotClose = (e) => {
         e.stopPropagation()
     } 

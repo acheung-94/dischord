@@ -26,7 +26,8 @@ demo_2 = User.create(
     display_name: 'demo user 2', 
     password: 'themostsecure2', 
     email: 'demo2@demo.com' )
-
+file2 = URI.open('https://dischord-clone-seeds.s3.us-west-1.amazonaws.com/avatar-magenta.png')
+demo_2.avatar.attach(io: file, filename: 'magenta.png')
 s1 = Server.create(name: 'test server', owner_id: 1)
 s2 = Server.create(name: 'App Academy Lite', owner_id: 2)
 s3 = Server.create(name: 'Wow!', owner_id: 1)
