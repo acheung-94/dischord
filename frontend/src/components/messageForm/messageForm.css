@@ -53,6 +53,25 @@
     border-top-right-radius: 10px;
 }
 
-.attachment-preview img{
-    width: 30%; /* TODO scale with multiple attachments*/
+.preview-wrapper{
+    width: 30%;
+    position: relative;
+}
+.preview-wrapper img{
+    width: 100%;
+}
+
+.delete-attach{
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 24px;
+    padding: 4px;
+    background-color: #2b2d31;
+    border-radius: 4px;
+}
+
+.delete-attach:hover{
+    cursor: pointer;
+    background-color: #3d4046;
 }

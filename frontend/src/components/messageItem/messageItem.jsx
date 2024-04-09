@@ -1,12 +1,23 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef  } from 'react';
 import { removeMessage } from '../../store/messageReducer';
 
 import './messageItem.css'
 import { useDispatch } from 'react-redux'
 import MessageForm from '../messageForm/messageForm';
-const MessageItem = ({message, currentUser}) => {
+const MessageItem = ({message, currentUser, idx, lastIdx}) => {
     const dispatch = useDispatch()
     const [messageState, setMessageState] = useState(false)
+
+    const lastMsg = useRef()
+    
+    useEffect(()=>{
+        console.log(lastMsg.current)
+        if (lastMsg.current){
+            lastMsg.current.scrollIntoView()
+        }
+    })
+
+
     const handleDelete = () => {
         dispatch(removeMessage(message.id))
     }
@@ -17,7 +28,7 @@ const MessageItem = ({message, currentUser}) => {
 
     return(
         <>
-        <div className='message-item'>
+        <div className='message-item' ref={ idx===lastIdx ? lastMsg : null }>
             <div className='message-body'>
                 <span className='message-header'>
                     <p className='message-time'>{message.timestamp}</p>

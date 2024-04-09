@@ -26,16 +26,20 @@ const MessageList = ( {messages, currentUser, channel}) => {
                                     <span></span>
                                 </span>
                                 <MessageItem message={message} 
-                                                currentUser={currentUser} 
-                                                channel={channel}/>
+                                            currentUser={currentUser} 
+                                            channel={channel}
+                                            idx={idx}
+                                            lastIdx= {messages.length - 1}/>
                             </Fragment>
                         )
                     }else{
                         return (
                             <MessageItem key = {message.id} 
-                                            message={message} 
-                                            currentUser={currentUser} 
-                                            channel={channel}/>
+                                        message={message} 
+                                        currentUser={currentUser} 
+                                        channel={channel}
+                                        idx={idx}
+                                        lastIdx= {messages.length - 1}/>
                         )
                     }
                 }) }

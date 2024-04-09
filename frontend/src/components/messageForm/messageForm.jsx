@@ -38,6 +38,7 @@ const MessageForm = ({messageState, oldMessage, setMessageState, channel }) => {
     }
 
     useEffect(()=>{
+        // i think i've made a mistake
         let newchannel = channel
         if(currentUser && channel){
             if (messageState) {
@@ -50,13 +51,13 @@ const MessageForm = ({messageState, oldMessage, setMessageState, channel }) => {
                     channelId: newchannel.id
                 }))
                 setFilePreview(null)
-                console.log('form useEffect', channel, message)
+
             }
         }
         
     }, [channel])
 
-    console.log('form render, channel', channel, message)
+
 
     const handleSubmit = (e) => {
         
@@ -98,7 +99,10 @@ const MessageForm = ({messageState, oldMessage, setMessageState, channel }) => {
             <div className='message-form-wrapper'>
                 {filePreview && (
                     <div className="attachment-preview">
-                        <img src={filePreview} />
+                        <div className='preview-wrapper'>
+                            <img  src={filePreview} />
+                            <span className='delete-attach'> <img src="/src/assets/icons/chatContextMenuDeleteMessage.png" /></span>
+                         </div>
                     </div>
                 )}
                 <form className="message-form" onSubmit={handleSubmit}>
