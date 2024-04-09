@@ -12,6 +12,7 @@ const NewServer = ( {modalState, setModalState, type, server}) => {
     const navigate = useNavigate()
     const serverId = useParams()
     const dispatch = useDispatch()
+    const [filePreview, setFilePreview] = useState(null)
     const [serverData, setServerData] = useState(
         type ? {
             id: server.id,
@@ -22,13 +23,19 @@ const NewServer = ( {modalState, setModalState, type, server}) => {
             serverIcon: null
         })
     
-     
-
+    useEffect(()=> {
+        if (type && server){
+            setFilePreview(server.iconUrl)
+            
+        }
+    }, [type, server]) 
+console.log(filePreview)
 
     const triggerUpload = () => hiddenUpload.current.click()
     const handleFile = (e) => {
         const file = e.currentTarget.files[0]
         setServerData( old => ( {...old, serverIcon : file } ))
+        setFilePreview(URL.createObjectURL(file))
     }
     const handleChange = e => {
         setServerData( old => ( {...old, name : e.target.value} ))
@@ -78,9 +85,9 @@ const NewServer = ( {modalState, setModalState, type, server}) => {
                 </div>
                 <div className={type ? 'upload-icon edit' : 'upload-icon'} onClick={triggerUpload}>
                     <input type="file" className="hidden-upload" ref={hiddenUpload} onChange={handleFile}/>
-                    {type ? 
+                    {filePreview ? 
                     <>
-                        <img src={server.iconUrl} className="preloaded" />
+                        <img src={filePreview} className="preloaded" />
                         <img src="/src/assets/icons/icon-edit.png" className="preloaded-overlay" />
                     </>
                         : <>
