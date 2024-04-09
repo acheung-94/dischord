@@ -1,0 +1,77 @@
+.message-form{
+    background-color: #383a40;
+    display: flex;
+    align-items: center;
+    padding: 4px;
+    box-sizing: border-box;
+    border-radius: 8px;
+    width: 100%;
+    /* border: 2px solid red; */
+}
+
+.message-form img{
+    width: 24px;
+    margin-left:10px;
+    margin-right: 10px;
+}
+.message-input{
+    background-color: #383a40;
+}
+.message-input:focus{
+    outline: none;
+}
+.message-form-wrapper{
+    position: relative;
+    margin: 10px;
+}
+
+.edit-inst{
+    font-size: 12px;
+}
+
+.edit-inst span{
+    color: #00a8fc;
+}
+
+.hidden-message-input{
+    display: none;
+}
+
+.upload-attachment:hover{
+    cursor: pointer;
+}
+
+.attachment-preview{
+    position: absolute;
+    box-sizing: border-box;
+    bottom: 100%;
+    width: 100%;
+    padding: 18px;
+    background-color:#383a40;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.452);
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.preview-wrapper{
+    width: 30%;
+    position: relative;
+}
+.preview-wrapper img{
+    width: 100%;
+}
+
+.delete-attach{
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 24px;
+    padding: 4px;
+    background-color: #2b2d31;
+    border-radius: 4px;
+}
+
+.delete-attach:hover{
+    cursor: pointer;
+    background-color: #3d4046;
+}

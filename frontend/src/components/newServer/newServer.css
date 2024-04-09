@@ -11,14 +11,14 @@
   }
 
 .new-server-bg.edit{
-height: 100vh;
-width: 100vw;
-background-color: rgba(25,25,25,.5);
-position: fixed;
-top: 0px;
-left: 0px;
-z-index: 10;
-cursor: auto;
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(25,25,25,.5);
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    z-index: 10;
+    cursor: auto;
 /* pointer-events: none; */
 }
   
@@ -31,6 +31,7 @@ cursor: auto;
     left: 50%;
     transform: translate(-50%, -50%);
     background-color: rgb(44,46,53);
+    border-radius: 8px;
     padding: 16px;
     display: flex;
     flex-direction: column;
@@ -87,18 +88,44 @@ cursor: auto;
     gap: 4px;
     align-self: center;
 }
+
+.upload-icon:hover{
+    cursor: pointer;
+}
 .upload-icon p{
     text-transform: uppercase;
     font-size: 12px;
     font-weight: 700;
 }
-.upload-icon img{
+.upload-icon .pic-icon{
     height: 24px;
     width: 24px;
 }
+.edit{
+    border: none;
+}
+.preloaded{
+    width: 80px;
+    height: 80px;
+    border-radius:40px;
+    transition: opacity 0.3s ease;
+}
 
-.upload-plus{
+.preloaded:hover{
+    opacity: 50%;
+}
+
+.preloaded-overlay{
+    background-color: gray;
+    box-sizing: border-box;
+    padding: 6px;
+    border-radius: 12px;
+}
+
+
+.upload-plus, .preloaded-overlay{
     position: absolute;
+    width: 24px;
     z-index: 1;
     top: 0;
     right: 0;
@@ -130,4 +157,7 @@ cursor: auto;
 .new-server-footer button:disabled{
     cursor:not-allowed;
     opacity: 0.3;
+}
+.hidden-upload{
+    display: none;
 }

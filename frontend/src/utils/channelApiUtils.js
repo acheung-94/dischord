@@ -6,24 +6,24 @@ export const getChannels = (serverId) => (
 )
 
 export const postChannel = (channelInfo) => (
-    csrfFetch(`/api/servers/${channelInfo.serverId}/channels`, {
+    csrfFetch(`/api/channels`, {
         method: 'post',
         body: JSON.stringify(channelInfo) 
     })
 )
 
-export const destroyChannel = (serverId, channelId) => (
-    csrfFetch(`/api/servers/${serverId}/channels/${channelId}`, {
+export const destroyChannel = (channelId) => (
+    csrfFetch(`/api/channels/${channelId}`, {
         method: 'delete'
     })
 )
 
-export const getChannel = (serverId, channelId) => (
-    csrfFetch(`/api/servers/${serverId}/channels/${channelId}`)
-)
+// export const getChannel = (serverId, channelId) => (
+//     csrfFetch(`/api/servers/${serverId}/channels/${channelId}`)
+// )
 
 export const patchChannel = (channelInfo) => (
-    csrfFetch(`/api/servers/${channelInfo.serverId}/channels/${channelInfo.id}`, {
+    csrfFetch(`/api/channels/${channelInfo.id}`, {
         method: 'PATCH',
         body: JSON.stringify(channelInfo)
     })

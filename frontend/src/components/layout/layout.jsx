@@ -20,6 +20,17 @@ const Layout = ({type}) => {
     const dispatch = useDispatch()
     const [isLoading, setIsLoading] = useState(true)
     const {serverId, channelId} = useParams()
+
+    const isValid = () => {
+        if (!currentUser){
+            return false
+        }else if (!currentUser.servers[parseInt(serverId)]){
+            return false
+        }else if (currentUser.servers[parseInt(serverId)]){
+            return true
+        }
+    }
+
     // AFTER RENDER
 
     useEffect( ()=>{
@@ -47,8 +58,10 @@ const Layout = ({type}) => {
         }
     }, [serverId])
 
-    // RENDER
 
+
+    // RENDER
+    
     if (currentUser && !isLoading) {
         return(
 
@@ -58,7 +71,7 @@ const Layout = ({type}) => {
                 <Left type={type}/>
                 <Middle type={type}/>
                 <Top type={type} />
-                <Right type={type}/>
+
             </div>
         </div>
     )}else if (isLoading) {

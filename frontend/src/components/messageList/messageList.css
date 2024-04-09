@@ -1,0 +1,82 @@
+.message-list{
+    height: 100%;
+    overflow:auto;
+    /* DO NOT MAKE THIS ONE A FLEX CONTAINER */
+}
+
+
+.message-list-inner{
+    min-height: 100%; 
+    box-sizing: border-box;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.new-channel-thing{
+    background-color: #41434a;
+    width: 70px;
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 36px;
+    box-sizing: border-box;
+    margin-left: 8px;
+}
+
+.new-channel-thing img{
+    height: 36px;
+}
+
+.message-list-welcome{
+    font-size: 30px;
+    font-weight: 700;
+    color: #fff;
+    margin: 8px;
+}
+
+.message-start{
+    margin: 8px;
+}
+
+.list-separator{
+    width: 90%;
+    box-sizing: border-box;
+    align-self: center;
+    margin: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+    font-weight: 600;
+}
+.list-separator span{
+    border-image: linear-gradient(to right,rgba(156, 100, 109, 0.582), rgba(128, 72, 128, 0.493)) 30;
+    border-width: 1px;
+    border-top-style: solid;
+    width: 100%;
+}
+
+.list-separator div{
+    width: auto;
+    text-wrap:nowrap;
+    margin-left: 8px;
+    margin-right: 8px;
+}
+
+::-webkit-scrollbar{
+    width: 4px;
+
+}
+::-webkit-scrollbar-track {
+    background: #2b2d31;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+background: #1a1b1e;
+width: 4px;
+border-radius: 4px;
+}

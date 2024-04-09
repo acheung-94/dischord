@@ -5,7 +5,6 @@
 #  id         :bigint           not null, primary key
 #  name       :string           not null
 #  owner_id   :bigint           not null
-#  img_path   :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
@@ -29,6 +28,10 @@ class Server < ApplicationRecord
         dependent: :destroy,
         inverse_of: :server,
         foreign_key: :server_id
+        
+    has_many :messages,
+        through: :channels,
+        source: :messages
     
     has_one_attached :server_icon
 end

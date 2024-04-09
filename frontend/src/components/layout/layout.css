@@ -9,22 +9,22 @@
     display: grid;
     width: 100%;
     height: 100vh; /* why */
-    grid-template-columns: 240px auto 340px;
-    grid-template-rows: 48px auto;
+    grid-template-columns: 240px 1fr 340px;
+    grid-template-rows: 48px calc(100vh - 48px);
     grid-template-areas:
         "left header header"
-        "left middle right-panel";
+        "left middle middle";
 }
 
 .main-grid-thin{
     display: grid;
     width: 100%;
     height: 100vh; /* why */
-    grid-template-columns: 240px auto 240px;
-    grid-template-rows: 48px auto;
+    grid-template-columns: 240px 1fr;
+    grid-template-rows: 48px calc(100vh - 48px);
     grid-template-areas:
         "left header header"
-        "left middle right-panel";
+        "left middle middle";
 }
 
 .loading{

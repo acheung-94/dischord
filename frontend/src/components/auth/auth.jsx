@@ -130,7 +130,7 @@ const Auth = ({ type }) => {
                 <p className="bottom">Need an account? <Link to={`/register`}> Register </Link></p>
             </form>}
             {isLogin && <div className="separator"></div> }
-            {isLogin && ( <div className="signin-right"><Demo /></div> )}
+            {isLogin && ( <div className="signin-right"><Demo user={1} /> <Demo user={2} /></div> )}
             {isRegister && 
                 <form className="register" onSubmit={handleSubmit}>
                     <h1>Create an account</h1>

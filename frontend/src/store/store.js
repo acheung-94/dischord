@@ -4,10 +4,15 @@ import logger from "redux-logger"
 import sessionReducer from "./sessionReducer"
 import serverReducer from "./serverReducer"
 import channelReducer from "./channelReducer"
+import messageReducer from "./messageReducer"
+import uiReducer from "./uiReducer"
+
 const rootReducer = combineReducers({
     session: sessionReducer,
     servers: serverReducer,
-    channels: channelReducer
+    channels: channelReducer,
+    messages: messageReducer,
+    ui: uiReducer
 })
 
 const configureStore = (initialState = {}) => (

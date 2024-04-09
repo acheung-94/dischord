@@ -10,7 +10,6 @@
 #  session_token   :string           not null
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
-#  img_path        :string
 #
 class User < ApplicationRecord
     before_validation :ensure_session_token
@@ -51,6 +50,11 @@ class User < ApplicationRecord
     has_many :server_channels,
         through: :servers,
         source: :channels
+
+    has_many :messages,
+        inverse_of: :author,
+        foreign_key: :author_id,
+        dependent: :destroy
         
     has_one_attached :avatar
     
@@ -65,6 +69,10 @@ class User < ApplicationRecord
         end
     end
     
+    def assign_icon
+
+    end
+
     def reset_session_token!
         self.session_token = generate_session_token
         self.save!

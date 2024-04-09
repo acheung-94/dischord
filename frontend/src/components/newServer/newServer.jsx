@@ -1,44 +1,71 @@
 import { useDispatch, useSelector } from "react-redux"
 import { selectCurrentUser } from "../../store/sessionReducer"
 import { createMembership, createServer, updateServer } from "../../store/serverReducer"
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import './newServer.css'
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 
 
 const NewServer = ( {modalState, setModalState, type, server}) => {
     const currentUser = useSelector(selectCurrentUser)
+    const hiddenUpload = useRef()
+    const navigate = useNavigate()
     const serverId = useParams()
     const dispatch = useDispatch()
+    const [filePreview, setFilePreview] = useState(null)
     const [serverData, setServerData] = useState(
         type ? {
+            id: server.id,
             name: server.name,
+            serverIcon: null //was server.iconUrl
         } : {
-            name: ''
-        // eventually user uploaded img
+            name: '',
+            serverIcon: null
         })
+    
+    useEffect(()=> {
+        if (type && server){
+            setFilePreview(server.iconUrl)
+            
+        }
+    }, [type, server]) 
+console.log(filePreview)
 
-
+    const triggerUpload = () => hiddenUpload.current.click()
+    const handleFile = (e) => {
+        const file = e.currentTarget.files[0]
+        setServerData( old => ( {...old, serverIcon : file } ))
+        setFilePreview(URL.createObjectURL(file))
+    }
     const handleChange = e => {
         setServerData( old => ( {...old, name : e.target.value} ))
-    }
-    console.log("serverId", serverId)
 
+    }
+
+    //when hitting enter to submit....
     const handleSubmit = (e) => {
-        e.preventDefault()
-        if (type) {
-            dispatch(updateServer({...server, ...serverData}))
-        }else{
-            dispatch(createServer(serverData))
+        e.preventDefault() // it's not actually preventing default when i hit enter
+
+        const serverFormObj = new FormData();
+        serverFormObj.append('server[name]', serverData.name)
+        if (serverData.serverIcon){
+            serverFormObj.append('server[serverIcon]', serverData.serverIcon)
         }
-        //don't forget to create a membership too!
+
+        if (type) {
+            dispatch(updateServer(serverFormObj, server.id))
+        }else{
+            dispatch(createServer(serverFormObj)).then(newServer => (
+                navigate(`/channels/${newServer.id}/${newServer.channels[0]}`)
+            ))
+        }
         setModalState(null)
     }
     const closeModal = e => {
         e.stopPropagation()
         setModalState(null)
     }
-    //this is awful.
+
     const doNotClose = (e) => {
         e.stopPropagation()
     } 
@@ -56,22 +83,35 @@ const NewServer = ( {modalState, setModalState, type, server}) => {
                     )}
                    
                 </div>
-                <div className="upload-icon">
-                    <img src="/src/assets/icons/guildChooseRoleIcon.png"/>
-                    <p>upload</p>
-                    <img src="/src/assets/icons/guildCreateChannel.png" className="upload-plus" />
+                <div className={type ? 'upload-icon edit' : 'upload-icon'} onClick={triggerUpload}>
+                    <input type="file" className="hidden-upload" ref={hiddenUpload} onChange={handleFile}/>
+                    {filePreview ? 
+                    <>
+                        <img src={filePreview} className="preloaded" />
+                        <img src="/src/assets/icons/icon-edit.png" className="preloaded-overlay" />
+                    </>
+                        : <>
+                        <img src="/src/assets/icons/guildChooseRoleIcon.png" className="pic-icon"/>
+                        <p>upload</p>
+                        <img src="/src/assets/icons/guildCreateChannel.png" className="upload-plus" /> 
+                     </>}
+                    
                 </div>      
                     
-                <form className="new-server-form">
+                <form className="new-server-form" onSubmit={handleSubmit}>
                     <label > server name </label>
                     <input type="text"
                         placeholder={ `${currentUser.username}'s server` }
                         value={serverData.name}
                         onChange={handleChange} />
-                </form>
                 <div className="new-server-footer">
-                    <button type="submit" disabled={ serverData.name ? false : true} onClick={handleSubmit}>{type ? "Save" : "Create"}</button>
+                    <button type="submit" 
+                        disabled={ serverData.name ? false : true} 
+                        >
+                            {type ? "Save" : "Create"}
+                    </button>
                 </div>
+                </form>
             </div>
         </div>
     )

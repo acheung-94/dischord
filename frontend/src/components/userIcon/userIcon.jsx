@@ -2,7 +2,7 @@ import './userIcon.css'
 
 const UserIcon = ({user, type}) => {
     const defaultColors = ["blurple", "gold", "gray", "green", "magenta", "red"]
-
+ // TODO: MOVE THIS LOGIC TO USERS CONTROLLER.
     const assignImage = () => {
         if (user.avatarUrl){
             return user.avatarUrl
