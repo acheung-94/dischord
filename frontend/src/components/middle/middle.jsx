@@ -21,14 +21,14 @@ const Middle = ({type}) => {
     // POST-RENDER
     useEffect(() => {
         if (type === 'channel') {
-            console.log('firing useEffect from middle!')
+            console.log('firing useEffect from middle!',channel)
             dispatch(getChannelMessages(channelId))
             const sub = consumer.subscriptions.create( {
                 channel: 'ChannelsChannel',
                 channelId
             }, {
                 received(message){
-                    console.log(message)
+                    console.log("message", message)
                     if (message.type === 'delete'){
                         console.log('message has been destroyed!')
                         dispatch(deleteMessage(message.messageId))
@@ -41,6 +41,7 @@ const Middle = ({type}) => {
             return () => consumer.subscriptions.remove(sub)
         }
     }, [channelId])
+    console.log('middle rendering:', channel)
     // RENDER
     
     if ( type === 'channel') { // yikers there's gotta be a simpler way of ensuring channel and messages

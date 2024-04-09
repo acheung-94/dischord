@@ -6,12 +6,12 @@ import { useEffect, useRef, useState } from 'react'
 import { currentChannel } from '../../store/channelReducer';
 import { createMessage } from '../../store/messageReducer'
 import { useSelector } from 'react-redux';
-const MessageForm = ({messageState, oldMessage, setMessageState }) => {
+const MessageForm = ({messageState, oldMessage, setMessageState, channel }) => {
     const dispatch = useDispatch()
     const { channelId } = useParams()
     const attachRef = useRef()
     const currentUser = useSelector(selectCurrentUser)
-    const channel = useSelector(currentChannel(channelId))
+
 
     const [filePreview, setFilePreview] = useState(null)
     const [message, setMessage] = useState(
@@ -38,7 +38,7 @@ const MessageForm = ({messageState, oldMessage, setMessageState }) => {
     }
 
     useEffect(()=>{
-        //make sure to update the state between channels
+        let newchannel = channel
         if(currentUser && channel){
             if (messageState) {
                 setMessage(oldMessage)
@@ -46,13 +46,17 @@ const MessageForm = ({messageState, oldMessage, setMessageState }) => {
             }else{
                 setMessage( old => ({
                     ...old,
-                    body: ''
+                    body: '',
+                    channelId: newchannel.id
                 }))
                 setFilePreview(null)
+                console.log('form useEffect', channel, message)
             }
         }
+        
     }, [channel])
 
+    console.log('form render, channel', channel, message)
 
     const handleSubmit = (e) => {
         
