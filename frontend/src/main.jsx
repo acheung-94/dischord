@@ -8,7 +8,7 @@ import configureStore from './store/store.js';
 import { Provider } from 'react-redux'
 import {restoreSession} from './utils/csrfUtils.js'
 import { fetchMembers } from './store/membersReducer.js'
-import { getMembers } from './utils/memberApiUtils.js'
+import { getMembers } from './utils/searchApiUtils.js'
 import { fetchFriends } from './store/friendsReducer.js'
 import { getChannelMessages, createMessage, removeMessage, updateMessage } from './store/messageReducer.js'
 // import { deleteSession, postSession, postUser } from './utils/sessionApiUtils.js';

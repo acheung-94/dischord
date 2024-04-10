@@ -1,22 +1,30 @@
 import './friendBar.css'
 import { useDispatch, useSelector } from 'react-redux'
-import { friendsListState, setFriendsList } from '../../store/uiReducer'
+import { friendsListState, setFriendsList, searchState, setSearch } from '../../store/uiReducer'
 import { fetchFriends } from '../../store/friendsReducer'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
+import SearchModal from '../searchModal/searchModal'
+
+
 const FriendBar = () => {
     const dispatch = useDispatch()
     const view = useSelector(friendsListState)
+    const [searchModal, setSearchModal] = useState(false)
+
 
     useEffect( () => {
         dispatch(fetchFriends())
-        console.log('fetching friends!')
     }, [])
 
     const handleClick = (e) => {
-        console.log(e.target.className)
-        console.log(e.target.className.split(' ')[0])
         let section = e.target.className.split(' ')[0]
         dispatch(setFriendsList(section))
+    }
+
+    const openUserSearch = e =>{
+        e.stopPropagation()
+        dispatch(setSearch('friendship'))
+        setSearchModal(!searchModal)
     }
 
     return(
@@ -26,23 +34,27 @@ const FriendBar = () => {
                 <h2>Friends</h2>    
             </div>
             <span className='friend-bar-separator'></span>
-            <div className='view-bar'>
-                <div className={view === 'accepted' ? "accepted active" : "accepted"}
+            <ul className='view-bar'>
+                <li className={view === 'accepted' ? "accepted active" : "accepted"}
                     onClick={handleClick}>
                     All
-                </div>
-                <div className={view === 'pending' ? "pending active" : "pending"}
+                </li>
+                <li className={view === 'pending' ? "pending active" : "pending"}
                     onClick={handleClick}>
                     Pending
-                </div>
-                <div className={view === 'rejected' ? "rejected active" : "rejected"}
+                </li>
+                <li className={view === 'rejected' ? "rejected active" : "rejected"}
                     onClick={handleClick}>
                     Blocked
-                </div>
-                <div className='add-friend'>
+                </li>
+                <li className='add-friend'
+                    onClick={openUserSearch}>
                     Add Friend
-                </div>
-            </div>
+                </li>
+            </ul>
+                {searchModal && (
+                    <SearchModal/>
+                )}
         </div>
     )
 }

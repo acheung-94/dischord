@@ -27,7 +27,7 @@ const FriendsList = ({type}) => {
                 {list.map( friend => (
                     <div className='friends-list-item'>
                         <span className='friends-list-sep'></span>
-                        <UserIcon key={`fr${friend.id}`}user={friend} type="friends" />
+                        <UserIcon key={`fr${friend.id}`} user={friend} type="friends" />
                     </div>
                 ))}
                 </>

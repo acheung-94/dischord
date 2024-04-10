@@ -1,0 +1,34 @@
+.search-modal-bg{
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(128, 128, 128, 0.26);
+    top: 0;
+    left: 0;
+}
+
+.search-modal-friend{
+    height: 400px;
+    width: 600px;
+    position: fixed;
+    top: 10%;
+    left: 25%;
+    border: 1px solid purple;
+    background-color: rgb(44,46,53);
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    box-sizing: border-box;
+    justify-content: space-between;
+}
+.search-area{
+    border: 1px solid green;
+    padding: 10px;
+}
+
+.results-list{
+    width: 100%;
+    height: 100%;
+    border: 1px solid gold;
+    overflow: auto;
+}

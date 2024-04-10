@@ -22,3 +22,19 @@
 .search-bar img{
     height: 60%;
 }
+
+.search-form{
+    display: flex;
+    flex-direction: column;
+}
+
+.search-form-b{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 8px;
+}
+.search-area button{
+    width: 30%;
+    margin: 0;
+}

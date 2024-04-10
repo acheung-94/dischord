@@ -4,9 +4,11 @@ import { setProfile } from '../../store/uiReducer'
 import { useState } from 'react'
 import UserProfile from '../userProfile/userProfile'
 import { NavLink } from 'react-router-dom'
-import { profileState } from '../../store/uiReducer'
+import { profileState, searchState } from '../../store/uiReducer'
 const UserIcon = ({user, type}) => {
     const [userPreview, setUserPreview] = useState(false)
+    const searchMode = useSelector(searchState)
+
     // const userPreview = useSelector(profileState)
     const dispatch = useDispatch()
     const handleClick = (e) => {
@@ -19,7 +21,6 @@ const UserIcon = ({user, type}) => {
         }
     }
 
-    
         return(
             <div className="user-icon-wrapper">
                 <div className="user-icon" onClick={handleClick} >
@@ -45,9 +46,9 @@ const UserIcon = ({user, type}) => {
                         <img className="delete-friend" src="/src/assets/icons/guildCross.png" alt="" />
                     
                     )}
-
             </div>
         )
+
 
 }
 

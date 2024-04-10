@@ -18,8 +18,6 @@ const UserProfile = ({type, user}) => {
                 return "user-preview"
         }
     }
-    console.log(type)
-    console.log(profile)
     if(profile || type !== '@me') {
         return(
             <div className={ conditionalClass()}>

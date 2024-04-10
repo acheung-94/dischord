@@ -8,8 +8,10 @@ import messageReducer from "./messageReducer"
 import uiReducer from "./uiReducer"
 import membersReducer from "./membersReducer"
 import friendsReducer from "./friendsReducer"
+import searchReducer from "./searchReducer"
 const rootReducer = combineReducers({
     session: sessionReducer,
+    search: searchReducer,
     servers: serverReducer,
     members: membersReducer,
     friends: friendsReducer,

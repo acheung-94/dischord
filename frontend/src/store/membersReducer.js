@@ -1,4 +1,4 @@
-import { getMembers } from "../utils/memberApiUtils"
+import { getMembers } from "../utils/searchApiUtils"
 import {createSelector} from "reselect"
 //TYPES
 const RECEIVE_MEMBERS = 'members/RECEIVE_MEMBERS'

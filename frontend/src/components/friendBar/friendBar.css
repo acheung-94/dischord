@@ -34,7 +34,7 @@
     gap: 8px;
 }
 
-.view-bar div{
+.view-bar li{
     padding: 8px;
     padding-left: 12px;
     padding-right: 12px;
@@ -49,7 +49,7 @@
     border-radius: 8px;
 }
 
-.view-bar div:hover{
+.view-bar li:hover{
     cursor: pointer;
     background-color: rgba(128, 128, 128, 0.24);
     color: #fff;
