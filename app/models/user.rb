@@ -55,7 +55,45 @@ class User < ApplicationRecord
         inverse_of: :author,
         foreign_key: :author_id,
         dependent: :destroy
-        
+
+    has_many :received_friendships,
+        class_name: :Friendship,
+        foreign_key: :recipient_id,
+        inverse_of: :recipient,
+        dependent: :destroy
+
+    has_many :sent_friendships,
+        class_name: :Friendship,
+        foreign_key: :sender_id,
+        inverse_of: :sender,
+        dependent: :destroy
+
+    #outgoing friend requests from this user that are accepted
+    has_many :outgoing_friendships, -> { Friendship.accepted },
+        through: :sent_friendships, 
+        source: :recipient 
+    #incoming friend requests that this user accepted.
+    has_many :accepted_friendships, -> { Friendship.accepted },
+        through: :received_friendships,
+        source: :sender
+
+    # incoming requests that this user has rejected (no visibility on users that have rejected them...)
+    has_many :rejected_friendships, -> {Friendship.rejected},
+        through: :received_friendships,
+        source: :sender
+
+    has_many :pending_outgoing, -> { Friendship.pending },
+        foreign_key: :sender_id,
+        inverse_of: :sender,
+        dependent: :destroy,
+        class_name: :Friendship
+
+    has_many :pending_incoming, -> { Friendship.pending },
+        foreign_key: :recipient_id,
+        inverse_of: :recipient,
+        dependent: :destroy,
+        class_name: :Friendship
+
     has_one_attached :avatar
     
 ## UTILS
@@ -69,8 +107,12 @@ class User < ApplicationRecord
         end
     end
     
-    def assign_icon
+    def friends
+        self.outgoing_friendships + self.accepted_friendships
+    end
 
+    def pending
+        self.pending_incoming + self.pending_outgoing
     end
 
     def reset_session_token!
