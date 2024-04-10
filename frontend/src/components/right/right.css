@@ -17,4 +17,6 @@
 .visible{
     display: block;
     width: fit-content;
+    height: 1fr;
+    box-sizing: border-box;
 }

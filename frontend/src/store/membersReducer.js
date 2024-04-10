@@ -26,7 +26,7 @@ export const fetchMembers = serverId => dispatch => (
 )
 
 //SELECTORS
-export const members = createSelector(state => state.members, members => Object.values(members))
+export const selectMembers = createSelector(state => state.members, members => Object.values(members))
 
 //REDUCER
 

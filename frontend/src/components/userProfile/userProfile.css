@@ -1,3 +1,114 @@
 .user-profile{
     width: 340px;
 }
+
+.user-preview{
+    position: absolute;
+    top: 0px;
+    right: 110%;
+
+    visibility: visible;
+    width: 380px;
+    height: 380px;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    border-radius: 10px;
+}
+
+.user-preview-bottom{
+    position: absolute;
+    bottom: 125%;
+    z-index: 1;
+    visibility: visible;
+    width: 380px;
+    height: 380px;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    border-radius: 10px;
+}
+
+.user-icon-large{
+    width: 100px;
+    position: absolute;
+    top: 28px;
+    left: 28px;
+}
+.user-icon-large img{
+    width: 100%;
+    border-radius: 50px;
+}
+
+.banner{
+    background-color:cadetblue;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    box-sizing: border-box;
+    border-radius: 10px;
+
+}
+
+.preview-middle{
+    background-color: #212225;
+    height: 72%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 20px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+.preview-bottom{
+    background-color: #111214;
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    padding: 12px;
+    box-sizing: border-box;
+    color: #fff;
+    justify-content: flex-start;
+    gap: 12px;
+    border-radius: 8px;
+}
+
+.preview-sep{
+    border-top: 1px solid rgba(128, 128, 128, 0.336);
+}
+.username-display{
+    display: flex;
+    flex-direction: column;
+    padding: 4px;
+    gap: 4px;
+}
+.username-display h2{
+    font-size: 20px;
+    font-weight: 600;
+
+}
+.member-since{
+    display: flex;
+    flex-direction: column;
+    padding: 4px;
+    gap: 4px;
+}
+.member-since h3{
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.date{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+}
+
+.date img{
+    width: 20px;
+}

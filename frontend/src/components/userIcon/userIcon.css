@@ -5,8 +5,16 @@
     justify-content: flex-start;
     align-items: center;
     gap: 8px;
-    margin: 2px;
+    padding: 4px;
+    transition: all 0.2s ease;
 }
+
+.user-icon:hover{
+    background-color: rgba(128, 128, 128, 0.151);
+    cursor: pointer;
+    border-radius: 8px;
+}
+
 .user-icon .avatar {
     width: 32px;
     height: 32px;
@@ -40,4 +48,19 @@
     display: flex;
     align-items: center;
     padding: 4px;
+}
+
+.owner-icon{
+    width: 32px;
+}
+
+.owner-icon img{
+    width: 50%;
+}
+
+.testing-preview{
+    position: absolute;
+    top: 0;
+    right: 125%;
+    border: 1px solid cyan;
 }

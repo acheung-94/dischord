@@ -45,10 +45,11 @@ const Middle = ({type}) => {
 
     useEffect(() => {
         if(type === '@me'){
-            dispatch( setPanel())
+            dispatch(setPanel())
         }
     }, [])
     
+
     // RENDER
     
     if ( type === 'channel') { // yikers there's gotta be a simpler way of ensuring channel and messages

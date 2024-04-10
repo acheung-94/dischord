@@ -1,5 +1,16 @@
-.testing-members{
+.member-list{
     width: 240px;
     height: 100%;
     background-color: #2b2d31;
+    box-sizing: border-box;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.members-heading{
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 12px;
 }

@@ -21,7 +21,7 @@ const Right = ({type}) => {
 
     return(
         <div className={visibility ? "right-base visible" : "right-base"}>
-            {type === 'channel' && (
+            {(type === 'channel' && visibility ) && (
                 <MemberList />
             )}
             {type === '@me' && (
