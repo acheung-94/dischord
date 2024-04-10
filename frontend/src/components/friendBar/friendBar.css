@@ -1,5 +1,9 @@
 .friend-bar{
     display: flex;
+    box-sizing: border-box;
+    height: 100%;
+    padding: 4px;
+    gap: 8px;
 }
 .friend-bar-header{
     display: flex;
@@ -25,12 +29,29 @@
     display:flex;
     align-items: center;
     padding: 8px;
+    box-sizing: border-box;
+
+    gap: 8px;
 }
 
 .view-bar div{
-    margin: 8px;
+    padding: 8px;
+    padding-left: 12px;
+    padding-right: 12px;
+    box-sizing: border-box;
+    font-weight: 600;
+    transition: all 0.2s ease;
 }
 
 .view-bar .active{
-    border: 1px solid green;
+    background-color: rgba(128, 128, 128, 0.24);
+    color: #fff;
+    border-radius: 8px;
+}
+
+.view-bar div:hover{
+    cursor: pointer;
+    background-color: rgba(128, 128, 128, 0.24);
+    color: #fff;
+    border-radius: 8px;
 }

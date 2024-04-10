@@ -14,6 +14,7 @@ const UserIcon = ({user, type}) => {
         if (type === 'friends'){
             dispatch(setProfile(user))
         }else{
+            dispatch(setProfile(null))
             setUserPreview(!userPreview)
         }
     }

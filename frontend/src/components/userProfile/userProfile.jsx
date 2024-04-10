@@ -19,7 +19,8 @@ const UserProfile = ({type, user}) => {
         }
     }
     console.log(type)
-
+    console.log(profile)
+    if(profile || type !== '@me') {
         return(
             <div className={ conditionalClass()}>
                 <div className="user-icon-large">
@@ -45,7 +46,18 @@ const UserProfile = ({type, user}) => {
                 </div>
             </div>
         )
-
+    } else if (type === '@me' && !profile ) {
+        return(
+            <div className='user-profile'>
+                <div className="no-activity">
+                    <h1>Active Now</h1>
+                    <img src="https://dischord-clone-seeds.s3.us-west-1.amazonaws.com/68691bc51a5e2da8e8cf.svg" />
+                    It's all quiet for now...
+                </div>
+               
+            </div>
+        )
+    }
 }
 
 export default UserProfile
