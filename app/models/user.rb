@@ -69,7 +69,7 @@ class User < ApplicationRecord
         dependent: :destroy
 
     #outgoing friend requests from this user that are accepted
-    has_many :outgoing_friendships, -> { Friendship.accepted },
+    has_many :outgoing_friendships, -> { Friendship.accepted }, #trying something new!
         through: :sent_friendships, 
         source: :recipient 
     #incoming friend requests that this user accepted.
@@ -96,7 +96,9 @@ class User < ApplicationRecord
 
     has_one_attached :avatar
     
-## UTILS
+## UTILS 
+    scope :search_by_username, -> (username) { where("username LIKE ?", "%#{username}%") }
+
     def self.find_by_credentials(credential, password)
         credential_type = credential.match?( URI::MailTo::EMAIL_REGEXP ) ? :email : :username
         user = User.find_by(credential_type => credential)

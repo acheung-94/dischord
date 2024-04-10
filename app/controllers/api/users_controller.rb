@@ -24,6 +24,12 @@ class Api::UsersController < ApplicationController
         end
     end
 
+    def index
+        username = params[:username]
+        @users = User.search_by_username(username)
+        render :index
+    end
+
     private
     def user_params
         params.require(:user).permit(:username, :email, :password)

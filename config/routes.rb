@@ -9,10 +9,10 @@ Rails.application.routes.draw do
   # root "posts#index"
 
   namespace :api, defaults: {format: :json} do
-    resources :users, only: [:create, :show]
+    resources :users, only: [:create, :show, :index]
     resource :session, only: [:create, :destroy, :show]
-    resources :servers, only: [:index, :create, :show, :update, :destroy] do
-      resources :channels, only: [:index] #TODO shorten as below
+    resources :servers, only: [:index, :create, :show, :update, :destroy] do#TODO shorten as below
+      resources :channels, only: [:index] 
     end
     resources :channels, only: [:show, :create, :destroy, :update] do
       resources :messages, only: [:index]
