@@ -31,4 +31,7 @@
     height: 100%;
     border: 1px solid gold;
     overflow: auto;
+    padding: 8px;
+    box-sizing: border-box;
 }
+

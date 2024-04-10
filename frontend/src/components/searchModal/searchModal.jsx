@@ -5,14 +5,22 @@ import SearchBar from '../searchBar/searchBar'
 import Result from '../result/result'
 import { selectSearchResults } from '../../store/searchReducer'
 
-const SearchModal = () => {
+const SearchModal = ({searchModal,setSearchModal}) => {
     const searchMode = useSelector(searchState)
     const results = useSelector(selectSearchResults)
-    console.log(results)
-    if(searchMode){
+    
+    const handleClose = (e) => {
+        e.stopPropagation()
+        setSearchModal(false)
+    } 
+    console.log(results, searchMode)
+
+    if(searchMode && searchModal ){
         return(
-            <div className="search-modal-bg">
-                <div className={searchMode === 'friendship' ? "search-modal-friend" : "search-modal-server"}>
+            <div className="search-modal-bg" onClick={handleClose}>
+                <div className={searchMode === 'friendship' ? 
+                "search-modal-friend" : "search-modal-server"}
+                    onClick={(e)=> e.stopPropagation()}>
                     { searchMode === 'friendship' && (
                         <div className='search-area'>
                             <SearchBar type={true}/>
@@ -21,7 +29,7 @@ const SearchModal = () => {
                     <div className="results-list">
                         {results.length > 0 && (
                             results.map( user => (
-                                <Result user={user}/>
+                                <Result key={user.id} user={user}/>
                             ))
                         )}
                     </div>

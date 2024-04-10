@@ -2,19 +2,20 @@ import './searchBar.css'
 import { searchState } from '../../store/uiReducer';
 import { useDispatch, useSelector } from 'react-redux'
 import { useState } from 'react';
+import { findUsers } from '../../store/searchReducer';
 const SearchBar = ({type}) => {
     const searchMode = useSelector(searchState)
     const dispatch = useDispatch()
     const [username, setUsername] = useState('')
 
-
     const handleSubmit = e => {
         e.preventDefault()
         if (searchMode === 'friendship'){
-            dispatch()// search users, eventually can search messages, servers, etc. 
+            dispatch(findUsers(username))// search users, eventually can search messages, servers, etc. 
             setUsername('') 
         }
     }
+
     if(!type){ // ie if this is just for looks
         return(
             <div className="search-bar">
@@ -24,10 +25,10 @@ const SearchBar = ({type}) => {
         )
     }else{
         return(
-            <form className='search-form'>
+            <form className='search-form' onSubmit={handleSubmit}>
                 <label> Search for users by username:</label>
                 <div className="search-form-b">
-                    <input type="text" />
+                    <input type="text" onChange={(e)=> setUsername(e.target.value)} onClick={(e)=> e.stopPropagation()} />
                     <button type="submit">Search</button>
                 </div>
             </form>

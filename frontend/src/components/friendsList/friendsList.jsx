@@ -25,9 +25,9 @@ const FriendsList = ({type}) => {
                 <>
                 <h1 className='friends-list-header' > All Friends - {list.length}</h1>
                 {list.map( friend => (
-                    <div className='friends-list-item'>
+                    <div className='friends-list-item' key={`fr${friend.id}`}>
                         <span className='friends-list-sep'></span>
-                        <UserIcon key={`fr${friend.id}`} user={friend} type="friends" />
+                        <UserIcon  user={friend} type="friends" />
                     </div>
                 ))}
                 </>

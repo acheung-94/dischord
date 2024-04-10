@@ -53,7 +53,7 @@ const FriendBar = () => {
                 </li>
             </ul>
                 {searchModal && (
-                    <SearchModal/>
+                    <SearchModal searchModal={searchModal} setSearchModal={setSearchModal} />
                 )}
         </div>
     )

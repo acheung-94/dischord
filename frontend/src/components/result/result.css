@@ -1,0 +1,11 @@
+.initiate-friendship{
+    color: rgb(0, 165, 0);
+    border: 1px solid rgb(0, 165, 0);
+    padding: 8px;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.search{
+    border: 1px solid green;
+}
