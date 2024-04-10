@@ -10,8 +10,8 @@ class Api::FriendshipsController < ApplicationController
     def create
         @friendship = Friendship.new(friendship_params)
         if @friendship.save
-            @user = @friendship.recipient
-            render template: 'api/users/show'
+            @current_user = current_user
+            render :index
         else
             render json: @friendship.errors.full_messages, status: 422
         end

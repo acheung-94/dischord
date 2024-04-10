@@ -12,6 +12,13 @@ const getFriends = () => (
     fetch('/api/friendships')
 )
 
+const postFriends = (friendship) => (
+    fetch('/api/friendships', {
+        method: 'post',
+        body: JSON.stringify(friendship) // not an instance of FormData
+    })
+)
+
 export const fetchFriends = () => (dispatch) => {
     getFriends().then(res => {
         if (res.ok){
@@ -21,6 +28,16 @@ export const fetchFriends = () => (dispatch) => {
         }
     }).then(friends => dispatch(addFriends(friends)))
 }
+
+export const makeFriends = friendship => dispatch => (
+    postFriends(friendship).then(res => {
+        if (res.ok) {
+            return res.json()
+        }else{
+            throw res
+        }
+    }).then(friends => dispatch(addFriends(friends)))
+)
 
 export const selectAccepted = createSelector(state => state.friends.accepted, accepted => accepted ? Object.values(accepted) : []) 
 export const selectPending = createSelector(state => state.friends.pending, pending => pending ? Object.values(pending) : [])
