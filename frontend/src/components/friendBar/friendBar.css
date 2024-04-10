@@ -1,0 +1,36 @@
+.friend-bar{
+    display: flex;
+}
+.friend-bar-header{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 8px;
+    gap: 8px;
+}
+.friend-bar-header h2{
+    font-size: 16px;
+    color: #fff;
+    font-weight: bold;
+}
+.friend-bar-header img{
+    width: 36px;
+}
+
+.friend-bar-separator{
+    border-left: 1px solid rgba(128, 128, 128, 0.274);
+}
+
+.view-bar{
+    display:flex;
+    align-items: center;
+    padding: 8px;
+}
+
+.view-bar div{
+    margin: 8px;
+}
+
+.view-bar .active{
+    border: 1px solid green;
+}

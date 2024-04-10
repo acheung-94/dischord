@@ -7,11 +7,12 @@ import channelReducer from "./channelReducer"
 import messageReducer from "./messageReducer"
 import uiReducer from "./uiReducer"
 import membersReducer from "./membersReducer"
-
+import friendsReducer from "./friendsReducer"
 const rootReducer = combineReducers({
     session: sessionReducer,
     servers: serverReducer,
     members: membersReducer,
+    friends: friendsReducer,
     channels: channelReducer,
     messages: messageReducer,
     ui: uiReducer

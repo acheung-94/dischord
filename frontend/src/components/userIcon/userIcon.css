@@ -64,3 +64,18 @@
     right: 125%;
     border: 1px solid cyan;
 }
+
+.delete-friend{
+
+    width: 20px;
+    height: 20px;
+    margin: 8px;
+}
+
+.user-icon-wrapper{
+    display: flex;
+    justify-content: space-between;
+
+    align-items: center;
+    box-sizing: border-box;
+}

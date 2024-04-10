@@ -1,7 +1,7 @@
 const TOGGLE_PANEL = 'ui/TOGGLE_PANEL'
 const SET_PANEL = 'ui/SET_PANEL'
-const TOGGLE_PROFILE = 'ui/TOGGLE_PROFILE'
-
+const SET_PROFILE = 'ui/TOGGLE_PROFILE'
+const SET_FRIENDS_LIST = 'ui/SET_FRIENDS_LIST'
 export const togglePanel = () => ({
     type: TOGGLE_PANEL
 })
@@ -10,16 +10,24 @@ export const setPanel = () => ({
     type: SET_PANEL
 })
 
-export const toggleProfile =(view) => ({
-    type: TOGGLE_PROFILE,
-    view
+export const setProfile =(user) => ({
+    type: SET_PROFILE,
+    user
+})
+
+export const setFriendsList = (section) => ({
+    type: SET_FRIENDS_LIST,
+    section
 })
 
 export const panelState = state => state.ui.rightPanel
 export const profileState = state => state.ui.userProfile
+export const friendsListState = state => state.ui.friendsList
+
 const initialState = {
     rightPanel: false,
-    userProfile: false
+    userProfile: false,
+    friendsList: 'accepted'
 }
 
 const uiReducer = (state=initialState, action) => {
@@ -29,8 +37,10 @@ const uiReducer = (state=initialState, action) => {
             return { ...newState, rightPanel: !newState.rightPanel};
         case SET_PANEL:
             return { ...newState, rightPanel: true}
-        case TOGGLE_PROFILE:
-            return { ...newState, userProfile: action.view}
+        case SET_PROFILE:
+            return { ...newState, userProfile: action.user};
+        case SET_FRIENDS_LIST:
+            return { ...newState, friendsList: action.section}
         default:
             return state;
     }

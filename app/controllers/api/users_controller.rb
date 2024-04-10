@@ -28,10 +28,11 @@ class Api::UsersController < ApplicationController
         username = params[:username] #query string
         server_id = params[:server_id] #query string
         if username
-            @users = User.search_by_username(username)
+            @users = User.search_by_username(username) #find users
         end
         if server_id
             @server = Server.find_by(id: server_id)
+            #@server.includes(:memberships) #fetch server members
         end
         
         render :index

@@ -10,7 +10,7 @@ import { selectCurrentUser } from '../../store/sessionReducer';
 import Right from '../right/right';
 import consumer from '../../utils/consumer';
 import { setPanel } from '../../store/uiReducer';
-
+import FriendsList from '../friendsList/friendsList';
 
 const Middle = ({type}) => {
     // STATE
@@ -29,12 +29,9 @@ const Middle = ({type}) => {
                 channelId
             }, {
                 received(message){
-
                     if (message.type === 'delete'){
-
                         dispatch(deleteMessage(message.messageId))
                     }else{
-
                         dispatch(addMessage(message))
                     }
                 }
@@ -70,8 +67,7 @@ const Middle = ({type}) => {
         return (
             <div className="middle-base-wrapper">
                 <div className="middle-base">
-                    <h1>Placeholder for friends list ?</h1>
-                    
+                    <FriendsList></FriendsList>
                 </div>
                 <Right type={type} />
             </div>
