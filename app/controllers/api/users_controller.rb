@@ -25,8 +25,15 @@ class Api::UsersController < ApplicationController
     end
 
     def index
-        username = params[:username]
-        @users = User.search_by_username(username)
+        username = params[:username] #query string
+        server_id = params[:server_id] #query string
+        if username
+            @users = User.search_by_username(username)
+        end
+        if server_id
+            @server = Server.find_by(id: server_id)
+        end
+        
         render :index
     end
 
