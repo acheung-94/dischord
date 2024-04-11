@@ -19,7 +19,7 @@ const ServerInvitations = () => {
             <div className="inv-list">
                 {invitations.length > 0 && (
                     invitations.map(invite => (
-                        <PendingRequest request={invite} type="server"/>
+                        <PendingRequest key={invite.id} request={invite} type="server"/>
                     ))
                 )}
             </div>

@@ -26,6 +26,7 @@ json.accepted do
             if friend.avatar.attached?
                 json.avatarUrl url_for(friend.avatar)
             end
+            json.requestId Friendship.find_friendship(@current_user.id, friend.id).id
         end
     end
 end
@@ -38,6 +39,7 @@ json.rejected do
             if rejected.avatar.attached?
                 json.avatarUrl url_for(rejected.avatar)
             end
+            json.requestId Friendship.find_friendship(@current_user.id, rejected.id).id
         end
     end
 end

@@ -4,12 +4,14 @@ import { useRef, useState } from 'react'
 import UserProfile from '../userProfile/userProfile'
 import { NavLink } from 'react-router-dom'
 import { profileState, searchState, setProfile, previewState, setPreview } from '../../store/uiReducer'
+import { updateFriends, deleteRequest } from '../../store/friendsReducer'
 const UserIcon = ({user, type}) => {
     // const [userPreview, setUserPreview] = useState(false)
     const searchMode = useSelector(searchState)
     const currentPreview = useSelector(previewState)
     const currentRef = useRef()
     const dispatch = useDispatch()
+    
     const handleClick = (e) => {
         e.stopPropagation()
         console.log(e.currentTarget.className)
@@ -26,6 +28,28 @@ const UserIcon = ({user, type}) => {
         }
     }
 
+    const unFriend = (e) => {
+        e.stopPropagation()
+        const friendship = {
+            id: user.requestId,
+            status: 'rejected'
+        }
+        dispatch(updateFriends(friendship))
+    }
+
+    const reFriend = (e) => {
+        e.stopPropagation()
+        const friendship = {
+            id: user.requestId,
+            status: 'accepted'
+        }
+        dispatch(updateFriends(friendship))
+    }
+
+    const unBlock = (e) => {
+        e.stopPropagation()
+        dispatch(deleteRequest(user.requestId))
+    }
         return(
             <div className="user-icon-wrapper">
                 <div className={(currentPreview.id === user.id && type !== 'bottom-left')? 'user-icon active' : 'user-icon'} 
@@ -50,7 +74,15 @@ const UserIcon = ({user, type}) => {
                     )}
                 </div>
                     {type === 'friends' && (
-                        <img className="delete-friend" src="/src/assets/icons/guildCross.png" alt="" />
+                        <img className="delete-friend" 
+                            src="/src/assets/icons/guildCross.png" 
+                            onClick={unFriend} />
+                    )}
+                    { type === 'rejected' && (
+                        <div className="reject-buttons">
+                            <div className='restore' onClick={reFriend}> Restore </div>
+                            <div className="unblock" onClick={unBlock} > Unblock </div>
+                        </div>
                     )}
             </div>
         )

@@ -18,6 +18,12 @@ class Friendship < ApplicationRecord
   scope :rejected, -> { where(status: :rejected) }
   scope :pending, -> { where(status: :pending) }
 
+  def self.find_friendship(user_id, current_user_id)
+    self.where('recipient_id = ? AND sender_id = ?', user_id, current_user_id)
+    .or(self.where('recipient_id = ? AND sender_id = ?', current_user_id, user_id))
+    .first
+  end
+
   def not_already_accepted
     condition_1 = {sender_id: self.recipient_id, recipient_id: self.sender_id, status: 'accepted'}
     condition_2 = {sender_id: self.sender_id, recipient_id: self.recipient_id, status: 'accepted'}

@@ -104,6 +104,17 @@ class User < ApplicationRecord
         class_name: :Membership,
         foreign_key: :user_id
 
+    has_many :accepted_requests, -> { Friendship.accepted },
+        class_name: :Friendship,
+        foreign_key: :recipient_id,
+        inverse_of: :recipient,
+        dependent: :destroy
+
+    has_many :requests_accepted, -> { Friendship.accepted },
+        class_name: :Friendship,
+        foreign_key: :sender_id,
+        inverse_of: :sender,
+        dependent: :destroy
     has_one_attached :avatar
     
 ## UTILS 

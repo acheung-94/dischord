@@ -25,6 +25,12 @@ const patchFriends = (friendship) => (
     })
 )
 
+const deleteFriendship = (requestId) => (
+    csrfFetch(`/api/friendships/${requestId}`, {
+        method: 'DELETE'
+    })
+)
+
 export const fetchFriends = () => (dispatch) => {
     getFriends().then(res => {
         if (res.ok){
@@ -53,6 +59,14 @@ export const updateFriends = friendship => dispatch => (
             throw res
         }
     }).then(friends => dispatch(addFriends(friends))).catch(err => console.error(err))
+)
+
+export const deleteRequest = requestId => dispatch => (
+    deleteFriendship(requestId).then(res => {
+        if (res.ok) {
+            dispatch(fetchFriends())
+        }
+    })
 )
 
 export const selectAccepted = createSelector(state => state.friends.accepted, accepted => accepted ? Object.values(accepted) : []) 
