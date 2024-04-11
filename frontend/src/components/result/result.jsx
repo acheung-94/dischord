@@ -42,6 +42,7 @@ const Result = ({user, setSearchModal}) => {
                 <div className="user-icon-text">
                     <h4>{user.username}</h4>
                 </div>
+            </div>
                 <div className="initiate-request">
                     {searchMode === 'friendship' ? (
                         <div className="initiate-friendship"
@@ -55,7 +56,6 @@ const Result = ({user, setSearchModal}) => {
                         </div>
                     )}
                 </div>
-            </div>
         </div>
     )
 }

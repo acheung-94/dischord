@@ -4,6 +4,9 @@
     padding: 8px;
     border-radius: 4px;
     box-sizing: border-box;
+    width: fit-content;
+    text-wrap: nowrap;
+    transition: all 0.2s ease;
 }
 
 .initiate-friendship:hover, .initiate-membership:hover{
@@ -13,8 +16,25 @@
     padding: 8px;
     border-radius: 4px;
     box-sizing: border-box;
+    cursor:pointer;
 }
 
 .search{
-    border: 1px solid green;
+
+    border-radius: 4px;
+    padding: 4px;
+    box-sizing: border-box;
+    margin: 4px;
+}
+.search:hover{
+    background-color: rgba(128, 128, 128, 0.151)
+}
+
+.search .user-icon{
+
+    pointer-events: none;
+}
+.search .user-icon:hover{
+    border: 1px solid purple;
+    pointer-events: none;
 }

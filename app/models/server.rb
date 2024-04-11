@@ -21,7 +21,7 @@ class Server < ApplicationRecord
         dependent: :destroy,
         inverse_of: :server
 
-    has_many :members,
+    has_many :members, -> { Membership.accepted },
         through: :memberships,
         source: :user
 
@@ -33,6 +33,10 @@ class Server < ApplicationRecord
     has_many :messages,
         through: :channels,
         source: :messages
-    
+
+    has_many :pending_members, -> { Membership.pending },
+        through: :memberships,
+        source: :user
+
     has_one_attached :server_icon
 end

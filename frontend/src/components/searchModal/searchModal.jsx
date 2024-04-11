@@ -21,7 +21,9 @@ const SearchModal = ({searchModal,setSearchModal}) => {
             case 'server':
                 const server = useSelector(selectServer(parseInt(serverId)))
                 const friends = useSelector(selectAccepted)
-                const filteredFriends = friends.filter((friend) => !server.members.includes(friend.id))
+                const filteredFriends = friends.filter((friend) => 
+                    !server.members.includes(friend.id) && 
+                    !server.pendingMembers.includes(friend.id))
                 return filteredFriends
             default:
                 return [];
@@ -47,12 +49,15 @@ const SearchModal = ({searchModal,setSearchModal}) => {
         if(searchMessage){
             if (!results.length && searchMode==='friendship') {
                 setSearchMessage("Nobody by that username exists. :(") 
-            }else if (!results.length && searchMode ==='server'){
-                setSearchMessage("No friends available to invite.")
+            }else if (results.length && searchMode ==='friendship'){
+                setSearchMessage('')
             }
         }
-    }, [searchMessage])
-    console.log(results, searchMode, searchMessage)
+        if (!results.length && searchMode ==='server'){
+            setSearchMessage("No friends available to invite.")
+        }
+    }, [searchMessage, results])
+
 
     if(searchMode && searchModal ){
         return(

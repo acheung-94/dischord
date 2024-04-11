@@ -11,3 +11,7 @@ end
 json.channels do
     json.array! @server.channels.map(&:id)
 end
+
+json.pendingMembers do
+    json.array! @server.pending_members.map(&:id)
+end
