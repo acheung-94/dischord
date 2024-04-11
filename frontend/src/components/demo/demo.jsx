@@ -34,7 +34,7 @@ const Demo = ({user}) => {
     
     return(
         <div className="demo-login">
-            <h4>Log in as a demo user!</h4>
+            {user === 1  && (<h4>Log in as a demo user!</h4>)}
             <div className="user-1" onClick={handleDemo}>
                 { user === 1 ? 
                     (<span className='user-1-icon'></span>) : 

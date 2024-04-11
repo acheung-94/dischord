@@ -92,11 +92,7 @@ const Auth = ({ type }) => {
         e.preventDefault()
         if (isLogin) {
             dispatch(loginUser(loginData))
-                .then(()=> {
-                    
-                    
-                    // navigate('/channels/@me')
-                })
+                .then(()=> navigate('/channels/@me'))
                 .catch( async res => {
                     let data = await res.json()
                     setErrors( old => ({...old, messages:data.errors}))

@@ -82,11 +82,7 @@ const Layout = ({type}) => {
 
             </div>
         </div>
-    )}else if (currentUser && loading) {
-        return(<h1 className="loading">Loading....</h1>)
-    }else{
-        return(<h1> there is no current user!!</h1>)
-    }
+    )}
    
 }
 

@@ -1,11 +1,11 @@
 import { useEffect } from 'react'
 import './userProfile.css'
-import {useSelector} from 'react-redux'
-import { profileState } from '../../store/uiReducer'
+import {useSelector, useDispatch} from 'react-redux'
+import { profileState, setProfile } from '../../store/uiReducer'
 const UserProfile = ({type, user}) => {
     // type = preview, profile, and edit? 
-    const profile = useSelector(profileState)
-
+    const profile = useSelector(profileState) //selects the user to display
+    const dispatch = useDispatch()
     const conditionalClass = () => {
         switch(type){
             case "preview":
@@ -24,6 +24,7 @@ const UserProfile = ({type, user}) => {
                 <div className="user-icon-large">
                     <img src={ profile ? profile.avatarUrl : user.avatarUrl} alt="" />
                 </div>
+                { type === '@me' && ( <img className="close-profile" onClick={()=> dispatch(setProfile(false))}src='/src/assets/icons/close-x.png' />)}
                 <div className="banner">
                     <div className="preview-middle">
                         <div className='preview-bottom'>
