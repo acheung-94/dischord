@@ -7,6 +7,7 @@ import { selectServer } from '../../store/serverReducer'
 import TopLeft from '../topLeft/topLeft'
 import BottomLeft from '../bottomLeft/bottomLeft'
 import ChannelList from '../channelList/channelList'
+import ServerInvitations from '../serverInvites/serverInvites'
 import { useEffect } from 'react'
 // import { UserIconFull } from '../userIconsFull/userIconFull'
 const Left = ( {type}) => {
@@ -36,7 +37,7 @@ const Left = ( {type}) => {
         return(
             <div className="left-base">
                 <TopLeft type={type}/>
-                <h1>DM placeholder is back c:</h1>
+                <ServerInvitations />
                 <BottomLeft />
             </div>
         )
