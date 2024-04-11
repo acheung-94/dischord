@@ -6,7 +6,7 @@
     border-left: 1px solid rgba(128, 128, 128, 0.349);
 }
 
-.user-preview{
+.user-icon.active .user-preview{
     position: absolute;
     top: 0px;
     right: 110%;
@@ -17,6 +17,9 @@
     flex-direction: column;
     box-sizing: border-box;
     border-radius: 10px;
+}
+.user-preview{
+    display: none;
 }
 
 .user-preview-bottom{

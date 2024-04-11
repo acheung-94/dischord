@@ -1,29 +1,36 @@
 import './userIcon.css'
 import { useDispatch, useSelector} from "react-redux"
-import { setProfile } from '../../store/uiReducer'
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import UserProfile from '../userProfile/userProfile'
 import { NavLink } from 'react-router-dom'
-import { profileState, searchState } from '../../store/uiReducer'
+import { profileState, searchState, setProfile, previewState, setPreview } from '../../store/uiReducer'
 const UserIcon = ({user, type}) => {
-    const [userPreview, setUserPreview] = useState(false)
+    // const [userPreview, setUserPreview] = useState(false)
     const searchMode = useSelector(searchState)
-
-    // const userPreview = useSelector(profileState)
+    const currentPreview = useSelector(previewState)
+    const currentRef = useRef()
     const dispatch = useDispatch()
     const handleClick = (e) => {
         e.stopPropagation()
+        console.log(e.currentTarget.className)
         if (type === 'friends'){
             dispatch(setProfile(user))
-        }else if (type==='preview'){
+        }else if (type==='preview' ){
             dispatch(setProfile(null))
-            setUserPreview(!userPreview)
+            if(currentPreview && e.currentTarget.className.includes('active')){
+                dispatch(setPreview(false))
+            }else{
+                dispatch(setPreview(user))
+            }
+            // setUserPreview(!userPreview)
         }
     }
 
         return(
             <div className="user-icon-wrapper">
-                <div className="user-icon" onClick={handleClick} >
+                <div className={(currentPreview.id === user.id && type !== 'bottom-left')? 'user-icon active' : 'user-icon'} 
+                    onClick={handleClick} 
+                    >
                     <div className="icon-img">
                         <img className="avatar" src={user.avatarUrl} />
                         <img className='status' src="/src/assets/icons/icon-on.png" />
@@ -37,7 +44,8 @@ const UserIcon = ({user, type}) => {
                             <img src="/src/assets/icons/guildOwner.png" />
                         </div>
                     )}
-                    {userPreview && (
+          
+                    {(currentPreview && currentPreview.id === user.id && type !== 'bottom-left') && (
                         <UserProfile type={type} user={user} />
                     )}
                 </div>

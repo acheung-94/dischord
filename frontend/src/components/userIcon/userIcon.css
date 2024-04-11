@@ -79,3 +79,7 @@
     align-items: center;
     box-sizing: border-box;
 }
+
+.user-icon.active{
+    background-color: aqua;
+}
