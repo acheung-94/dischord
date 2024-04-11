@@ -1,5 +1,5 @@
 import {createSelector} from 'reselect'
-
+import { csrfFetch } from '../utils/csrfUtils'
 const ADD_FRIENDS = 'friends/ADD_FRIENDS'
 const ADD_REQUEST = 'friends/ADD_REQUEST'
 
@@ -13,9 +13,15 @@ const getFriends = () => (
 )
 
 const postFriends = (friendship) => (
-    fetch('/api/friendships', {
+    csrfFetch('/api/friendships', {
         method: 'post',
         body: JSON.stringify(friendship) // not an instance of FormData
+    })
+)
+const patchFriends = (friendship) => (
+    csrfFetch(`/api/friendships/${friendship.id}`, {
+        method: 'PATCH',
+        body: JSON.stringify(friendship)
     })
 )
 
@@ -37,6 +43,16 @@ export const makeFriends = friendship => dispatch => (
             throw res
         }
     }).then(friends => dispatch(addFriends(friends)))
+)
+
+export const updateFriends = friendship => dispatch => (
+    patchFriends(friendship).then(res => {
+        if (res.ok) {
+            return res.json()
+        }else{
+            throw res
+        }
+    }).then(friends => dispatch(addFriends(friends))).catch(err => console.error(err))
 )
 
 export const selectAccepted = createSelector(state => state.friends.accepted, accepted => accepted ? Object.values(accepted) : []) 

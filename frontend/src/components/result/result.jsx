@@ -3,7 +3,7 @@ import { selectCurrentUser } from '../../store/sessionReducer'
 import { searchState } from '../../store/uiReducer'
 import './result.css'
 import {useDispatch, useSelector} from 'react-redux'
-const Result = ({user}) => {
+const Result = ({user, setSearchModal}) => {
     const searchMode = useSelector(searchState)
     const currentUser = useSelector(selectCurrentUser)
     const dispatch = useDispatch()
@@ -14,7 +14,8 @@ const Result = ({user}) => {
             status: 'pending'
         }
         dispatch(makeFriends(friendship))
-    }
+        setSearchModal(false)
+    }   
 
     return(
         <div className="user-icon-wrapper search">
@@ -28,7 +29,8 @@ const Result = ({user}) => {
                 </div>
                 <div className="initiate-request">
                     {searchMode === 'friendship' ? (
-                        <div className="initiate-friendship">
+                        <div className="initiate-friendship"
+                            onClick={handleRequest}>
                             Send Friend Request
                         </div>
                     ):(

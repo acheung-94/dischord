@@ -21,7 +21,7 @@ Rails.application.routes.draw do
     resources :memberships, only: [:create]
     delete '/memberships/:serverId', to: 'memberships#destroy'
 
-    resources :friendships, only: [:index, :create, :update]
+    resources :friendships, only: [:index, :create, :update, :destroy]
   end
   
 end

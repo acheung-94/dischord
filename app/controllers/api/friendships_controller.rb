@@ -1,6 +1,6 @@
 class Api::FriendshipsController < ApplicationController
 
-
+    wrap_parameters include: Friendship.attribute_names + ['senderId', 'recipientId']
 
     def index
         @current_user = current_user
@@ -24,6 +24,17 @@ class Api::FriendshipsController < ApplicationController
             render :index
         else
             render json: {errors: @friendship.errors.full_messages}, status: 404
+        end
+    end
+
+    def destroy
+        @friendship = Friendship.find_by(id: params[:id])
+        if @friendship
+            @friendship.destroy
+            @current_user = current_user
+            head :no_content
+        else
+            render json: {errors: 'could not destroy'}, status: 404
         end
     end
 

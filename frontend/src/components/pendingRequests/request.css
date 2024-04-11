@@ -1,0 +1,17 @@
+.request-item{
+    width: 100%;
+    display: flex;
+}
+
+.request-icon{
+    width: 32px;
+    
+}
+.request-icon img{
+    width: 100%;
+    border-radius: 16px;
+}
+
+.response-icons img{
+    width: 20px;
+}

@@ -1,21 +1,19 @@
-json.pendingOut do 
+json.pending do 
     @current_user.pending_outgoing.each do |request|
         json.set! request.id do
             json.extract! request, :id, :sender_id, :recipient_id, :status
-
-            json.sender request.sender.username
+            json.outgoing true
+            json.avatarUrl url_for(request.recipient.avatar)
+            # json.sender request.sender.username
             json.recipient request.recipient.username
         end
     end
-end
-
-json.pendingIn do 
     @current_user.pending_incoming.each do |request|
         json.set! request.id do
             json.extract! request, :id, :sender_id, :recipient_id, :status
-
+            json.incoming true
             json.sender request.sender.username
-            json.recipient request.recipient.username
+            json.avatarUrl url_for(request.sender.avatar)
         end
     end
 end

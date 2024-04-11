@@ -10,10 +10,10 @@ class Api::MembershipsController < ApplicationController
     end
 
     def destroy
-        @membership = Membership.find_by(
-            server_id: params[:server_id],
-            user_id: current_user.id)
-
+        # @membership = Membership.find_by(
+        #     server_id: params[:server_id],
+        #     user_id: current_user.id)
+        @membership = Membership.find_by(id: params[:id])
         if @membership
             @membership.destroy #this should also destroy all dependent associations
             head :no_content

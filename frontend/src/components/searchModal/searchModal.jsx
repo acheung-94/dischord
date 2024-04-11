@@ -4,14 +4,16 @@ import { searchState, setSearch } from '../../store/uiReducer'
 import SearchBar from '../searchBar/searchBar'
 import Result from '../result/result'
 import { selectSearchResults } from '../../store/searchReducer'
-
+import { resetResults } from '../../store/searchReducer'
 const SearchModal = ({searchModal,setSearchModal}) => {
     const searchMode = useSelector(searchState)
     const results = useSelector(selectSearchResults)
+    const dispatch = useDispatch()
     
     const handleClose = (e) => {
         e.stopPropagation()
         setSearchModal(false)
+        dispatch(resetResults())
     } 
     console.log(results, searchMode)
 
@@ -29,7 +31,7 @@ const SearchModal = ({searchModal,setSearchModal}) => {
                     <div className="results-list">
                         {results.length > 0 && (
                             results.map( user => (
-                                <Result key={user.id} user={user}/>
+                                <Result key={user.id} user={user} setSearchModal={setSearchModal}/>
                             ))
                         )}
                     </div>

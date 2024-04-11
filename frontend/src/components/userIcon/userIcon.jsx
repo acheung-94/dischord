@@ -42,9 +42,7 @@ const UserIcon = ({user, type}) => {
                     )}
                 </div>
                     {type === 'friends' && (
-                    
                         <img className="delete-friend" src="/src/assets/icons/guildCross.png" alt="" />
-                    
                     )}
             </div>
         )
