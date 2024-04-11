@@ -28,7 +28,8 @@ class Api::UsersController < ApplicationController
         username = params[:username] #query string
         server_id = params[:server_id] #query string
         if username
-            @users = User.search_by_username(username) #find users
+            # @users = User.search_by_username(username) #find users
+            @users = User.filtered_user_results(username, current_user)
         end
         if server_id
             @server = Server.find_by(id: server_id)

@@ -78,9 +78,13 @@ class User < ApplicationRecord
         source: :sender
 
     # incoming requests that this user has rejected (no visibility on users that have rejected them...)
-    has_many :rejected_friendships, -> {Friendship.rejected},
+    has_many :blocked_users, -> {Friendship.rejected},
         through: :received_friendships,
         source: :sender
+
+    has_many :blockers, -> {Friendship.rejected}, #this isn't working for some reason...
+        through: :sent_friendships,
+        source: :recipient    
 
     has_many :pending_outgoing, -> { Friendship.pending },
         foreign_key: :sender_id,
@@ -114,13 +118,27 @@ class User < ApplicationRecord
             nil
         end
     end
+
+    def self.filtered_user_results(username, current_user)
+        friend_ids = current_user.friends.pluck(:id) #can't search friends
+        enemy_ids = current_user.enemies.pluck(:id) #can't search enemies
+        pending_ids = current_user.pending #can't search pending
+        bad_ids = [current_user.id] + friend_ids + enemy_ids + pending_ids #can't search themselves
+        puts bad_ids
+        self.where("username LIKE ?", "%#{username}%")
+            .where.not(id: bad_ids ) 
+    end
     
     def friends
         self.outgoing_friendships + self.accepted_friendships
     end
 
     def pending
-        self.pending_incoming + self.pending_outgoing
+        self.pending_incoming.pluck(:sender_id) + self.pending_outgoing.pluck(:recipient_id)
+    end
+
+    def enemies
+        self.blocked_users + self.blockers
     end
 
     def reset_session_token!
