@@ -4,15 +4,17 @@ import './serverOptions.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useState } from 'react'
+import { setSearch, searchState } from '../../store/uiReducer'
 import NewServer from '../newServer/newServer'
-const ServerOptions = ( {server}) => {
+import SearchModal from '../searchModal/searchModal'
+const ServerOptions = ( {server, searchModal, setSearchModal}) => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const serverId = useParams()
-    // const server = useSelector(selectServer(serverId))
     const currentUser = useSelector(selectCurrentUser)
     const [modalState, setModalState] = useState(false) 
-
+    const invitationMode = useSelector(searchState)
+    
     const handleDelete = () => {
         dispatch(removeServer(server.id))
         navigate('/channels/@me')
@@ -29,10 +31,16 @@ const ServerOptions = ( {server}) => {
         setModalState(true)
     }
 
+    const openInvitation = () => {
+        dispatch(setSearch('server'))
+        setSearchModal(true)
+    }
+    console.log('rendering')
     return(
     <>
         <div className="server-options-modal">
-            <span className="invite-people">
+            <span className="invite-people"
+                onClick={openInvitation}>
                 Invite People
                 <img className='options-icons' src='/src/assets/icons/guildInvitePeople.png' />
             </span>
@@ -63,6 +71,9 @@ const ServerOptions = ( {server}) => {
                     setModalState={setModalState} 
                     server={ server }/>
             ) }
+
+
+
     </>
     )
 }

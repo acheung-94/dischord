@@ -12,7 +12,7 @@ const getInvites = () => (
     csrfFetch('/api/memberships')
 )
 
-const postInvite = (invite) => (
+export const postInvite = (invite) => (
     csrfFetch(`/api/memberships`, {
         method: 'POST',
         body: JSON.stringify(invite)

@@ -1,4 +1,5 @@
 class Api::MembershipsController < ApplicationController
+    wrap_parameters include: Membership.attribute_names + ['serverId', 'userId']
     def index
         @memberships = current_user.pending_memberships
         render :index
@@ -28,7 +29,7 @@ class Api::MembershipsController < ApplicationController
         # @membership = Membership.find_by(
         #     server_id: params[:server_id],
         #     user_id: current_user.id)
-        @membership = Membership.find_by(id: params[:id])
+        @membership = Membership.find_by(id: params[:id]) # TODO : make custom membership search
         if @membership
             @membership.destroy #this should also destroy all dependent associations
             head :no_content
@@ -39,7 +40,7 @@ class Api::MembershipsController < ApplicationController
 
     private
     def membership_params
-        params.require(:memberships).permit(:server_id, :user_id)
+        params.require(:membership).permit(:server_id, :user_id, :status)
     end
 
 end

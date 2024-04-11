@@ -5,16 +5,38 @@ import SearchBar from '../searchBar/searchBar'
 import Result from '../result/result'
 import { selectSearchResults } from '../../store/searchReducer'
 import { resetResults } from '../../store/searchReducer'
+import { selectAccepted, fetchFriends } from '../../store/friendsReducer'
+import { useEffect } from 'react'
+
+
 const SearchModal = ({searchModal,setSearchModal}) => {
     const searchMode = useSelector(searchState)
-    const results = useSelector(selectSearchResults)
     const dispatch = useDispatch()
     
+    const conditionalResults = () => {
+        switch(searchMode){
+            case 'friendship':
+                return useSelector(selectSearchResults)
+            case 'server':
+                return useSelector(selectAccepted)
+            default:
+                return [];
+        }
+    }
+    const results = conditionalResults()
+
     const handleClose = (e) => {
         e.stopPropagation()
         setSearchModal(false)
         dispatch(resetResults())
-    } 
+    }
+    
+    useEffect(()=> {
+        if (searchMode === 'server'){
+            dispatch(fetchFriends())
+        }
+    }, [searchMode])
+
     console.log(results, searchMode)
 
     if(searchMode && searchModal ){
