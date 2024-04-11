@@ -9,7 +9,8 @@ import MessageForm from '../messageForm/messageForm';
 import { selectCurrentUser } from '../../store/sessionReducer';
 import Right from '../right/right';
 import consumer from '../../utils/consumer';
-
+import { setPanel } from '../../store/uiReducer';
+import FriendsList from '../friendsList/friendsList';
 
 const Middle = ({type}) => {
     // STATE
@@ -28,12 +29,9 @@ const Middle = ({type}) => {
                 channelId
             }, {
                 received(message){
-
                     if (message.type === 'delete'){
-
                         dispatch(deleteMessage(message.messageId))
                     }else{
-
                         dispatch(addMessage(message))
                     }
                 }
@@ -41,6 +39,13 @@ const Middle = ({type}) => {
             return () => consumer.subscriptions.remove(sub)
         }
     }, [channelId])
+
+    useEffect(() => {
+        if(type === '@me'){
+            dispatch(setPanel())
+        }
+    }, [])
+    
 
     // RENDER
     
@@ -60,8 +65,11 @@ const Middle = ({type}) => {
         }
     }else if (type === '@me') {
         return (
-            <div className="middle-base">
-                <h1>Placeholder for friends list ?</h1>
+            <div className="middle-base-wrapper">
+                <div className="middle-base">
+                    <FriendsList></FriendsList>
+                </div>
+                <Right type={type} />
             </div>
         )
     }

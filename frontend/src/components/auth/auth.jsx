@@ -4,6 +4,7 @@ import { useEffect, useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import './auth.css'
 import Demo from "../demo/demo"
+import { toggleLoading } from "../../store/uiReducer"
 
 const Auth = ({ type }) => {
     const dispatch = useDispatch()

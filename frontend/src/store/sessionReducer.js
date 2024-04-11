@@ -1,6 +1,6 @@
 
 import { postUser, postSession, deleteSession } from "../utils/sessionApiUtils"
-
+import { toggleLoading } from "./uiReducer"
 //  TYPES
 export const CREATE_SESSION = 'session/CREATE_SESSION'
 export const DESTROY_SESSION = 'session/DESTROY_SESSION'
@@ -41,7 +41,8 @@ export const loginUser = sessionInfo => dispatch => (
         })
         .then(data => {
             sessionStorage.setItem('currentUser', JSON.stringify(data.user)) // create a new user and log in
-            dispatch(createSession(data.user))// refer to jbuilder formats
+            dispatch(createSession(data.user))
+            dispatch(toggleLoading())
         })
 )
 

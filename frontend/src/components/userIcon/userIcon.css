@@ -1,11 +1,20 @@
 .user-icon{
     position:relative;
-    width: 35px;
+    width: 100%;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
+    align-items: center;
     gap: 8px;
-    margin: 2px;
+    padding: 4px;
+    transition: all 0.2s ease;
 }
+
+.user-icon:hover{
+    background-color: rgba(128, 128, 128, 0.151);
+    cursor: pointer;
+    border-radius: 8px;
+}
+
 .user-icon .avatar {
     width: 32px;
     height: 32px;
@@ -14,14 +23,65 @@
 
 .user-icon-text h4{
     font-weight: 600;
-    color: #fff
+    color: #fff;
+    width: 100%;
+}
+.user-icon-text{
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
 }
 
 .user-icon .status{
     width: 9px;
     position: absolute;
-    bottom: -2px;
+    bottom: 0;
     right: 0;
     border: 3px solid #1E1F22;
     border-radius: 10px; 
+}
+
+.icon-img{
+    position: relative;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    padding: 4px;
+}
+
+.owner-icon{
+    width: 32px;
+}
+
+.owner-icon img{
+    width: 50%;
+}
+
+.testing-preview{
+    position: absolute;
+    top: 0;
+    right: 125%;
+    border: 1px solid cyan;
+}
+
+.delete-friend{
+    width: 20px;
+    height: 20px;
+    margin: 8px;
+}
+.delete-friend:hover{
+    cursor: pointer;
+}
+.user-icon-wrapper{
+    display: flex;
+    justify-content: space-between;
+
+    align-items: center;
+    box-sizing: border-box;
+}
+
+.user-icon.active{
+    background-color: rgba(128, 128, 128, 0.178);
+    border-radius: 8px;
 }

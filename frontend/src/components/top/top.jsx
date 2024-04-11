@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { currentChannel } from '../../store/channelReducer';
 import SearchBar from '../searchBar/searchBar';
 import { togglePanel } from '../../store/uiReducer';
+import FriendBar from '../friendBar/friendBar';
 import { useEffect } from 'react';
 const Top = ( {type} ) => {
     const {channelId} = useParams()
@@ -39,7 +40,7 @@ const Top = ( {type} ) => {
     if (type === '@me'){
         return(
             <div className="top-base">
-                <h1> Placeholder for friendsey stuff</h1>
+                <FriendBar></FriendBar>
             </div>
         )
     }

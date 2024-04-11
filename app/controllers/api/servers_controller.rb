@@ -10,7 +10,7 @@ class Api::ServersController < ApplicationController
         @server = Server.new(server_params)
         @server.owner_id = current_user.id
         if @server.save
-            Membership.create(server_id: @server.id, user_id: @server.owner_id)
+            Membership.create(server_id: @server.id, user_id: @server.owner_id, status: 'accepted')
             Channel.create(server_id: @server.id, name: 'general')
             render :show
         else

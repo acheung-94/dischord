@@ -1,0 +1,63 @@
+.friend-bar{
+    display: flex;
+    box-sizing: border-box;
+    height: 100%;
+    padding: 4px;
+    gap: 8px;
+}
+.friend-bar-header{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 8px;
+    gap: 8px;
+}
+.friend-bar-header h2{
+    font-size: 16px;
+    color: #fff;
+    font-weight: bold;
+}
+.friend-bar-header img{
+    width: 36px;
+}
+
+.friend-bar-separator{
+    border-left: 1px solid rgba(128, 128, 128, 0.274);
+}
+
+.view-bar{
+    display:flex;
+    align-items: center;
+    padding: 8px;
+    box-sizing: border-box;
+
+    gap: 8px;
+}
+
+.view-bar li{
+    padding: 8px;
+    padding-left: 12px;
+    padding-right: 12px;
+    box-sizing: border-box;
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+
+.view-bar .active{
+    background-color: rgba(128, 128, 128, 0.24);
+    color: #fff;
+    border-radius: 8px;
+}
+
+.view-bar li:hover{
+    cursor: pointer;
+    background-color: rgba(128, 128, 128, 0.24);
+    color: #fff;
+    border-radius: 8px;
+}
+
+.add-friend{
+    background-color: #248046;
+    color: #fff;
+    border-radius: 8px;
+}

@@ -19,27 +19,39 @@ demo_1 = User.create(
      password: 'themostsecure',
      email: 'demo1@demo.com',
      ) 
-file = URI.open('https://dischord-clone-seeds.s3.us-west-1.amazonaws.com/demo1.png')
-demo_1.avatar.attach(io: file, filename: 'demo1.jpg')
+avatar1 = URI.open('https://dischord-clone-seeds.s3.us-west-1.amazonaws.com/demo1.png')
+demo_1.avatar.attach(io: avatar1, filename: 'demo1.jpg')
+
+
 demo_2 = User.create(
     username: 'demo2', 
     display_name: 'demo user 2', 
     password: 'themostsecure2', 
     email: 'demo2@demo.com' )
-file2 = URI.open('https://dischord-clone-seeds.s3.us-west-1.amazonaws.com/avatar-magenta.png')
-demo_2.avatar.attach(io: file, filename: 'magenta.png')
+avatar2 = URI.open('https://dischord-clone-seeds.s3.us-west-1.amazonaws.com/avatar-magenta.png')
+demo_2.avatar.attach(io: avatar2, filename: 'magenta.png')
+
+user_3 = User.create(
+     username: 'testfriend',
+     display_name: 'test friend 42',
+     password: 'testfriend42',
+     email: 'test@test.com'
+)
+avatar3 = URI.open('https://dischord-clone-seeds.s3.us-west-1.amazonaws.com/avatar-blurple.png')
+user_3.avatar.attach(io: avatar3, filename: 'blurple.png')
+
 s1 = Server.create(name: 'test server', owner_id: 1)
 s2 = Server.create(name: 'App Academy Lite', owner_id: 2)
 s3 = Server.create(name: 'Wow!', owner_id: 1)
-file2 = URI.open('https://dischord-clone-seeds.s3.us-west-1.amazonaws.com/20230620_101013.jpg')
-s3.server_icon.attach(io: file2, filename: 'wowdog.jpg')
+icon2 = URI.open('https://dischord-clone-seeds.s3.us-west-1.amazonaws.com/20230620_101013.jpg')
+s3.server_icon.attach(io: icon2, filename: 'wowdog.jpg')
 
 
-Membership.create(user_id: 2, server_id: 2) #owner
-Membership.create(user_id: 2, server_id: 1)
-Membership.create(user_id: 1, server_id: 1) #owner
-Membership.create(user_id: 1, server_id: 3) #owner
-Membership.create(user_id: 1, server_id: 2)
+Membership.create(user_id: 2, server_id: 2, status: 'accepted') #owner
+Membership.create(user_id: 2, server_id: 1, status: 'accepted')
+Membership.create(user_id: 1, server_id: 1, status: 'accepted') #owner
+Membership.create(user_id: 1, server_id: 3, status: 'accepted') #owner
+Membership.create(user_id: 1, server_id: 2, status: 'accepted')
 
 Channel.create(name: 'general', server_id: 1)
 Channel.create(name: 'cats only', server_id: 1)
@@ -54,3 +66,6 @@ Message.create(body: 'wow this is sooooo cool', channel_id: 1, author_id: 2)
 Message.create(body: 'what am i doing', channel_id: 5, author_id: 1)
 Message.create(body: 'meow~', channel_id: 2, author_id: 1)
 Message.create(body: 'wooof!', channel_id: 3, author_id: 2)
+
+Friendship.create(sender_id: 1, recipient_id: 2, status: 'accepted')
+Friendship.create(sender_id: 1, recipient_id: 3, status: 'pending')
