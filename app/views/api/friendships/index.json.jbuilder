@@ -31,7 +31,7 @@ json.accepted do
 end
 
 json.rejected do
-    @current_user.rejected_friendships.each do |rejected|
+    @current_user.enemies.each do |rejected|
         json.set! rejected.id do
             json.extract! rejected, :id, :username, :display_name
             json.joinDate rejected.created_at.to_time.strftime('%B%_e,%Y')

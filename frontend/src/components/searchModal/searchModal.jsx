@@ -4,21 +4,25 @@ import { searchState, setSearch } from '../../store/uiReducer'
 import SearchBar from '../searchBar/searchBar'
 import Result from '../result/result'
 import { selectSearchResults } from '../../store/searchReducer'
+import { selectServer } from '../../store/serverReducer'
 import { resetResults } from '../../store/searchReducer'
 import { selectAccepted, fetchFriends } from '../../store/friendsReducer'
 import { useEffect } from 'react'
-
+import { useParams } from 'react-router'
 
 const SearchModal = ({searchModal,setSearchModal}) => {
     const searchMode = useSelector(searchState)
     const dispatch = useDispatch()
-    
+    const { serverId } = useParams()    
     const conditionalResults = () => {
         switch(searchMode){
             case 'friendship':
                 return useSelector(selectSearchResults)
             case 'server':
-                return useSelector(selectAccepted)
+                const server = useSelector(selectServer(parseInt(serverId)))
+                const friends = useSelector(selectAccepted)
+                const filteredFriends = friends.filter((friend) => !server.members.includes(friend.id))
+                return filteredFriends
             default:
                 return [];
         }
