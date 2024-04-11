@@ -9,6 +9,9 @@ import uiReducer from "./uiReducer"
 import membersReducer from "./membersReducer"
 import friendsReducer from "./friendsReducer"
 import searchReducer from "./searchReducer"
+import serverInviteReducer from "./serverInviteReducer"
+
+
 const rootReducer = combineReducers({
     session: sessionReducer,
     search: searchReducer,
@@ -16,6 +19,7 @@ const rootReducer = combineReducers({
     members: membersReducer,
     friends: friendsReducer,
     channels: channelReducer,
+    serverInvites: serverInviteReducer,
     messages: messageReducer,
     ui: uiReducer
 })

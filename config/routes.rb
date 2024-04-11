@@ -18,9 +18,8 @@ Rails.application.routes.draw do
       resources :messages, only: [:index]
     end
     resources :messages, except: [:edit, :new, :index]
-    resources :memberships, only: [:create]
-    delete '/memberships/:serverId', to: 'memberships#destroy'
-
+    resources :memberships, only: [:create, :update, :destroy, :index]
+    
     resources :friendships, only: [:index, :create, :update, :destroy]
   end
   

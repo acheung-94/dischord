@@ -47,11 +47,11 @@ icon2 = URI.open('https://dischord-clone-seeds.s3.us-west-1.amazonaws.com/202306
 s3.server_icon.attach(io: icon2, filename: 'wowdog.jpg')
 
 
-Membership.create(user_id: 2, server_id: 2) #owner
-Membership.create(user_id: 2, server_id: 1)
-Membership.create(user_id: 1, server_id: 1) #owner
-Membership.create(user_id: 1, server_id: 3) #owner
-Membership.create(user_id: 1, server_id: 2)
+Membership.create(user_id: 2, server_id: 2, status: 'accepted') #owner
+Membership.create(user_id: 2, server_id: 1, status: 'accepted')
+Membership.create(user_id: 1, server_id: 1, status: 'accepted') #owner
+Membership.create(user_id: 1, server_id: 3, status: 'accepted') #owner
+Membership.create(user_id: 1, server_id: 2, status: 'accepted')
 
 Channel.create(name: 'general', server_id: 1)
 Channel.create(name: 'cats only', server_id: 1)

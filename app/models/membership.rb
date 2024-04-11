@@ -15,5 +15,7 @@ class Membership < ApplicationRecord
 
     belongs_to :server
 
-    
+    scope :accepted, -> { where(status: :accepted) }
+    scope :rejected, -> { where(status: :rejected) }
+    scope :pending, -> { where(status: :pending) }
 end

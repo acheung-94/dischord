@@ -38,7 +38,7 @@ class User < ApplicationRecord
         dependent: :destroy,
         inverse_of: :user
 
-    has_many :member_servers,
+    has_many :member_servers, -> { Membership.accepted },
         through: :memberships,
         source: :server
 
@@ -93,6 +93,12 @@ class User < ApplicationRecord
         inverse_of: :recipient,
         dependent: :destroy,
         class_name: :Friendship
+
+    has_many :pending_memberships, -> { Membership.pending },
+        dependent: :destroy,
+        inverse_of: :user,
+        class_name: :Membership,
+        foreign_key: :user_id
 
     has_one_attached :avatar
     

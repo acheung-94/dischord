@@ -1,11 +1,26 @@
 class Api::MembershipsController < ApplicationController
+    def index
+        @memberships = current_user.pending_memberships
+        render :index
+    end
+    
     def create
         @membership = Membership.new(membership_params)
         @user = current_user
         if @membership.save
-            render 'api/servers/index'
+            head :no_content
         else
             render json: {errors: 'Failed'}, status: 422
+        end
+    end
+
+    def update
+        @membership = Membership.find_by(id: params[:id])
+        @user = current_user
+        if @membership&.update(membership_params)
+            render :index
+        else
+            render json: {errors: 'failed'}, status: 422
         end
     end
 
@@ -21,6 +36,7 @@ class Api::MembershipsController < ApplicationController
             render json: {errors: 'Failed'}, status: 404
         end
     end
+
     private
     def membership_params
         params.require(:memberships).permit(:server_id, :user_id)
