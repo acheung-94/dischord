@@ -13,14 +13,17 @@ const ServerInvitations = () => {
     }, [])
     console.log(invitations)
     return(
-        <div className="server-inv-list">
+        <div className="server-inv-container">
             <h1> Server Invitations </h1>
-            <div>{ !invitations.length ? "nothing to see here" : "you've got an invite!"}</div>
-            {invitations.length && (
-                invitations.map(invite => (
-                    <PendingRequest request={invite} type="server"/>
-                ))
-            )}
+            <span className="s-inv-sep"></span>
+            <div>{ !invitations.length && "You have no new server invitations."}</div>
+            <div className="inv-list">
+                {invitations.length > 0 && (
+                    invitations.map(invite => (
+                        <PendingRequest request={invite} type="server"/>
+                    ))
+                )}
+            </div>
         </div>
     )
 }

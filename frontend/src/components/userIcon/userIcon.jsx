@@ -15,7 +15,7 @@ const UserIcon = ({user, type}) => {
         e.stopPropagation()
         if (type === 'friends'){
             dispatch(setProfile(user))
-        }else{
+        }else if (type==='preview'){
             dispatch(setProfile(null))
             setUserPreview(!userPreview)
         }

@@ -25,6 +25,18 @@ const FriendsList = ({type}) => {
         }
     }
     const list = conditionalList()
+
+    const conditionalItem = (friend) => {
+        switch(view){
+            case 'pending':
+                return(<PendingRequest request={friend} />);
+            case 'accepted':
+                return(<UserIcon  user={friend} type="friends" />);
+            case 'rejected':
+                return(<UserIcon  user={friend} type="rejected" />);
+        }
+    }
+
     return(
         <div className='friends-list'>
             {( list.length > 0) && (
@@ -33,7 +45,8 @@ const FriendsList = ({type}) => {
                 {list.map( friend => (
                     <div className='friends-list-item' key={`fr${friend.id}`}>
                         <span className='friends-list-sep'></span>
-                        {view === 'pending' ? <PendingRequest request={friend} /> : <UserIcon  user={friend} type="friends" />}
+                        {conditionalItem(friend)}
+                        {/* {view === 'pending' ? <PendingRequest request={friend} /> : <UserIcon  user={friend} type="friends" />} */}
                     </div>
                 ))}
                 </>

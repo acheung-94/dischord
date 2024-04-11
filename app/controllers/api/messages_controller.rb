@@ -14,7 +14,6 @@ class Api::MessagesController < ApplicationController
     def create
         @message = Message.new(message_params)
         if @message.save
-            p 'message saved.. time for an error'
             ChannelsChannel.broadcast_to(@message.channel, {
                 id: @message.id,
                 body: @message.body,
@@ -23,7 +22,7 @@ class Api::MessagesController < ApplicationController
                 attachmentUrl: @message.attachment.attached? ? url_for(@message.attachment) : nil,
                 author: @message.author.username,
                 timestamp: @message.created_at.to_time.localtime.strftime('%l:%M %p'),
-                date: @message.created_at.to_time.localtime.strftime('%B%_e, %Y')
+                date: @message.created_at.to_time.localtime.strftime('%B %_e, %Y')
             })
             # render :show
         else
@@ -46,7 +45,7 @@ class Api::MessagesController < ApplicationController
                 attachmentUrl: @message.attachment.attached? ? url_for(@message.attachment) : nil,
                 author: @message.author.username,
                 timestamp: @message.created_at.to_time.localtime.strftime('%l:%M %p'),
-                date: @message.created_at.to_time.localtime.strftime('%B%_e, %Y')
+                date: @message.created_at.to_time.localtime.strftime('%B %_e, %Y')
             })
         else
             render json: {errors: @message.errors}, status: 422

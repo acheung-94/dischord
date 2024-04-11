@@ -3,7 +3,7 @@ module ApplicationCable
         # identified_by :current_user
 
         def connect
-          p 'client has connected'
+
         end
     
         def disconnect

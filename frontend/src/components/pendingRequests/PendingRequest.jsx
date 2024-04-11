@@ -36,22 +36,24 @@ const PendingRequest = ( {request, type}) => {
 
     return(
         <div className='request-item' >
-            <div className='request-icon'>
-                { request.iconUrl || request.avatarUrl ? 
-                <img src={conditionalIcon()} /> : 
-                request.serverName.substring(0,1).toUpperCase() }
+            <div className="request-item-inner">
+                <div className='request-icon'>
+                    { request.iconUrl || request.avatarUrl ? 
+                    <img src={conditionalIcon()} /> : 
+                    request.serverName.substring(0,1).toUpperCase() }
+                </div>
+                { type !== 'server' && (
+                    <div className="request-text">
+                        <h3>{request.outgoing ? request.recipient : request.sender}</h3>
+                        <p>{request.outgoing ? "Outgoing" : "Incoming"}</p>
+                    </div>
+                )}
+                { type === 'server' && (
+                    <div className="request-server-text">
+                        <h3> {request.serverName} </h3>
+                    </div>
+                )}
             </div>
-            { type !== 'server' && (
-                <div className="request-text">
-                    <h3>{request.outgoing ? request.recipient : request.sender}</h3>
-                    <p>{request.outgoing ? "Outgoing" : "Incoming"}</p>
-                </div>
-            )}
-            { type === 'server' && (
-                <div className="request-server-text">
-                    <h3> {request.serverName} </h3>
-                </div>
-            )}
             { (request.incoming || type === 'server') && (
                 <div className='response-icons'>
                     <img src='/src/assets/icons/guildCheckmark.png' 
