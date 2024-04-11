@@ -11,7 +11,6 @@ const ServerInvitations = () => {
     useEffect(() => {
         dispatch(loadInvites())
     }, [])
-    console.log(invitations)
     return(
         <div className="server-inv-container">
             <h1> Server Invitations </h1>

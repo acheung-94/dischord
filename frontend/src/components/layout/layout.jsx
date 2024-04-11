@@ -12,7 +12,7 @@ import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { getUserServers } from "../../store/serverReducer";
 import { getServerChannels } from "../../store/channelReducer";
-
+import { loadingState, toggleLoading } from "../../store/uiReducer";
 const Layout = ({type}) => {
     // STATE
     const currentUser = useSelector(selectCurrentUser)
@@ -20,7 +20,7 @@ const Layout = ({type}) => {
     const dispatch = useDispatch()
     const [isLoading, setIsLoading] = useState(true)
     const {serverId, channelId} = useParams()
-
+    const loading = useSelector(loadingState)
     const isValid = () => {
         if (!currentUser){
             return false
@@ -33,24 +33,25 @@ const Layout = ({type}) => {
 
     // AFTER RENDER
 
-    useEffect( ()=>{
-        if(currentUser){
-        console.log('fetching servers...')
-        dispatch(getUserServers())
-        setIsLoading(true)}
-    },[currentUser])
+    // useEffect( ()=>{
+    //     if(currentUser){
+    //     console.log('fetching servers...')
+    //     dispatch(getUserServers())
 
-    useEffect(()=> {
-        if (currentUser){
-            setIsLoading(false)
-        }
-    }, [currentUser])
+    // }
+    // },[currentUser])
 
-    useEffect( () => {
-        if (!currentUser && !isLoading){
-            navigate('/')
-        }
-    }, [currentUser, isLoading])
+    // useEffect(()=> {
+    //     if (!currentUser){
+    //         setIsLoading(false)
+    //     }
+    // }, [currentUser])
+
+    // useEffect( () => {
+    //     if (!currentUser && !isLoading){
+    //         navigate('/')
+    //     }
+    // }, [currentUser, isLoading])
 
     useEffect( () => {
         if (type === 'channel'){
@@ -58,11 +59,18 @@ const Layout = ({type}) => {
         }
     }, [serverId])
 
-
+    useEffect(() => {
+        if (!currentUser) {
+            navigate('/')
+        }else{
+            console.log('fetching servers...')
+            dispatch(getUserServers())
+        }
+    }, [currentUser])
 
     // RENDER
     
-    if (currentUser && !isLoading) {
+    if (currentUser) {
         return(
 
         <div className="layout">
@@ -74,8 +82,10 @@ const Layout = ({type}) => {
 
             </div>
         </div>
-    )}else if (isLoading) {
+    )}else if (currentUser && loading) {
         return(<h1 className="loading">Loading....</h1>)
+    }else{
+        return(<h1> there is no current user!!</h1>)
     }
    
 }

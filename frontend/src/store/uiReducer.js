@@ -3,7 +3,7 @@ const SET_PANEL = 'ui/SET_PANEL'
 const SET_PROFILE = 'ui/TOGGLE_PROFILE'
 const SET_FRIENDS_LIST = 'ui/SET_FRIENDS_LIST'
 const SET_SEARCH = 'ui/SET_SEARCH'
-
+const TOGGLE_LOADING = 'ui/TOGGLE_LOADING'
 export const togglePanel = () => ({
     type: TOGGLE_PANEL
 })
@@ -27,15 +27,23 @@ export const setSearch = searchMode => ({
     searchMode
 })
 
+export const toggleLoading = () => ({
+    type: TOGGLE_LOADING
+})
+
+
 export const panelState = state => state.ui.rightPanel
 export const profileState = state => state.ui.userProfile
 export const friendsListState = state => state.ui.friendsList
 export const searchState = state => state.ui.searchMode
+export const loadingState = state => state.ui.isLoading
+
 const initialState = {
     rightPanel: false,
     userProfile: false,
     friendsList: 'accepted',
-    searchMode: false
+    searchMode: false,
+    isLoading: false
 }
 
 const uiReducer = (state=initialState, action) => {
@@ -48,9 +56,11 @@ const uiReducer = (state=initialState, action) => {
         case SET_PROFILE:
             return { ...newState, userProfile: action.user};
         case SET_FRIENDS_LIST:
-            return { ...newState, friendsList: action.section};
+            return { ...newState, friendsList: action.section };
         case SET_SEARCH:
-            return { ...newState, searchMode: action.searchMode}
+            return { ...newState, searchMode: action.searchMode }
+        case TOGGLE_LOADING:
+            return { ...newState, isLoading: !newState.isLoading }
         default:
             return state;
     }

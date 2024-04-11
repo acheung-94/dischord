@@ -2,8 +2,10 @@ import { useDispatch, useSelector } from 'react-redux'
 import './demo.css'
 import { loginUser } from '../../store/sessionReducer'
 import { useNavigate } from 'react-router-dom'
-
+import { loadingState, toggleLoading } from '../../store/uiReducer'
 const Demo = ({user}) => {
+
+
     const demoInfo1 = {
         credential: 'demo1',
         password: 'themostsecure'
@@ -16,12 +18,18 @@ const Demo = ({user}) => {
 
     const navigate = useNavigate()
     const handleDemo = () => {
+        console.log('set loading state here')
         if (user === 1){
-            dispatch(loginUser(demoInfo1))
+            dispatch(loginUser(demoInfo1)).then(()=>{
+                console.log('inside then')
+                navigate('/channels/@me')})
         }else if (user === 2){
-            dispatch(loginUser(demoInfo2))
+            dispatch(loginUser(demoInfo2)).then(() => {
+                console.log('inside then 2')
+                navigate('/channels/@me')
+            })
         }
-        navigate('/channels/@me')
+        
     }
     
     return(

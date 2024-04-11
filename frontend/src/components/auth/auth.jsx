@@ -4,6 +4,7 @@ import { useEffect, useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import './auth.css'
 import Demo from "../demo/demo"
+import { toggleLoading } from "../../store/uiReducer"
 
 const Auth = ({ type }) => {
     const dispatch = useDispatch()
@@ -91,7 +92,11 @@ const Auth = ({ type }) => {
         e.preventDefault()
         if (isLogin) {
             dispatch(loginUser(loginData))
-                .then(()=> navigate('/channels/@me'))
+                .then(()=> {
+                    
+                    
+                    // navigate('/channels/@me')
+                })
                 .catch( async res => {
                     let data = await res.json()
                     setErrors( old => ({...old, messages:data.errors}))
