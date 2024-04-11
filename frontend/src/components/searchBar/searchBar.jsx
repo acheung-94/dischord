@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useState } from 'react';
 import { findUsers } from '../../store/searchReducer';
 import { resetResults } from '../../store/searchReducer';
-const SearchBar = ({type}) => {
+const SearchBar = ({type, setSearchMessage}) => {
     const searchMode = useSelector(searchState)
     const dispatch = useDispatch()
     const [username, setUsername] = useState('')
@@ -14,7 +14,8 @@ const SearchBar = ({type}) => {
         if (searchMode === 'friendship'){
             dispatch(resetResults())
             dispatch(findUsers(username))// search users, eventually can search messages, servers, etc. 
-            setUsername('') 
+            setUsername('')
+            setSearchMessage('Loading...') 
         }
     }
 

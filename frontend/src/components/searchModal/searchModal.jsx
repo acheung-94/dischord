@@ -7,7 +7,7 @@ import { selectSearchResults } from '../../store/searchReducer'
 import { selectServer } from '../../store/serverReducer'
 import { resetResults } from '../../store/searchReducer'
 import { selectAccepted, fetchFriends } from '../../store/friendsReducer'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useParams } from 'react-router'
 
 const SearchModal = ({searchModal,setSearchModal}) => {
@@ -29,6 +29,8 @@ const SearchModal = ({searchModal,setSearchModal}) => {
     }
     const results = conditionalResults()
 
+    const [searchMessage, setSearchMessage] = useState("")
+
     const handleClose = (e) => {
         e.stopPropagation()
         setSearchModal(false)
@@ -41,7 +43,16 @@ const SearchModal = ({searchModal,setSearchModal}) => {
         }
     }, [searchMode])
 
-    console.log(results, searchMode)
+    useEffect( () => {
+        if(searchMessage){
+            if (!results.length && searchMode==='friendship') {
+                setSearchMessage("Nobody by that username exists. :(") 
+            }else if (!results.length && searchMode ==='server'){
+                setSearchMessage("No friends available to invite.")
+            }
+        }
+    }, [searchMessage])
+    console.log(results, searchMode, searchMessage)
 
     if(searchMode && searchModal ){
         return(
@@ -51,14 +62,22 @@ const SearchModal = ({searchModal,setSearchModal}) => {
                     onClick={(e)=> e.stopPropagation()}>
                     { searchMode === 'friendship' && (
                         <div className='search-area'>
-                            <SearchBar type={true}/>
+                            <SearchBar type={true} setSearchMessage={setSearchMessage}/>
                         </div>
+                    )}
+                    { searchMode === 'server' && (
+                        <h1>Invite your friends to this server!</h1>
                     )}
                     <div className="results-list">
                         {results.length > 0 && (
                             results.map( user => (
                                 <Result key={user.id} user={user} setSearchModal={setSearchModal}/>
                             ))
+                        )}
+                        {searchMessage && (
+                            <div className="wahp-wahp">
+                                {searchMessage}
+                            </div>
                         )}
                     </div>
                 </div>
