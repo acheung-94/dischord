@@ -17,7 +17,7 @@ class Api::MembershipsController < ApplicationController
 
     def update
         @membership = Membership.find_by(id: params[:id])
-        @user = current_user
+        @memberships = current_user.pending_memberships
         if @membership&.update(membership_params)
             render :index
         else

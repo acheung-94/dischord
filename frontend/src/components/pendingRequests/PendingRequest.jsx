@@ -1,18 +1,29 @@
 import './request.css'
 import {useSelector, useDispatch} from 'react-redux'
 import { updateFriends } from '../../store/friendsReducer'
+import { updateInvites } from '../../store/serverInviteReducer'
+import { getUserServers } from '../../store/serverReducer'
 
 const PendingRequest = ( {request, type}) => {
     const dispatch = useDispatch()
 
     const handleAccept = () => {
-        let friendship = { ...request, status: 'accepted'}
-        dispatch(updateFriends(friendship))
+        let invitation = { ...request, status: 'accepted'}
+        if (type === 'server'){
+            dispatch(updateInvites(invitation))
+            dispatch(getUserServers())
+        }else{
+            dispatch(updateFriends(invitation))
+        }
     }
 
     const handleReject = () => {
-        let friendship = { ...request, status: 'rejected'}
-        dispatch(updateFriends(friendship))
+        let invitation = { ...request, status: 'rejected'}
+        if (type ==='server'){
+            dispatch(updateInvites(invitation))
+        }else{
+            dispatch(updateFriends(invitation))
+        }
     }
 
     const conditionalIcon = () => {
@@ -27,7 +38,7 @@ const PendingRequest = ( {request, type}) => {
         <div className='request-item' >
             <div className='request-icon'>
                 { request.iconUrl || request.avatarUrl ? 
-                <img src={conditionalIcon} /> : 
+                <img src={conditionalIcon()} /> : 
                 request.serverName.substring(0,1).toUpperCase() }
             </div>
             { type !== 'server' && (
