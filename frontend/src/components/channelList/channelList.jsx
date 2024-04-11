@@ -5,7 +5,7 @@ import { useState } from 'react';
 const ChannelList = ( { channels, server, currentUser } ) => {
     const [modalState, setModalState] = useState(false)
 
-    //at this point maybe consider adding modal state to your global state Hmmm...
+
     if (channels) {
         return(
             <>
@@ -14,7 +14,7 @@ const ChannelList = ( { channels, server, currentUser } ) => {
                     Text Channels
                     <img className='add-channel' 
                         src="/src/assets/icons/green-plus.png" 
-                        onClick={()=> setModalState('new')}//OnClick
+                        onClick={()=> setModalState('new')}
                          />
                 </div>
                 {channels.map((channel) => (

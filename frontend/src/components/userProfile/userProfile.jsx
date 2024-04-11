@@ -1,9 +1,9 @@
-import { useEffect } from 'react'
+
 import './userProfile.css'
 import {useSelector, useDispatch} from 'react-redux'
 import { profileState, setProfile } from '../../store/uiReducer'
 const UserProfile = ({type, user}) => {
-    // type = preview, profile, and edit? 
+
     const profile = useSelector(profileState) //selects the user to display
     const dispatch = useDispatch()
     const conditionalClass = () => {

@@ -1,23 +1,22 @@
 import { useDispatch, useSelector } from "react-redux"
 import { selectCurrentUser } from "../../store/sessionReducer"
-import { createMembership, createServer, updateServer } from "../../store/serverReducer"
+import { createServer, updateServer } from "../../store/serverReducer"
 import { useEffect, useRef, useState } from "react"
 import './newServer.css'
 import { useNavigate, useParams } from "react-router-dom"
 
 
-const NewServer = ( {modalState, setModalState, type, server}) => {
+const NewServer = ( { setModalState, type, server}) => {
     const currentUser = useSelector(selectCurrentUser)
     const hiddenUpload = useRef()
     const navigate = useNavigate()
-    const serverId = useParams()
     const dispatch = useDispatch()
     const [filePreview, setFilePreview] = useState(null)
     const [serverData, setServerData] = useState(
         type ? {
             id: server.id,
             name: server.name,
-            serverIcon: null //was server.iconUrl
+            serverIcon: null 
         } : {
             name: '',
             serverIcon: null
@@ -29,7 +28,7 @@ const NewServer = ( {modalState, setModalState, type, server}) => {
             
         }
     }, [type, server]) 
-console.log(filePreview)
+
 
     const triggerUpload = () => hiddenUpload.current.click()
     const handleFile = (e) => {
@@ -42,9 +41,9 @@ console.log(filePreview)
 
     }
 
-    //when hitting enter to submit....
+
     const handleSubmit = (e) => {
-        e.preventDefault() // it's not actually preventing default when i hit enter
+        e.preventDefault() 
 
         const serverFormObj = new FormData();
         serverFormObj.append('server[name]', serverData.name)

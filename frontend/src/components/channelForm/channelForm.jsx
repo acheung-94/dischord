@@ -15,7 +15,6 @@ const ChannelForm = ( { modalState, setModalState, channel, server }) => {
     const handleSubmit = e => {
         e.preventDefault()
         if (modalState === 'edit'){
-            console.log('name:', name, channel)
             dispatch(updateChannel({...channel, name: name}))
             setModalState(false)
             navigate(`/channels/${serverId}/${channel.id}`)

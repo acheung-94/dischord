@@ -7,7 +7,7 @@
     left: 0px;
     z-index: 10;
     cursor: auto;
-    /* pointer-events: none; */
+
   }
 
 .new-server-bg.edit{
@@ -19,7 +19,7 @@
     left: 0px;
     z-index: 10;
     cursor: auto;
-/* pointer-events: none; */
+
 }
   
 .new-server-content {

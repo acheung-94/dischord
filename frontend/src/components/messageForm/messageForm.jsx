@@ -1,14 +1,12 @@
 import { useDispatch } from 'react-redux'
 import './messageForm.css'
-import { useParams } from 'react-router-dom';
 import { selectCurrentUser } from '../../store/sessionReducer'
 import { useEffect, useRef, useState } from 'react'
-import { currentChannel } from '../../store/channelReducer';
+
 import { createMessage, updateMessage } from '../../store/messageReducer'
 import { useSelector } from 'react-redux';
 const MessageForm = ({messageState, oldMessage, setMessageState, channel }) => {
     const dispatch = useDispatch()
-    const { channelId } = useParams()
     const attachRef = useRef()
     const currentUser = useSelector(selectCurrentUser)
     const editRef = useRef()
@@ -38,7 +36,7 @@ const MessageForm = ({messageState, oldMessage, setMessageState, channel }) => {
     }
 
     useEffect(()=>{
-        // i think i've made a mistake
+
         let newchannel = channel
         if(currentUser && channel){
             if (messageState) {

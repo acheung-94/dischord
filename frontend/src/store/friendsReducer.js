@@ -58,7 +58,7 @@ export const updateFriends = friendship => dispatch => (
         }else{
             throw res
         }
-    }).then(friends => dispatch(addFriends(friends))).catch(err => console.error(err))
+    }).then(friends => dispatch(addFriends(friends)))
 )
 
 export const deleteRequest = requestId => dispatch => (

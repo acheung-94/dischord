@@ -26,12 +26,9 @@ class Api::MembershipsController < ApplicationController
     end
 
     def destroy
-        # @membership = Membership.find_by(
-        #     server_id: params[:server_id],
-        #     user_id: current_user.id)
-        @membership = Membership.find_by(id: params[:id]) # TODO : make custom membership search
+        @membership = Membership.find_by(id: params[:id])
         if @membership
-            @membership.destroy #this should also destroy all dependent associations
+            @membership.destroy
             head :no_content
         else
             render json: {errors: 'Failed'}, status: 404

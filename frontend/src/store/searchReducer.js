@@ -1,4 +1,3 @@
-//search results? iffy on that one
 import { getUsers } from "../utils/searchApiUtils"
 import {createSelector} from 'reselect'
 

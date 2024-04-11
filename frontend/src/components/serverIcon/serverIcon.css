@@ -8,12 +8,11 @@
     align-items: center;
     transition: all 0.1s ease;
     font-weight: 600;
-    /* margin-bottom: 8px; */
+
 }
 a.active .server-icon{
     border-radius: 18px;
     background-color: #5865F2 ;
-    /* transition: all 0.2s ease; */
 }
 .server-icon:hover{
     border-radius: 18px;

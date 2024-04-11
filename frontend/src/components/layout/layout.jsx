@@ -33,25 +33,6 @@ const Layout = ({type}) => {
 
     // AFTER RENDER
 
-    // useEffect( ()=>{
-    //     if(currentUser){
-    //     console.log('fetching servers...')
-    //     dispatch(getUserServers())
-
-    // }
-    // },[currentUser])
-
-    // useEffect(()=> {
-    //     if (!currentUser){
-    //         setIsLoading(false)
-    //     }
-    // }, [currentUser])
-
-    // useEffect( () => {
-    //     if (!currentUser && !isLoading){
-    //         navigate('/')
-    //     }
-    // }, [currentUser, isLoading])
 
     useEffect( () => {
         if (type === 'channel'){
@@ -63,7 +44,6 @@ const Layout = ({type}) => {
         if (!currentUser) {
             navigate('/')
         }else{
-            console.log('fetching servers...')
             dispatch(getUserServers())
         }
     }, [currentUser])

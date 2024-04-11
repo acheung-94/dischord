@@ -8,7 +8,7 @@
 .main-grid-thick{
     display: grid;
     width: 100%;
-    height: 100vh; /* why */
+    height: 100vh; 
     grid-template-columns: 240px 1fr;
     grid-template-rows: 48px calc(100vh - 48px);
     grid-template-areas:
@@ -19,7 +19,7 @@
 .main-grid-thin{
     display: grid;
     width: 100%;
-    height: 100vh; /* why */
+    height: 100vh;
     grid-template-columns: 240px 1fr;
     grid-template-rows: 48px calc(100vh - 48px);
     grid-template-areas:

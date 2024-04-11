@@ -39,24 +39,12 @@ export const getChannelMessages = (channelId) => (dispatch) => (
 
 export const updateMessage = (message, id) => (dispatch) => (
     patchMessage(message, id)
-        // .then(res => {
-        //     if (res.ok){
-        //         return res.json()
-        //     }else{
-        //         throw res
-        //     }
-        // }).then(message => dispatch(addMessage(message)))
+
 )
 
 export const removeMessage = messageId => dispatch => (
     destroyMessage(messageId) 
-        // .then(res => {
-        //     if (res.ok){
-        //         dispatch(deleteMessage(messageId))
-        //     }else{
-        //         throw res
-        //     }
-        // })
+
 )
 // SELECTORS 
 export const currentMessages = createSelector( state => state.messages, messages => Object.values(messages))

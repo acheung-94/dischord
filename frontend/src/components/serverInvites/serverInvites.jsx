@@ -2,10 +2,9 @@ import { useEffect } from 'react'
 import './serverInvites.css'
 import {useSelector, useDispatch} from 'react-redux'
 import PendingRequest from '../pendingRequests/PendingRequest'
-import { selectServerInvites, loadInvites, updateInvites } from '../../store/serverInviteReducer'
+import { selectServerInvites, loadInvites} from '../../store/serverInviteReducer'
 const ServerInvitations = () => {
-    //fetch invites.
-    //render request list.
+
     const dispatch = useDispatch()
     const invitations = useSelector(selectServerInvites)
     useEffect(() => {

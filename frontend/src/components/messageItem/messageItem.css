@@ -4,12 +4,12 @@
     position: relative;
     box-sizing: border-box;
     padding: 6px;
-    /* flex-direction: column; */
+
 }
 
 .message-item:hover{
     background-color: rgba(30,31,35, 0.2);
-    /* border: 2px solid salmon; */
+
 }
 
 .message-item:hover .message-options{
@@ -39,7 +39,6 @@
     line-height: 20px;
     margin-left: 80px;
     vertical-align: middle;
-    /* border: 1px solid aqua; */
     width: 100%;
     box-sizing: border-box;
 }
@@ -62,8 +61,6 @@
     right: 10px;
     top: -28px;
     display: flex;
-
-    /* border: 1px solid gold; */
     background-color: #242529;
     border-radius: 8px;
     visibility: hidden;
@@ -74,7 +71,6 @@
 .message-options img{
     width: 18px;
     padding: 8px;
-    /* border: 1px solid red; */
 }
 
 .message-options img:hover{

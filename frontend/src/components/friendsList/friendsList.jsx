@@ -46,7 +46,6 @@ const FriendsList = ({type}) => {
                     <div className='friends-list-item' key={`fr${friend.id}`}>
                         <span className='friends-list-sep'></span>
                         {conditionalItem(friend)}
-                        {/* {view === 'pending' ? <PendingRequest request={friend} /> : <UserIcon  user={friend} type="friends" />} */}
                     </div>
                 ))}
                 </>

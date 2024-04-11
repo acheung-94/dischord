@@ -21,7 +21,6 @@ const ServerOptions = ( {server, searchModal, setSearchModal}) => {
     }
 
     const handleLeaving = () => {
-        console.log(typeof serverId.serverId)
         dispatch(leaveServer(parseInt(serverId.serverId)))
         navigate('/channels/@me')
     }
@@ -35,7 +34,7 @@ const ServerOptions = ( {server, searchModal, setSearchModal}) => {
         dispatch(setSearch('server'))
         setSearchModal(true)
     }
-    console.log('rendering')
+
     return(
     <>
         <div className="server-options-modal">

@@ -1,5 +1,3 @@
-// WRITE FETCHES
-
 import { csrfFetch } from "./csrfUtils"
 
 export const postUser = userInfo => (

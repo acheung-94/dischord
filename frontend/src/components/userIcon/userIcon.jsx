@@ -1,20 +1,18 @@
 import './userIcon.css'
 import { useDispatch, useSelector} from "react-redux"
-import { useRef, useState } from 'react'
 import UserProfile from '../userProfile/userProfile'
-import { NavLink } from 'react-router-dom'
-import { profileState, searchState, setProfile, previewState, setPreview } from '../../store/uiReducer'
+import { setProfile, previewState, setPreview } from '../../store/uiReducer'
 import { updateFriends, deleteRequest } from '../../store/friendsReducer'
+
+
 const UserIcon = ({user, type}) => {
-    // const [userPreview, setUserPreview] = useState(false)
-    const searchMode = useSelector(searchState)
+
     const currentPreview = useSelector(previewState)
-    const currentRef = useRef()
+
     const dispatch = useDispatch()
     
     const handleClick = (e) => {
         e.stopPropagation()
-        console.log(e.currentTarget.className)
         if (type === 'friends'){
             dispatch(setProfile(user))
         }else if (type==='preview' ){
@@ -24,7 +22,7 @@ const UserIcon = ({user, type}) => {
             }else{
                 dispatch(setPreview(user))
             }
-            // setUserPreview(!userPreview)
+
         }
     }
 
@@ -61,7 +59,7 @@ const UserIcon = ({user, type}) => {
                     </div>
                     <div className="user-icon-text">
                         {type ? (<h4>{user.username}</h4>) : <p>{user.username}</p>}
-                        { type === 'bottom-left' && (<p>"status"</p>)}
+                        { type === 'bottom-left' && (<p>Online</p>)}
                     </div>
                     {user.owner && (
                         <div className="owner-icon">

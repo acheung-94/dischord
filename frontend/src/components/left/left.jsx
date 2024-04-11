@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux'
 import './left.css'
-import { selectCurrentUser, logoutUser } from '../../store/sessionReducer'
+import { selectCurrentUser} from '../../store/sessionReducer'
 import { currentChannels, getServerChannels } from '../../store/channelReducer'
 import { useParams } from 'react-router-dom'
 import { selectServer } from '../../store/serverReducer'
@@ -9,7 +9,7 @@ import BottomLeft from '../bottomLeft/bottomLeft'
 import ChannelList from '../channelList/channelList'
 import ServerInvitations from '../serverInvites/serverInvites'
 import { useEffect } from 'react'
-// import { UserIconFull } from '../userIconsFull/userIconFull'
+
 const Left = ( {type}) => {
     const currentUser = useSelector(selectCurrentUser)
     const dispatch = useDispatch()

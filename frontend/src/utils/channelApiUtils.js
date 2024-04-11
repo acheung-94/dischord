@@ -18,10 +18,6 @@ export const destroyChannel = (channelId) => (
     })
 )
 
-// export const getChannel = (serverId, channelId) => (
-//     csrfFetch(`/api/servers/${serverId}/channels/${channelId}`)
-// )
-
 export const patchChannel = (channelInfo) => (
     csrfFetch(`/api/channels/${channelInfo.id}`, {
         method: 'PATCH',

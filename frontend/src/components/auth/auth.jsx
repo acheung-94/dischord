@@ -177,8 +177,3 @@ const Auth = ({ type }) => {
 
 export default Auth
 
-//TODO: modularize modularize modularize
-
-// Add a pseudo class for form labels to indicate 'required' and place a red asterisk at the end.
-
-//it would be kind of nice to dynamically generate these fields based on my backend fields. 

@@ -22,7 +22,7 @@ class User < ApplicationRecord
     validates :password,
         presence: {message: 'Required'},
         length: {minimum: 6, message: 'Too short - minimum 6 characters'},
-        allow_nil: true #where is the "can't be blank message" coming from??"
+        allow_nil: true 
     validates :email,
         presence: {message: 'Required'}, 
         uniqueness: {scope: :email, message: 'Account already exists with this email.'},  
@@ -69,7 +69,7 @@ class User < ApplicationRecord
         dependent: :destroy
 
     #outgoing friend requests from this user that are accepted
-    has_many :outgoing_friendships, -> { Friendship.accepted }, #trying something new!
+    has_many :outgoing_friendships, -> { Friendship.accepted },
         through: :sent_friendships, 
         source: :recipient 
     #incoming friend requests that this user accepted.
@@ -77,12 +77,12 @@ class User < ApplicationRecord
         through: :received_friendships,
         source: :sender
 
-    # incoming requests that this user has rejected (no visibility on users that have rejected them...)
+    # incoming requests that this user has rejected (no visibility on users that have rejected them.)
     has_many :blocked_users, -> {Friendship.rejected},
         through: :received_friendships,
         source: :sender
 
-    has_many :blockers, -> {Friendship.rejected}, #this isn't working for some reason...
+    has_many :blockers, -> {Friendship.rejected},
         through: :sent_friendships,
         source: :recipient    
 
@@ -135,7 +135,6 @@ class User < ApplicationRecord
         enemy_ids = current_user.enemies.pluck(:id) #can't search enemies
         pending_ids = current_user.pending #can't search pending
         bad_ids = [current_user.id] + friend_ids + enemy_ids + pending_ids #can't search themselves
-        puts bad_ids
         self.where("username LIKE ?", "%#{username}%")
             .where.not(id: bad_ids ) 
     end

@@ -1,9 +1,8 @@
-import { useSelector } from "react-redux"
-import { selectServer } from "../../store/serverReducer"
+
 import './serverIcon.css'
-import { NavLink, useNavigate } from "react-router-dom"
+import { NavLink} from "react-router-dom"
 const ServerIcon = ({server, serverId, type }) => {
-    // const server = useSelector(selectServer(serverId))
+
     const conditionalImage = () => {
         if (serverId) {
             if (server.iconUrl) {

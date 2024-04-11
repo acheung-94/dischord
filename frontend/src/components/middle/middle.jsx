@@ -49,7 +49,7 @@ const Middle = ({type}) => {
 
     // RENDER
     
-    if ( type === 'channel') { // yikers there's gotta be a simpler way of ensuring channel and messages
+    if ( type === 'channel') {
         if (channel && messages) {
 
             return(<div className='middle-base-wrapper'>

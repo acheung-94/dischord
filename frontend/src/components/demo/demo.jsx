@@ -18,14 +18,12 @@ const Demo = ({user}) => {
 
     const navigate = useNavigate()
     const handleDemo = () => {
-        console.log('set loading state here')
+
         if (user === 1){
             dispatch(loginUser(demoInfo1)).then(()=>{
-                console.log('inside then')
                 navigate('/channels/@me')})
         }else if (user === 2){
             dispatch(loginUser(demoInfo2)).then(() => {
-                console.log('inside then 2')
                 navigate('/channels/@me')
             })
         }
@@ -60,4 +58,3 @@ const Demo = ({user}) => {
 
 export default Demo;
 
-//TODO modularize the user icons! Will need to reuse them throughout application. 

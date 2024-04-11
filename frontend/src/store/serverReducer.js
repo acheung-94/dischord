@@ -3,7 +3,7 @@ import { destroyServer, getServers, patchServer, postMembership, postServer, del
 
 const ADD_SERVER = 'servers/ADD_SERVER'
 const DELETE_SERVER = 'servers/DELETE_SERVER'
-// const UPDATE_SERVER = 'servers/UPDATE_SERVER'
+
 const RECEIVE_SERVERS = 'servers/RECEIVE_SERVERS'
 
 // ACTION CREATORS
@@ -16,19 +16,18 @@ const deleteServer = (serverId) => ({
     type: DELETE_SERVER,
     serverId
 })
-//actually, don't think i need a update server, because the same action will be performed. just adding the server's id and object to the state.
+
 
 const receiveServers = (servers) => ( {
     type: RECEIVE_SERVERS,
     servers
-}) //replace state with current user's servers. necessary? idk.
+}) 
 
 // THUNK ACTION CREATORS
 
 export const createServer = (serverInfo) => (dispatch) => (
     postServer(serverInfo).then(res => {
         if (res.ok){
-            console.log(res)
             return res.json()
         }else{
             throw res
@@ -50,7 +49,7 @@ export const getUserServers = () => (dispatch) => (
 )
 
 export const createMembership = (membership) => (dispatch) => (
-    postMembership(membership).then(res => { // post membership should return an updated server list? 
+    postMembership(membership).then(res => { // post membership should return an updated server list 
         if (res.ok) {
             return res.json()
         }else{
@@ -68,7 +67,7 @@ export const updateServer = (server, id) => (dispatch) => (
             throw res
         }
     }).then(server => dispatch(addServer(server)))
-    .catch(err => console.error(err))
+
 )
 
 export const removeServer = (serverId) => (dispatch) => (
@@ -85,7 +84,7 @@ export const leaveServer = (serverId) => (dispatch) => (
     deleteMembership(serverId).then(res => {
 
         if (res.ok){
-            dispatch(getUserServers()) //refresh server list?
+            dispatch(getUserServers()) //refresh server list
         }else{
             throw res
         }

@@ -9,14 +9,6 @@ import { setPanel } from '../../store/uiReducer';
 const Right = ({type}) => {
     const dispatch = useDispatch()
     const visibility = useSelector(panelState)
-    useEffect( () => {
-        if(visibility){
-            console.log(visibility)
-            //probably do more stuff here
-            // fetch members, feed MemberList
-        }
-    }, [])
-
 
 
     return(
