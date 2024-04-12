@@ -56,10 +56,10 @@ const PendingRequest = ( {request, type}) => {
             </div>
             { (request.incoming || type === 'server') && (
                 <div className='response-icons'>
-                    <img src='/src/assets/icons/guildCheckmark.png' 
+                    <img src='https://dischord-clone-seeds.s3.us-west-1.amazonaws.com/icons/guildCheckmark.png' 
                         className='request-accept'
                         onClick={handleAccept}/>
-                    <img src='/src/assets/icons/guildCross.png'
+                    <img src='https://dischord-clone-seeds.s3.us-west-1.amazonaws.com/icons/guildCross.png'
                         className='request-deny'
                         onClick={handleReject}/>
                 </div>

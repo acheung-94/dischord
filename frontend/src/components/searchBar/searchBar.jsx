@@ -23,7 +23,7 @@ const SearchBar = ({type, setSearchMessage}) => {
         return(
             <div className="search-bar">
                  <input type="text" placeholder="This does nothing :)"/>
-                 <img src="/src/assets/icons/discoverySearch.png" />
+                 <img src="https://dischord-clone-seeds.s3.us-west-1.amazonaws.com/icons/discoverySearch.png" />
             </div>
         )
     }else{

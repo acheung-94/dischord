@@ -13,7 +13,7 @@ const MessageList = ( {messages, currentUser, channel}) => {
         <div className="message-list">
             <div className="message-list-inner">
                 <div className="new-channel-thing">
-                    <img src="/src/assets/icons/channelTextWhite.png" />
+                    <img src="https://dischord-clone-seeds.s3.us-west-1.amazonaws.com/icons/channelTextWhite.png" />
                 </div>
                 <h1 className='message-list-welcome'>
                     Welcome to #{channel.name}!

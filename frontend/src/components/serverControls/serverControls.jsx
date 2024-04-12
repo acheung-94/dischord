@@ -18,7 +18,7 @@ const ServerControls = () => {
             <div className={serverModal ? "server-controls active" : "server-controls"}
             onClick={()=> setServerModal(!serverModal)} > 
                 <h1 className='server-name'>{server.name}</h1>
-                <img className='server-controls-img' src="/src/assets/icons/guildDropdownMenu.png" />
+                <img className='server-controls-img' src="https://dischord-clone-seeds.s3.us-west-1.amazonaws.com/icons/guildDropdownMenu.png" />
                 { serverModal && (
                     <ServerOptions server = {server} searchModal={searchModal} 
                     setSearchModal = {setSearchModal} />

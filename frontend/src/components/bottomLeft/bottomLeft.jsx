@@ -12,7 +12,7 @@ const BottomLeft = () => {
 
             <div className='user-options'
                     onClick={() => dispatch(logoutUser())}>
-                <img src="/src/assets/icons/leaving.png" />
+                <img src="https://dischord-clone-seeds.s3.us-west-1.amazonaws.com/icons/leaving.png" />
             </div>
         </div>
     )

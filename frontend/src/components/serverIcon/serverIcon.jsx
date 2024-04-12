@@ -18,7 +18,7 @@ const ServerIcon = ({server, serverId, type }) => {
             }
         } else {
             return (
-                <img src="/src/assets/icons/Vector.png" />
+                <img src="https://dischord-clone-seeds.s3.us-west-1.amazonaws.com/icons/Vector.png" />
             )
         }
     }

@@ -30,7 +30,7 @@ const FriendBar = () => {
     return(
         <div className='friend-bar'>
             <div className="friend-bar-header">
-                <img src="/src/assets/icons/appdirectorySocial.png" />
+                <img src="https://dischord-clone-seeds.s3.us-west-1.amazonaws.com/icons/appdirectorySocial.png" />
                 <h2>Friends</h2>    
             </div>
             <span className='friend-bar-separator'></span>

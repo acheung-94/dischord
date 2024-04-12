@@ -13,7 +13,7 @@ const ChannelList = ( { channels, server, currentUser } ) => {
                 <div className="channel-header">
                     Text Channels
                     <img className='add-channel' 
-                        src="/src/assets/icons/green-plus.png" 
+                        src="https://dischord-clone-seeds.s3.us-west-1.amazonaws.com/icons/green-plus.png" 
                         onClick={()=> setModalState('new')}
                          />
                 </div>

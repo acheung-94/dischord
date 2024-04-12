@@ -24,7 +24,7 @@ const UserProfile = ({type, user}) => {
                 <div className="user-icon-large">
                     <img src={ profile ? profile.avatarUrl : user.avatarUrl} alt="" />
                 </div>
-                { type === '@me' && ( <img className="close-profile" onClick={()=> dispatch(setProfile(false))}src='/src/assets/icons/close-x.png' />)}
+                { type === '@me' && ( <img className="close-profile" onClick={()=> dispatch(setProfile(false))}src='https://dischord-clone-seeds.s3.us-west-1.amazonaws.com/icons/close-x.png' />)}
                 <div className="banner">
                     <div className="preview-middle">
                         <div className='preview-bottom'>
@@ -36,7 +36,7 @@ const UserProfile = ({type, user}) => {
                             <div className='member-since'>
                                 <h3>Member Since:</h3>
                                 <div className="date">
-                                    <img src="/src/assets/icons/Vector.png" />
+                                    <img src="https://dischord-clone-seeds.s3.us-west-1.amazonaws.com/icons/Vector.png" />
                                     <p>{ !profile ? user.accountCreated : profile.joinDate}</p>
                                 </div>
                             </div>

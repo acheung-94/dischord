@@ -23,6 +23,7 @@ Rails.application.routes.draw do
     resources :friendships, only: [:index, :create, :update, :destroy]
   end
   
+  get '*path', to: "static_pages#frontend_index"
 end
 
 #which channel resources are necessary to nest under servers? can all the rest be un-nested?

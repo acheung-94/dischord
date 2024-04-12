@@ -41,26 +41,26 @@ const ServerOptions = ( {server, searchModal, setSearchModal}) => {
             <span className="invite-people"
                 onClick={openInvitation}>
                 Invite People
-                <img className='options-icons' src='/src/assets/icons/guildInvitePeople.png' />
+                <img className='options-icons' src='https://dischord-clone-seeds.s3.us-west-1.amazonaws.com/icons/guildInvitePeople.png' />
             </span>
             <span className="edit-server"
                     onClick={showEdit}>
                 Edit Server
-                <img className='options-icons' src='/src/assets/icons/icon-edit.png' />
+                <img className='options-icons' src='https://dischord-clone-seeds.s3.us-west-1.amazonaws.com/icons/icon-edit.png' />
             </span>
 
             { currentUser.id === server.ownerId && (
                 <span className="delete-server"
                     onClick={handleDelete}>
                     Delete Server
-                    <img className='options-icons' src='/src/assets/icons/guildDeleteServer.png' />
+                    <img className='options-icons' src='https://dischord-clone-seeds.s3.us-west-1.amazonaws.com/icons/guildDeleteServer.png' />
                 </span>
             )}
             
             <span className="leave-server"
                     onClick={handleLeaving}>
                 Leave Server
-                <img className='options-icons' src="/src/assets/icons/leaving.png" />
+                <img className='options-icons' src="https://dischord-clone-seeds.s3.us-west-1.amazonaws.com/icons/leaving.png" />
             </span>
 
         </div>

@@ -41,7 +41,7 @@ const ChannelForm = ( { modalState, setModalState, channel, server }) => {
                             (<h1>Edit Channel Name</h1>) :
                             (<h1>Create a New Channel</h1>)}
                         <div className="channel-input-area">
-                             <img src="/src/assets/icons/channelTextThread.png" />
+                             <img src="https://dischord-clone-seeds.s3.us-west-1.amazonaws.com/icons/channelTextThread.png" />
                         <input type="text" 
                             className='channel-input' 
                             value={name} 

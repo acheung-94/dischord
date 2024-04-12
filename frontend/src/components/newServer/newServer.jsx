@@ -72,7 +72,7 @@ const NewServer = ( { setModalState, type, server}) => {
         <div className={ type ? "new-server-bg edit" : "new-server-bg"} onClick={doNotClose} >
             <div className="new-server-content">
                 <div className="close-modal" onClick={closeModal}>
-                    <img className="close-modal-img" src="/src/assets/icons/close-x.png" />
+                    <img className="close-modal-img" src="https://dischord-clone-seeds.s3.us-west-1.amazonaws.com/icons/close-x.png" />
                 </div>
                 <div className="new-server-text">
                     <h1> { type ? "Server Overview" : "Create Your Server"}</h1>
@@ -87,12 +87,12 @@ const NewServer = ( { setModalState, type, server}) => {
                     {filePreview ? 
                     <>
                         <img src={filePreview} className="preloaded" />
-                        <img src="/src/assets/icons/icon-edit.png" className="preloaded-overlay" />
+                        <img src="https://dischord-clone-seeds.s3.us-west-1.amazonaws.com/icons/icon-edit.png" className="preloaded-overlay" />
                     </>
                         : <>
-                        <img src="/src/assets/icons/guildChooseRoleIcon.png" className="pic-icon"/>
+                        <img src="https://dischord-clone-seeds.s3.us-west-1.amazonaws.com/icons/guildChooseRoleIcon.png" className="pic-icon"/>
                         <p>upload</p>
-                        <img src="/src/assets/icons/guildCreateChannel.png" className="upload-plus" /> 
+                        <img src="https://dischord-clone-seeds.s3.us-west-1.amazonaws.com/icons/guildCreateChannel.png" className="upload-plus" /> 
                      </>}
                     
                 </div>      

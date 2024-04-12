@@ -21,11 +21,11 @@ const Top = ( {type} ) => {
                 { type === 'channel' && (
                     <>
                         <div className="channel-bar">
-                            <img className = "channel-bar-icons" src="/src/assets/icons/channelText.png" />
+                            <img className = "channel-bar-icons" src="https://dischord-clone-seeds.s3.us-west-1.amazonaws.com/icons/channelText.png" />
                             <h1 className='channel-bar-title' >{channel.name}</h1>
                             <div className="member-list-toggle"
                                 onClick={handleClick}>
-                                <img className = "channel-bar-icons" src="/src/assets/icons/guildDefaultRolePermissions.png" />
+                                <img className = "channel-bar-icons" src="https://dischord-clone-seeds.s3.us-west-1.amazonaws.com/icons/guildDefaultRolePermissions.png" />
                             </div>
                             <div className='searchbar-container'>
                                 <SearchBar></SearchBar>

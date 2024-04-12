@@ -37,7 +37,7 @@ const Result = ({user, setSearchModal}) => {
             <div className="user-icon">
                 <div className="icon-img">
                     <img className="avatar" src={user.avatarUrl} />
-                    <img className='status' src="/src/assets/icons/icon-on.png" />
+                    <img className='status' src="https://dischord-clone-seeds.s3.us-west-1.amazonaws.com/icons/icon-on.png" />
                 </div>
                 <div className="user-icon-text">
                     <h4>{user.username}</h4>

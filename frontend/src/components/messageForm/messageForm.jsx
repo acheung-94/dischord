@@ -108,7 +108,7 @@ const MessageForm = ({messageState, oldMessage, setMessageState, channel }) => {
                     <div className="attachment-preview">
                         <div className='preview-wrapper'>
                             <img  src={filePreview} />
-                            <span className='delete-attach' onClick={handleDetach}> <img src="/src/assets/icons/chatContextMenuDeleteMessage.png" /></span>
+                            <span className='delete-attach' onClick={handleDetach}> <img src="https://dischord-clone-seeds.s3.us-west-1.amazonaws.com/icons/chatContextMenuDeleteMessage.png" /></span>
                          </div>
                     </div>
                 )}
@@ -116,7 +116,7 @@ const MessageForm = ({messageState, oldMessage, setMessageState, channel }) => {
                     { !messageState && 
                     (<>
                     <input type="file" className='hidden-message-input' ref={attachRef} onChange={handleFile} />
-                    <img className='upload-attachment' src="/src/assets/icons/chatAttachment.png" onClick={triggerUpload} />
+                    <img className='upload-attachment' src="https://dischord-clone-seeds.s3.us-west-1.amazonaws.com/icons/chatAttachment.png" onClick={triggerUpload} />
                     </>)}
                     
                     <input type="textarea"

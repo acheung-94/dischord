@@ -47,10 +47,10 @@ const MessageItem = ({message, currentUser, isLast, newTime}) => {
             {
                 currentUser.id === message.authorId && (
                     <>
-                    <img src="/src/assets/icons/icon-edit.png"
+                    <img src="https://dischord-clone-seeds.s3.us-west-1.amazonaws.com/icons/icon-edit.png"
                         className="message-edit" 
                         onClick={handleEdit}/>
-                    <img src="/src/assets/icons/guildDeleteServer.png" 
+                    <img src="https://dischord-clone-seeds.s3.us-west-1.amazonaws.com/icons/guildDeleteServer.png" 
                         className="message-delete"
                         onClick={handleDelete} />
                     </>

@@ -55,7 +55,7 @@ const UserIcon = ({user, type}) => {
                     >
                     <div className="icon-img">
                         <img className="avatar" src={user.avatarUrl} />
-                        <img className='status' src="/src/assets/icons/icon-on.png" />
+                        <img className='status' src="https://dischord-clone-seeds.s3.us-west-1.amazonaws.com/icons/icon-on.png" />
                     </div>
                     <div className="user-icon-text">
                         {type ? (<h4>{user.username}</h4>) : <p>{user.username}</p>}
@@ -63,7 +63,7 @@ const UserIcon = ({user, type}) => {
                     </div>
                     {user.owner && (
                         <div className="owner-icon">
-                            <img src="/src/assets/icons/guildOwner.png" />
+                            <img src="https://dischord-clone-seeds.s3.us-west-1.amazonaws.com/icons/guildOwner.png" />
                         </div>
                     )}
           
@@ -73,7 +73,7 @@ const UserIcon = ({user, type}) => {
                 </div>
                     {type === 'friends' && (
                         <img className="delete-friend" 
-                            src="/src/assets/icons/guildCross.png" 
+                            src="https://dischord-clone-seeds.s3.us-west-1.amazonaws.com/icons/guildCross.png" 
                             onClick={unFriend} />
                     )}
                     { type === 'rejected' && (
