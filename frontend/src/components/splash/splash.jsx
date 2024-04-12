@@ -26,8 +26,10 @@ const Splash = () => {
                 <div className="welcome-msg">
                     <h1> Imagine a place... </h1>
                     <p>...where you can belong to a school club, a gaming group, or a worldwide art community. Where just you and a handful of friends can spend time together. A place that makes it easy to talk every day and hang out more often.</p>
-                    <p>Well... you've found it.</p>
+                    <p>Well... that's the real Discord. </p>
+                    <p>This is the Discord we have at home.</p>
                     <h4>Welcome to Dischord.</h4>
+                    <p> Press the Login button to get started. </p>
                 </div>
                 <div className="welcome-footer"></div>   
               </div>     

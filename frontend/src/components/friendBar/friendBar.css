@@ -61,3 +61,8 @@
     color: #fff;
     border-radius: 8px;
 }
+
+.view-bar .add-friend:hover{
+    color: rgb(0, 165, 0);
+    border: 1px solid rgb(0, 165, 0);
+}

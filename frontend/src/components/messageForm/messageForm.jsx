@@ -81,7 +81,7 @@ const MessageForm = ({messageState, oldMessage, setMessageState, channel }) => {
                 dispatch(createMessage(messageFormObj))
                 setFilePreview(null)
             }
-            setMessage(old => ({...old, body: ''}))
+            setMessage(old => ({...old, body: '', attachment: null}))
         }
     }
 
