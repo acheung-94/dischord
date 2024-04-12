@@ -5,4 +5,4 @@ set -o errexit
 
 bundle install
 rails db:migrate
-rails db:seed:replant #if needed
+DISABLE_DATABASE_ENVIRONMENT_CHECK=1 rails db:seed:replant
