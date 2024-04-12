@@ -10,6 +10,7 @@
 #
 class Membership < ApplicationRecord
     validates :user_id, :server_id, presence: true
+    validates :status, inclusion: {in: %w(accepted pending rejected)}
  
     belongs_to :user
 

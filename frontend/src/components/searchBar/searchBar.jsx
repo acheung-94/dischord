@@ -32,7 +32,7 @@ const SearchBar = ({type, setSearchMessage}) => {
                 <label> Search for users by username:</label>
                 <div className="search-form-b">
                     <input type="text"
-                        placeholder='Find a new friend...' 
+                        placeholder='Type in a username to search...' 
                         onChange={(e)=> setUsername(e.target.value)} 
                         onClick={(e)=> e.stopPropagation()} 
                         value={username}/>

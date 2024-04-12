@@ -58,7 +58,7 @@ const UserIcon = ({user, type}) => {
                         <img className='status' src="https://dischord-clone-seeds.s3.us-west-1.amazonaws.com/icons/icon-on.png" />
                     </div>
                     <div className="user-icon-text">
-                        {type ? (<h4>{user.username}</h4>) : <p>{user.username}</p>}
+                        {type ? (<h4>{user.displayName}</h4>) : <p>{user.displayName}</p>}
                         { type === 'bottom-left' && (<p>Online</p>)}
                     </div>
                     {user.owner && (

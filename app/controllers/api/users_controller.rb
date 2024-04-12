@@ -5,6 +5,7 @@ class Api::UsersController < ApplicationController
     ICON_COLORS = %w(blurple gold gray green magenta red) 
     def create
         @user = User.new(user_params)
+        @user.display_name ||= @user.username
         color = ICON_COLORS.sample
         file = URI.open("https://dischord-clone-seeds.s3.us-west-1.amazonaws.com/icons/avatar-#{color}.png")
         @user.avatar.attach(io: file, filename: "#{color}.png")

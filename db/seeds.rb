@@ -15,7 +15,7 @@ ActiveRecord::Base.connection.tables.each do |t|
 end
 demo_1 = User.create(
      username: 'demo1',
-     display_name: 'demo user 1',
+     display_name: 'Ludwig',
      password: 'themostsecure',
      email: 'demo1@demo.com',
      ) 
@@ -25,7 +25,7 @@ demo_1.avatar.attach(io: avatar1, filename: 'demo1.jpg')
 
 demo_2 = User.create(
     username: 'demo2', 
-    display_name: 'demo user 2', 
+    display_name: 'Jimmy', 
     password: 'themostsecure2', 
     email: 'demo2@demo.com' )
 avatar2 = URI.open('https://dischord-clone-seeds.s3.us-west-1.amazonaws.com/avatar-magenta.png')
@@ -33,19 +33,40 @@ demo_2.avatar.attach(io: avatar2, filename: 'magenta.png')
 
 user_3 = User.create(
      username: 'testfriend',
-     display_name: 'test friend 42',
+     display_name: 'always confused',
      password: 'testfriend42',
      email: 'test@test.com'
 )
 avatar3 = URI.open('https://dischord-clone-seeds.s3.us-west-1.amazonaws.com/avatar-blurple.png')
 user_3.avatar.attach(io: avatar3, filename: 'blurple.png')
 
-s1 = Server.create(name: 'test server', owner_id: 1)
+user_4 = User.create(
+     username: 'ghost',
+     display_name: 'ghost',
+     password: 'testfriend42',
+     email: 'test2@test3.com'
+)
+avatar4 = URI.open('https://dischord-clone-seeds.s3.us-west-1.amazonaws.com/icons/avatar-gold.png')
+user_4.avatar.attach(io: avatar4, filename: 'gold.png')
+
+user_5 = User.create(
+     username: 'riskyrain',
+     display_name: 'artificer4lyfe',
+     password: 'dpsoversurvivability',
+     email: 'test4@test.com'
+)
+avatar5 = URI.open('https://dischord-clone-seeds.s3.us-west-1.amazonaws.com/icons/avatar-green.png')
+user_5.avatar.attach(io: avatar5, filename: 'green.png')
+
+s1 = Server.create(name: 'Dota is a fun and balanced game', owner_id: 1)
 s2 = Server.create(name: 'App Academy Lite', owner_id: 2)
 s3 = Server.create(name: 'Wow!', owner_id: 1)
 icon2 = URI.open('https://dischord-clone-seeds.s3.us-west-1.amazonaws.com/20230620_101013.jpg')
 s3.server_icon.attach(io: icon2, filename: 'wowdog.jpg')
-
+another_icon = URI.open('https://dischord-clone-seeds.s3.us-west-1.amazonaws.com/Dota-2-Logo.png')
+s1.server_icon.attach(io: another_icon, filename: 'dota2.png')
+icon3 = URI.open('https://dischord-clone-seeds.s3.us-west-1.amazonaws.com/image+2.png')
+s2.server_icon.attach(io: icon3, filename: 'aalogo.png')
 
 Membership.create(user_id: 2, server_id: 2, status: 'accepted') #owner
 Membership.create(user_id: 2, server_id: 1, status: 'accepted')
@@ -54,10 +75,13 @@ Membership.create(user_id: 1, server_id: 3, status: 'accepted') #owner
 Membership.create(user_id: 1, server_id: 2, status: 'accepted')
 
 Channel.create(name: 'general', server_id: 1)
-Channel.create(name: 'cats only', server_id: 1)
-Channel.create(name: 'dogs only', server_id: 1)
+Channel.create(name: 'meta-discussions', server_id: 1)
+Channel.create(name: 'off-topic', server_id: 1)
 Channel.create(name: 'general', server_id: 2)
+Channel.create(name: 'notes-resources', server_id: 2)
 Channel.create(name: 'general', server_id: 3)
+Channel.create(name: 'cats-only', server_id: 3)
+Channel.create(name: 'dogs-only', server_id: 3)
 Channel.create(name: 'DM-test', user_id: 1)
 Channel.create(name: 'DM-test', user_id: 1)
 

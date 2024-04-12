@@ -29,8 +29,8 @@ const UserProfile = ({type, user}) => {
                     <div className="preview-middle">
                         <div className='preview-bottom'>
                             <div className="username-display">
-                                <h2>{!profile ? user.username :profile.username}</h2>
-                                <h3>{!profile ? user.displayName : profile.displayName}</h3>
+                                <h2>{!profile ? user.displayName : profile.displayName}</h2>
+                                <h3>{!profile ? user.username :profile.username}</h3>
                             </div>
                             <span className="preview-sep"></span>
                             <div className='member-since'>
