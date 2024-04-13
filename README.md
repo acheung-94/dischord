@@ -1,9 +1,14 @@
+![splash](https://github.com/acheung-94/dischord/assets/152105091/64adf986-363d-42e2-b954-a25cd2223417)
 # Welcome to Dischord.
 *(no, that's not a typo, this is just the Discord you have at home™)*
+
 - [Join the chat here!](https://dischord.onrender.com)
 - [View the Wiki page here!](https://github.com/acheung-94/dischord/wiki)
 ## What is Dischord?
 Dischord is a clone of [Discord](www.discord.com), a web based messaging application. Users can sign in and view their groups ('servers') and send memes and GIFs to other group members in real time. Users can own multiple servers, as well as become members of multiple servers. Each server can have multiple chat channel instances, but always start with a default general chat channel. Users can view other users, add them as friends, and block them (just in case).
+![layoutdischord](https://github.com/acheung-94/dischord/assets/152105091/52153c1c-b7d8-4e7f-99d5-2179f7a0369c)
+
+
 ## Tech Stack
 
 ![react](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
@@ -19,6 +24,8 @@ Dischord is a clone of [Discord](www.discord.com), a web based messaging applica
 ### Detailed cloning
 - Every visual and functional detail in this project has been lovingly recreated from the beloved gaming-turned-community-building chat app.
 - The server list, to me, is one of the most iconic and recognizable parts of this application, so great care was taken to ensure icons behaved and appeared very similar to the real Discord's.
+- ![icons](https://github.com/acheung-94/dischord/assets/152105091/a50edee3-dde4-4cdf-9827-3ae0cff1d88b)
+
 ### Live Messaging
 - Nobody wants to have to reload the page to view the cat GIFs their friends are sending them.
 - Through Action Cable, the current Dischord server channel on the frontend establishes a stateful, persistent WebSockets connection with the Rails server and receives broadcasted updates whenever a message is created, updated, or destroyed. Those changes are transmitted to Redux and the content renders live, allowing instant messaging and meme-sharing.
@@ -42,7 +49,9 @@ Dischord is a clone of [Discord](www.discord.com), a web based messaging applica
             return () => consumer.subscriptions.remove(sub)
         }
     }, [channelId])
-```    
+```
+![chat attach crop](https://github.com/acheung-94/dischord/assets/152105091/8e6d914f-b8cd-4012-8c67-66b2fd3758e2)
+   
 ### User Search
 - Making friends can be hard. Rails makes it easy! The user search feature leverages Rails associations and scopes to return users that meet a list of criteria. This filtering allows the end user to find a *new* friend without causing any database conflicts. Users can friend other users that aren't already somewhere on their accepted or pending friends list, can restore users that they've rejected back to their friends list *(water under the bridge and all that)*, or unblock them entirely, and allow them to send or receive a request from them again. 
 ```ruby
