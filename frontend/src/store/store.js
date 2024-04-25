@@ -25,6 +25,6 @@ const rootReducer = combineReducers({
 })
 
 const configureStore = (initialState = {}) => (
-    legacy_createStore(rootReducer, initialState, applyMiddleware(thunk))
+    legacy_createStore(rootReducer, initialState, applyMiddleware(thunk, logger))
 )
 export default configureStore;

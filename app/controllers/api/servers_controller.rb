@@ -11,7 +11,7 @@ class Api::ServersController < ApplicationController
         @server.owner_id = current_user.id
         if @server.save
             Membership.create(server_id: @server.id, user_id: @server.owner_id, status: 'accepted')
-            Channel.create(server_id: @server.id, name: 'general')
+            @default_channel = Channel.create(server_id: @server.id, name: 'general')
             render :show
         else
             render json: {errors: @server.errors}, status: 422
