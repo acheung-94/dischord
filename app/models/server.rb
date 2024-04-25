@@ -17,6 +17,12 @@ class Server < ApplicationRecord
         foreign_key: :owner_id,
         primary_key: :id
 
+    belongs_to :default_channel,
+        class_name: :Channel,
+        foreign_key: :default_channel_id,
+        primary_key: :id,
+        optional: true
+
     has_many :memberships,
         dependent: :destroy,
         inverse_of: :server
