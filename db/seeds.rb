@@ -74,12 +74,15 @@ Membership.create(user_id: 1, server_id: 1, status: 'accepted') #owner
 Membership.create(user_id: 1, server_id: 3, status: 'accepted') #owner
 Membership.create(user_id: 1, server_id: 2, status: 'accepted')
 
-Channel.create(name: 'general', server_id: 1)
+s1.default_channel = Channel.create(name: 'general', server_id: s1.id)
+s1.save
 Channel.create(name: 'meta-discussions', server_id: 1)
 Channel.create(name: 'off-topic', server_id: 1)
-Channel.create(name: 'general', server_id: 2)
+s2.default_channel = Channel.create(name: 'general', server_id: s2.id)
+s2.save
 Channel.create(name: 'notes-resources', server_id: 2)
-Channel.create(name: 'general', server_id: 3)
+s3.default_channel = Channel.create(name: 'general', server_id: s3.id)
+s3.save
 Channel.create(name: 'cats-only', server_id: 3)
 Channel.create(name: 'dogs-only', server_id: 3)
 Channel.create(name: 'DM-test', user_id: 1)

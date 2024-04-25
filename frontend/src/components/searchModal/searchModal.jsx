@@ -12,6 +12,7 @@ import { useParams } from 'react-router'
 
 const SearchModal = ({searchModal,setSearchModal}) => {
     const searchMode = useSelector(searchState)
+
     const dispatch = useDispatch()
     const { serverId } = useParams()    
     const conditionalResults = () => {

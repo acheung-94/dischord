@@ -15,3 +15,5 @@ end
 json.pendingMembers do
     json.array! @server.pending_members.map(&:id)
 end
+
+json.defaultChannelId @server.default_channel_id

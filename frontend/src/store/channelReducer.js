@@ -68,7 +68,10 @@ export const updateChannel = (channel) => (dispatch) => (
             }else {
                 throw res
             }
-        }).then(channel => dispatch(addChannel(channel)))
+        }).then(channel => {
+            dispatch(addChannel(channel))
+            return channel
+        })
 )
 // SELECTORS
 

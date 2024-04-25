@@ -38,7 +38,7 @@ class Api::ChannelsController < ApplicationController
         if @channel&.update(channel_params)
             render :show
         else
-            render json: {errors: @channel.errors}
+            render json: {errors: @channel.errors}, status: 422
         end
     end
 

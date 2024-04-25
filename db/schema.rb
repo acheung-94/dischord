@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_11_012812) do
+ActiveRecord::Schema[7.1].define(version: 2024_04_25_201433) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -89,6 +89,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_11_012812) do
     t.bigint "owner_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "default_channel_id"
+    t.index ["default_channel_id"], name: "index_servers_on_default_channel_id"
     t.index ["name"], name: "index_servers_on_name"
     t.index ["owner_id"], name: "index_servers_on_owner_id"
   end
@@ -116,5 +118,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_11_012812) do
   add_foreign_key "memberships", "users"
   add_foreign_key "messages", "channels"
   add_foreign_key "messages", "users", column: "author_id"
+  add_foreign_key "servers", "channels", column: "default_channel_id"
   add_foreign_key "servers", "users", column: "owner_id"
 end
