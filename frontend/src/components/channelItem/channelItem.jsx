@@ -20,8 +20,8 @@ const ChannelItem = ( { channel, server, currentUser } ) => {
     }
 
     const conditionalIcons = () => {
-        if (channel.name !== 'general'){
-            if ( currentUser.id === server.ownerId) {
+        if (channel.id !== server.defaultChannelId && 
+            currentUser.id === server.ownerId ){
                 return(
                     <>
                     <img src="https://dischord-clone-seeds.s3.us-west-1.amazonaws.com/icons/icon-edit.png" 
@@ -32,15 +32,15 @@ const ChannelItem = ( { channel, server, currentUser } ) => {
                             onClick={handleDelete}/>
                     </>
                 ) 
-            }else{
+        }else{
                return(
                 <img src="https://dischord-clone-seeds.s3.us-west-1.amazonaws.com/icons/icon-edit.png" 
                         className="channel-setting"
                         onClick={()=> setModalState('edit')} />
             ) 
-            }
         }
     }
+    
     return(
         <>
             <NavLink to={`/channels/${channel.serverId}/${channel.id}`}>
