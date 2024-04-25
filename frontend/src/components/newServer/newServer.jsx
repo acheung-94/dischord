@@ -9,6 +9,7 @@ import { useNavigate, useParams } from "react-router-dom"
 const NewServer = ( { setModalState, type, server}) => {
     const currentUser = useSelector(selectCurrentUser)
     const hiddenUpload = useRef()
+    const serverRef = useRef()
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const [filePreview, setFilePreview] = useState(null)
@@ -29,6 +30,9 @@ const NewServer = ( { setModalState, type, server}) => {
         }
     }, [type, server]) 
 
+    useEffect(()=>{
+        serverRef.current.focus()
+    }, [])
 
     const triggerUpload = () => hiddenUpload.current.click()
     const handleFile = (e) => {
@@ -102,6 +106,7 @@ const NewServer = ( { setModalState, type, server}) => {
                     <input type="text"
                         placeholder={ `${currentUser.username}'s server` }
                         value={serverData.name}
+                        ref={serverRef}
                         onChange={handleChange} />
                 <div className="new-server-footer">
                     <button type="submit" 

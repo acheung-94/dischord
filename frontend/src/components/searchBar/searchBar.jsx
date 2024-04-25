@@ -1,12 +1,13 @@
 import './searchBar.css'
 import { searchState } from '../../store/uiReducer';
 import { useDispatch, useSelector } from 'react-redux'
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { findUsers } from '../../store/searchReducer';
 import { resetResults } from '../../store/searchReducer';
 const SearchBar = ({type, setSearchMessage}) => {
     const searchMode = useSelector(searchState)
     const dispatch = useDispatch()
+    const searchRef = useRef()
     const [username, setUsername] = useState('')
 
     const handleSubmit = e => {
@@ -18,6 +19,9 @@ const SearchBar = ({type, setSearchMessage}) => {
             setSearchMessage('Loading...') 
         }
     }
+    useEffect(() => {
+        searchRef.current && searchRef.current.focus()
+    }, [searchRef])
 
     if(!type){ // ie if this is just for looks
         return(
@@ -32,7 +36,8 @@ const SearchBar = ({type, setSearchMessage}) => {
                 <label> Search for users by username:</label>
                 <div className="search-form-b">
                     <input type="text"
-                        placeholder='Type in a username to search...' 
+                        placeholder='Type in a username to search...'
+                        ref={searchRef} 
                         onChange={(e)=> setUsername(e.target.value)} 
                         onClick={(e)=> e.stopPropagation()} 
                         value={username}/>

@@ -1,5 +1,5 @@
 import { createChannel, updateChannel } from '../../store/channelReducer';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import './channelForm.css'
 import { useDispatch } from 'react-redux';
 import { useNavigate, useParams } from 'react-router';
@@ -7,6 +7,7 @@ import { useNavigate, useParams } from 'react-router';
 const ChannelForm = ( { modalState, setModalState, channel, server }) => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
+    const formRef = useRef()
     const [errors, setErrors] = useState('')
     const {serverId }= useParams()
     const [name, setName] = useState(
@@ -43,6 +44,10 @@ const ChannelForm = ( { modalState, setModalState, channel, server }) => {
         setModalState(false)
     }
 
+    useEffect(()=>{
+        formRef.current.focus()
+    },[])
+
     return(
         <>
         <div className="channel-form-bg" onClick={handleClose}>
@@ -56,7 +61,8 @@ const ChannelForm = ( { modalState, setModalState, channel, server }) => {
                              <img src="https://dischord-clone-seeds.s3.us-west-1.amazonaws.com/icons/channelTextThread.png" />
                         <input type="text" 
                             className='channel-input' 
-                            value={name} 
+                            value={name}
+                            ref={formRef} 
                             onChange={e => setName( e.target.value)}
                             placeholder={modalState === 'new' ? "new-channel" : ""}/>
                         </div>
