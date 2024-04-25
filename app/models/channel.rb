@@ -10,7 +10,7 @@
 #  updated_at :datetime         not null
 #
 class Channel < ApplicationRecord
-  validates :name, presence: true, length: {maximum: 100}, uniqueness: {scope: :server_id}
+  validates :name, presence: true, length: {maximum: 100}, uniqueness: {scope: :server_id, message: "Oops! Looks like there's already a channel with that name."}
   
   belongs_to :user,
     optional: true

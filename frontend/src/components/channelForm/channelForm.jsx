@@ -7,6 +7,7 @@ import { useNavigate, useParams } from 'react-router';
 const ChannelForm = ( { modalState, setModalState, channel, server }) => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
+    const [errors, setErrors] = useState('')
     const {serverId }= useParams()
     const [name, setName] = useState(
         modalState === 'edit' ? channel.name : ''
@@ -16,14 +17,25 @@ const ChannelForm = ( { modalState, setModalState, channel, server }) => {
         e.preventDefault()
         if (modalState === 'edit'){
             dispatch(updateChannel({...channel, name: name}))
-            setModalState(false)
-            navigate(`/channels/${serverId}/${channel.id}`)
+            .then( () => {
+                setModalState(false)
+                setErrors('')
+            })
+            .catch( async data => {
+                const error = await data.json()
+                setErrors( ...error.errors.name)
+            })
         }else{
             dispatch(createChannel({name, serverId: parseInt(serverId)}))
                 .then( (data) => {
                     setModalState(false)
+                    setErrors('')
                     navigate(`/channels/${serverId}/${data.id}`)
-                }) 
+                })
+                .catch( async data => {
+                    const error = await data.json()
+                    setErrors( ...error.errors.name)
+                })
         }
     }
     const handleClose = e => {
@@ -50,6 +62,7 @@ const ChannelForm = ( { modalState, setModalState, channel, server }) => {
                         </div>
                        
                         <p>Text channel: Send messages, opinions, and puns </p>
+                        <p className="err-msg">{errors && errors}</p>
                         <button type="submit" className='channel-submit'
                             disabled={ name ? false : true}
                             > {modalState === 'new' ? 'Create Channel' : 'Save'}</button>
