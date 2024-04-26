@@ -9,13 +9,16 @@
 #   end
 
 require 'open-uri'
-
+require 'faker'
 ActiveRecord::Base.connection.tables.each do |t|
      ActiveRecord::Base.connection.reset_pk_sequence!(t)
 end
+ICON_COLORS = %w(blurple gold gray green magenta red) 
+NUM_USERS = 20
+NUM_MSG = 100
 demo_1 = User.create(
      username: 'demo1',
-     display_name: 'Ludwig',
+     display_name: 'App Academy Grad',
      password: 'themostsecure',
      email: 'demo1@demo.com',
      ) 
@@ -88,11 +91,66 @@ Channel.create(name: 'dogs-only', server_id: 3)
 Channel.create(name: 'DM-test', user_id: 1)
 Channel.create(name: 'DM-test', user_id: 1)
 
-Message.create(body: 'first message!', channel_id: 1, author_id: 1)
-Message.create(body: 'wow this is sooooo cool', channel_id: 1, author_id: 2)
-Message.create(body: 'what am i doing', channel_id: 5, author_id: 1)
-Message.create(body: 'meow~', channel_id: 2, author_id: 1)
-Message.create(body: 'wooof!', channel_id: 3, author_id: 2)
-
 Friendship.create(sender_id: 1, recipient_id: 2, status: 'accepted')
 Friendship.create(sender_id: 1, recipient_id: 3, status: 'pending')
+
+#create users
+
+NUM_USERS.times {User.create(
+     username: Faker::Internet.username(specifier: 2..32),
+     password: Faker::Internet.password(min_length: 6, max_length: 20),
+     email: Faker::Internet.email,
+     display_name: [Faker::JapaneseMedia::StudioGhibli.character, 
+     Faker::Games::FinalFantasyXIV.character,
+     Faker::Movies::HarryPotter.character].sample)}
+#attach avatars
+
+User.all.each do |user|
+     if !user.avatar.attached?
+          color = ICON_COLORS.sample
+          avatar = URI.open("https://dischord-clone-seeds.s3.us-west-1.amazonaws.com/icons/avatar-#{color}.png")
+          user.avatar.attach(io: avatar, filename: "#{color}.png")
+          user.save
+     end
+end
+# create server per user'
+User.all.each do |user|
+     server = Server.create(name: Faker::Games::FinalFantasyXIV.zone, owner_id: user.id )
+     Membership.create(user_id: user.id, server_id: server.id, status: 'accepted')
+     Channel.create(server_id: server.id, name: 'general')
+end
+
+#create messages
+
+def randomMessage 
+     message_pool = [
+          Faker::Hacker.say_something_smart, 
+          Faker::Movies::HarryPotter.quote, 
+          Faker::Movies::Hobbit.quote, 
+          Faker::TvShows::TwinPeaks.quote
+     ]
+     message_pool.sample
+end
+NUM_MSG.times {
+     Message.create(
+          author_id: rand(1..(NUM_USERS+5)),
+          body: randomMessage,
+          channel_id: rand(1..(Channel.all.length))
+     )
+}
+
+# add members
+Server.all.each do |server|
+    5.times do
+     user_id = User.all.sample.id
+     Membership.create(user_id: user_id, server_id: server.id, status: 'accepted') unless (user_id == server.owner_id)
+    end
+end
+# make friends
+STATUSES = %w(accepted pending rejected)
+User.all.each do |user|
+     5.times do
+          recipient = User.where.not(id: user.id).sample
+          Friendship.create(sender_id: user.id, recipient_id: recipient.id, status: STATUSES.sample)
+     end
+end
