@@ -34,7 +34,7 @@ class Api::UsersController < ApplicationController
             @users = User.filtered_user_results(username, current_user)
         end
         if server_id
-            @server = Server.find_by(id: server_id)
+            @server = Server.includes(:members).find_by(id: server_id)
             #@server.includes(:memberships) #fetch server members
         end
         

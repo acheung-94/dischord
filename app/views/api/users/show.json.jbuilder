@@ -5,10 +5,10 @@ json.user do
     end
 end
 
-json.servers do 
-    json.array! @user.member_servers.map(&:id)
-end
+# json.servers do 
+#     json.array! @user.member_servers.map(&:id)
+# end
 
-json.channels do
-    json.array! @user.channels.map(&:id)
-end
+# json.channels do
+#     json.array! @user.channels.map(&:id)
+# end

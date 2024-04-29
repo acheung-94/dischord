@@ -6,14 +6,7 @@ class ApplicationController < ActionController::API
     
     def current_user
         token = session[:session_token]
-        @current_user ||= User.includes(
-            :member_servers,
-             :avatar, 
-             :channels, 
-             :pending_outgoing, 
-             :pending_incoming, 
-             :friends,
-             :enemies).find_by(session_token: token)
+        @current_user ||= User.includes(member_servers: [:members, :channels, :pending_members]).find_by(session_token: token)
     end
 
     def require_logged_in
