@@ -79,6 +79,6 @@ test:
 #
 production:
   <<: *default
-  database: dischord_production
-  username: dischord
-  password: <%= ENV["DISCHORD_DATABASE_PASSWORD"] %>
+  # database: dischord_production
+  # username: dischord
+  # password: <%= ENV["DISCHORD_DATABASE_PASSWORD"] %>
