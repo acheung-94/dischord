@@ -23,8 +23,14 @@ const rootReducer = combineReducers({
     messages: messageReducer,
     ui: uiReducer
 })
+let middleware;
+if (import.meta.env.PROD) {
+    middleware = applyMiddleware(thunk)
+} else {
+    middleware = applyMiddleware(thunk, logger)
+}
 
 const configureStore = (initialState = {}) => (
-    legacy_createStore(rootReducer, initialState, applyMiddleware(thunk, logger))
+    legacy_createStore(rootReducer, initialState, middleware)
 )
 export default configureStore;

@@ -117,31 +117,29 @@ end
 User.all.each do |user|
      server = Server.create(name: Faker::Games::FinalFantasyXIV.zone, owner_id: user.id )
      Membership.create(user_id: user.id, server_id: server.id, status: 'accepted')
-     Channel.create(server_id: server.id, name: 'general')
+     default = Channel.create(server_id: server.id, name: 'general')
+     server.default_channel_id = default.id
+     server.save
 end
 
 #create messages
 
-def randomMessage 
-     message_pool = [
-          Faker::Hacker.say_something_smart, 
-          Faker::Movies::HarryPotter.quote, 
-          Faker::Movies::Hobbit.quote, 
-          Faker::TvShows::TwinPeaks.quote
-     ]
-     message_pool.sample
-end
 NUM_MSG.times {
      Message.create(
           author_id: rand(1..(NUM_USERS+5)),
-          body: randomMessage,
+          body: [
+               Faker::Hacker.say_something_smart, 
+               Faker::Movies::HarryPotter.quote, 
+               Faker::Movies::Hobbit.quote, 
+               Faker::TvShows::TwinPeaks.quote
+          ].sample,
           channel_id: rand(1..(Channel.all.length))
      )
 }
 
 # add members
 Server.all.each do |server|
-    5.times do
+    3.times do
      user_id = User.all.sample.id
      Membership.create(user_id: user_id, server_id: server.id, status: 'accepted') unless (user_id == server.owner_id)
     end
@@ -149,7 +147,7 @@ end
 # make friends
 STATUSES = %w(accepted pending rejected)
 User.all.each do |user|
-     5.times do
+     3.times do
           recipient = User.where.not(id: user.id).sample
           Friendship.create(sender_id: user.id, recipient_id: recipient.id, status: STATUSES.sample)
      end
