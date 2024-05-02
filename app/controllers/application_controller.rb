@@ -1,4 +1,4 @@
-require 'rbtrace'
+# require 'rbtrace'
 # require 'memory_profiler'
 # report = MemoryProfiler.report do
 class ApplicationController < ActionController::API
