@@ -1,3 +1,4 @@
+# require 'memory_profiler'
 class Api::MessagesController < ApplicationController
     wrap_parameters include: Message.attribute_names + ['authorId', 'channelId']
     
@@ -12,6 +13,7 @@ class Api::MessagesController < ApplicationController
     end
 
     def create
+        # report = MemoryProfiler.report do
         @message = Message.new(message_params)
         if @message.save
             ChannelsChannel.broadcast_to(@message.channel, {
@@ -28,6 +30,9 @@ class Api::MessagesController < ApplicationController
         else
             render json: {errors: @message.errors}, status: 422
         end
+
+    # end
+    # report.pretty_print(to_file: '/home/acheung/Assignments/fullstack-dischord/dischord/reports.txt')
     end
 
     def show

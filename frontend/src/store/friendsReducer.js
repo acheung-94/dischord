@@ -72,7 +72,7 @@ export const deleteRequest = requestId => dispatch => (
 export const selectAccepted = createSelector(state => state.friends.accepted, accepted => accepted ? Object.values(accepted) : []) 
 export const selectPending = createSelector(state => state.friends.pending, pending => pending ? Object.values(pending) : [])
 export const selectRejected = createSelector(state => state.friends.rejected, rejected => rejected ? Object.values(rejected) : [])
-
+export const friendships = createSelector(state => state.friends, friends => Object.values(friends))
 const friendsReducer = (state = {}, action) => {
     const newState = { ...state }
     switch(action.type){

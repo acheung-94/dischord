@@ -29,5 +29,7 @@ group :development do
   # gem "spring"
   gem "annotate"
   gem "error_highlight", ">= 0.4.0", platforms: [:ruby]
+  gem "rbtrace"
+  gem "memory_profiler"
 end
 

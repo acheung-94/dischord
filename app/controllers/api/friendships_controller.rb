@@ -1,10 +1,14 @@
+# require 'memory_profiler'
 class Api::FriendshipsController < ApplicationController
 
     wrap_parameters include: Friendship.attribute_names + ['senderId', 'recipientId']
 
     def index
+        # report = MemoryProfiler.report do
         @current_user = current_user
         render :index
+        # end
+        # report.pretty_print(to_file: '/home/acheung/Assignments/fullstack-dischord/dischord/reports.txt')
     end
 
     def create

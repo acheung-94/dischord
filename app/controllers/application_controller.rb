@@ -1,3 +1,6 @@
+require 'rbtrace'
+# require 'memory_profiler'
+# report = MemoryProfiler.report do
 class ApplicationController < ActionController::API
     include ActionController::RequestForgeryProtection
     protect_from_forgery with: :exception
@@ -6,7 +9,11 @@ class ApplicationController < ActionController::API
     
     def current_user
         token = session[:session_token]
-        @current_user ||= User.includes(member_servers: [:members, :channels, :pending_members]).find_by(session_token: token)
+        @current_user ||= User.includes(member_servers: [:members, :channels, :pending_members],
+            pending_memberships: [:user, :server],
+            sent_friendships: :recipient,
+            received_friendships: :sender #avatar??
+            ).find_by(session_token: token)
     end
 
     def require_logged_in
@@ -44,3 +51,6 @@ class ApplicationController < ActionController::API
         params.deep_transform_keys!(&:underscore)
     end
 end
+
+# end
+# report.pretty_print(to_file: '/home/acheung/Assignments/fullstack-dischord/dischord/reports.txt' )

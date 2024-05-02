@@ -1,9 +1,13 @@
+# require 'memory_profiler'
 class Api::ServersController < ApplicationController
     before_action :require_logged_in
     wrap_parameters include: Server.attribute_names + ['serverIcon']
     def index
-        @user = current_user
-        render :index
+        # report = MemoryProfiler.report do
+            @user = current_user
+            render :index
+    #     end
+    #    report.pretty_print(to_file: '/home/acheung/Assignments/fullstack-dischord/dischord/reports.txt' )
     end
     
     def create

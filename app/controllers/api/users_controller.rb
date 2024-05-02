@@ -1,4 +1,5 @@
 require 'open-uri'
+# require 'memory_profiler'
 class Api::UsersController < ApplicationController
     wrap_parameters include: User.attribute_names + ['password'] #allows nesting of password under :user key, for the rest, Rails will find a column and automatically nest any matching attributes under 'user'.
     before_action :require_logged_out, only: [:create]
@@ -27,6 +28,8 @@ class Api::UsersController < ApplicationController
     end
 
     def index
+        # report = MemoryProfiler.report do    
+
         username = params[:username] #query string
         server_id = params[:server_id] #query string
         if username
@@ -39,6 +42,9 @@ class Api::UsersController < ApplicationController
         end
         
         render :index
+        
+        # end
+        # report.pretty_print(to_file: '/home/acheung/Assignments/fullstack-dischord/dischord/reports.txt' )
     end
 
     private
