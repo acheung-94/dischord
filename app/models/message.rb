@@ -10,7 +10,7 @@
 #  updated_at :datetime         not null
 #
 class Message < ApplicationRecord
-  validates :body, presence: true
+  # validates :body, presence: true
 
   # ASSOCIATIONS
   belongs_to :author,

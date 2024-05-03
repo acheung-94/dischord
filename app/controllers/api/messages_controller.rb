@@ -16,7 +16,7 @@ class Api::MessagesController < ApplicationController
         if @message.save
             ChannelsChannel.broadcast_to(@message.channel, {
                 id: @message.id,
-                body: @message.body,
+                body: @message.body ? @message.body : nil,
                 authorId: @message.author_id,
                 channelId: @message.channel_id,
                 attachmentUrl: @message.attachment.attached? ? url_for(@message.attachment) : nil,
@@ -39,7 +39,7 @@ class Api::MessagesController < ApplicationController
         if @message&.update(message_params)
             ChannelsChannel.broadcast_to(@message.channel, {
                 id: @message.id,
-                body: @message.body,
+                body: @message.body ? @message.body : nil,
                 authorId: @message.author_id,
                 channelId: @message.channel_id,
                 attachmentUrl: @message.attachment.attached? ? url_for(@message.attachment) : nil,

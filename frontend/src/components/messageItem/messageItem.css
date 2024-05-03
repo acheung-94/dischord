@@ -22,7 +22,6 @@
     width: auto;
     height: 20px;
     gap: 10px;
-
 }
 
 .message-author{
@@ -82,4 +81,5 @@
 .message-attachment img{
     margin: 8px;
     border-radius: 20px;
+    max-width: 60%;
 }

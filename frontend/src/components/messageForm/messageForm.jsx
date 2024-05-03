@@ -70,7 +70,7 @@ const MessageForm = ({messageState, oldMessage, setMessageState, channel }) => {
         if (message.attachment){
             messageFormObj.append('message[attachment]', message.attachment)
         }
-        if (message.body){
+        if (message.body.trim() || message.attachment){
             if (messageState) {
                 dispatch(updateMessage(messageFormObj, oldMessage.id))
                 setMessageState(false)
