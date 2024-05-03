@@ -82,4 +82,5 @@
 .message-attachment img{
     margin: 8px;
     border-radius: 20px;
+    max-width: 60%;
 }
