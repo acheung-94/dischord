@@ -80,8 +80,8 @@ export const removeServer = (serverId) => (dispatch) => (
     })
 )
 
-export const leaveServer = (serverId) => (dispatch) => (
-    deleteMembership(serverId).then(res => {
+export const leaveServer = (membershipId) => (dispatch) => (
+    deleteMembership(membershipId).then(res => {
 
         if (res.ok){
             dispatch(getUserServers()) //refresh server list

@@ -6,22 +6,23 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { useState } from 'react'
 import { setSearch, searchState } from '../../store/uiReducer'
 import NewServer from '../newServer/newServer'
-import SearchModal from '../searchModal/searchModal'
-const ServerOptions = ( {server, searchModal, setSearchModal}) => {
+import { selectMembers } from '../../store/membersReducer'
+
+const ServerOptions = ( {server, setSearchModal}) => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
-    const serverId = useParams()
     const currentUser = useSelector(selectCurrentUser)
     const [modalState, setModalState] = useState(false) 
-    const invitationMode = useSelector(searchState)
-    
+    const members = useSelector(selectMembers)
     const handleDelete = () => {
         dispatch(removeServer(server.id))
         navigate('/channels/@me')
     }
 
     const handleLeaving = () => {
-        dispatch(leaveServer(parseInt(serverId.serverId)))
+        const membership = members.find(membership => membership.userId === currentUser.id)
+        console.log(membership)
+        dispatch(leaveServer(membership.id))
         navigate('/channels/@me')
     }
 
@@ -56,12 +57,14 @@ const ServerOptions = ( {server, searchModal, setSearchModal}) => {
                     <img className='options-icons' src='https://dischord-clone-seeds.s3.us-west-1.amazonaws.com/icons/guildDeleteServer.png' />
                 </span>
             )}
-            
-            <span className="leave-server"
+            { currentUser.id !== server.ownerId && (
+               <span className="leave-server"
                     onClick={handleLeaving}>
                 Leave Server
-                <img className='options-icons' src="https://dischord-clone-seeds.s3.us-west-1.amazonaws.com/icons/leaving.png" />
-            </span>
+                    <img className='options-icons' src="https://dischord-clone-seeds.s3.us-west-1.amazonaws.com/icons/leaving.png" />
+                </span> 
+            )}
+            
 
         </div>
             { modalState && (
