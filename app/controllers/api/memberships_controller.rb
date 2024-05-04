@@ -1,8 +1,14 @@
 class Api::MembershipsController < ApplicationController
     wrap_parameters include: Membership.attribute_names + ['serverId', 'userId']
     def index
-        @memberships = current_user.pending_memberships
-        render :index
+        server_id = params[:server_id]
+        if server_id == '@me'
+            @user_memberships = current_user.pending_memberships
+            render :index
+        else
+            @server_memberships = Membership.includes(:user).where(server_id: server_id)
+            render :index
+        end
     end
     
     def create

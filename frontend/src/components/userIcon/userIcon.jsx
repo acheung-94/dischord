@@ -3,9 +3,10 @@ import { useDispatch, useSelector} from "react-redux"
 import UserProfile from '../userProfile/userProfile'
 import { setProfile, previewState, setPreview } from '../../store/uiReducer'
 import { updateFriends, deleteRequest } from '../../store/friendsReducer'
+import serverInviteReducer from '../../store/serverInviteReducer'
 
 
-const UserIcon = ({user, type}) => {
+const UserIcon = ({user, server, type}) => {
 
     const currentPreview = useSelector(previewState)
 
@@ -20,7 +21,7 @@ const UserIcon = ({user, type}) => {
             if(currentPreview && e.currentTarget.className.includes('active')){
                 dispatch(setPreview(false))
             }else{
-                dispatch(setPreview(user))
+                dispatch(setPreview(user.userId))
             }
 
         }
@@ -48,9 +49,9 @@ const UserIcon = ({user, type}) => {
         e.stopPropagation()
         dispatch(deleteRequest(user.requestId))
     }
-        return(
-            <div className="user-icon-wrapper">
-                <div className={(currentPreview.id === user.id && type !== 'bottom-left')? 'user-icon active' : 'user-icon'} 
+        return(//user.userId?
+            <div className="user-icon-wrapper"> 
+                <div className={(currentPreview === user.userId && type !== 'bottom-left')? 'user-icon active' : 'user-icon'} 
                     onClick={handleClick} 
                     >
                     <div className="icon-img">
@@ -61,13 +62,13 @@ const UserIcon = ({user, type}) => {
                         {type ? (<h4>{user.displayName}</h4>) : <p>{user.displayName}</p>}
                         { type === 'bottom-left' && (<p>Online</p>)}
                     </div>
-                    {user.owner && (
+                    { (server && user.userId === server.ownerId) && (
                         <div className="owner-icon">
                             <img src="https://dischord-clone-seeds.s3.us-west-1.amazonaws.com/icons/guildOwner.png" />
                         </div>
                     )}
           
-                    {(currentPreview && currentPreview.id === user.id && type !== 'bottom-left') && (
+                    {(currentPreview && currentPreview === user.userId && type !== 'bottom-left') && (
                         <UserProfile type={type} user={user} />
                     )}
                 </div>

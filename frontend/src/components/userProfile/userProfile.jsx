@@ -37,7 +37,7 @@ const UserProfile = ({type, user}) => {
                                 <h3>Member Since:</h3>
                                 <div className="date">
                                     <img src="https://dischord-clone-seeds.s3.us-west-1.amazonaws.com/icons/Vector.png" />
-                                    <p>{ !profile ? user.accountCreated : profile.joinDate}</p>
+                                    <p>{ !profile ? user.memberSince : profile.joinDate}</p>
                                 </div>
                             </div>
                         </div>
