@@ -5,6 +5,7 @@ const SET_FRIENDS_LIST = 'ui/SET_FRIENDS_LIST'
 const SET_SEARCH = 'ui/SET_SEARCH'
 const TOGGLE_LOADING = 'ui/TOGGLE_LOADING'
 const SET_PREVIEW = 'ui/SET_PREVIEW'
+const SET_CONTEXT = 'ui/TOGGLE_CONTEXT'
 
 export const togglePanel = () => ({
     type: TOGGLE_PANEL
@@ -38,12 +39,18 @@ export const setPreview =(user) => ({
     user
 })
 
+export const setContextTarget = (member) => ({
+    type: SET_CONTEXT,
+    member
+})
+
 export const panelState = state => state.ui.rightPanel
 export const profileState = state => state.ui.userProfile
 export const friendsListState = state => state.ui.friendsList
 export const searchState = state => state.ui.searchMode
 export const loadingState = state => state.ui.isLoading
 export const previewState = state => state.ui.userPreview
+export const contextMenu = state => state.ui.contextMenu
 
 const initialState = {
     rightPanel: false,
@@ -51,7 +58,8 @@ const initialState = {
     friendsList: 'accepted',
     searchMode: false,
     isLoading: false,
-    userPreview: false
+    userPreview: false,
+    contextMenu: false
 }
 
 const uiReducer = (state=initialState, action) => {
@@ -71,6 +79,8 @@ const uiReducer = (state=initialState, action) => {
             return { ...newState, searchMode: action.searchMode }
         case TOGGLE_LOADING:
             return { ...newState, isLoading: !newState.isLoading }
+        case SET_CONTEXT:
+            return { ...newState, contextMenu: action.member }
         default:
             return state;
     }

@@ -1,0 +1,31 @@
+.member-context-menu{
+    position: absolute;
+    display: none;
+    width: 200px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    background-color: #1E1F22;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.transfer-ownership{
+    display: flex;
+    font-size: 14px;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px;
+    box-sizing: border-box;
+    transition: all 0.2s ease;
+}
+.transfer-ownership img{
+    width: 20px;
+}
+
+.transfer-ownership:hover{
+    background-color: var(--blurple);
+    cursor: pointer;
+    color: #fff;
+    border-radius: 4px;
+}

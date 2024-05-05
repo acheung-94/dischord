@@ -21,7 +21,6 @@ const ServerOptions = ( {server, setSearchModal}) => {
 
     const handleLeaving = () => {
         const membership = members.find(membership => membership.userId === currentUser.id)
-        console.log(membership)
         dispatch(leaveServer(membership.id))
         navigate('/channels/@me')
     }
