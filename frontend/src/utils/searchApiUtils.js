@@ -1,5 +1,5 @@
 export const getMembers = serverId => (
-    fetch(`/api/users/?server_id=${serverId}`)
+    fetch(`/api/servers/${serverId}/memberships`)
 )
 
 export const getUsers = username => (

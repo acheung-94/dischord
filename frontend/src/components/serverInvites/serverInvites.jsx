@@ -1,15 +1,16 @@
 import { useEffect } from 'react'
+import { useParams } from 'react-router-dom'
 import './serverInvites.css'
 import {useSelector, useDispatch} from 'react-redux'
 import PendingRequest from '../pendingRequests/PendingRequest'
 import { selectServerInvites, loadInvites} from '../../store/serverInviteReducer'
 const ServerInvitations = () => {
-
+    const {serverId} = useParams()
     const dispatch = useDispatch()
     const invitations = useSelector(selectServerInvites)
     useEffect(() => {
-        dispatch(loadInvites())
-    }, [])
+        dispatch(loadInvites(serverId)) //string, @me
+    }, [dispatch, serverId])
     return(
         <div className="server-inv-container">
             <h1> Server Invitations </h1>

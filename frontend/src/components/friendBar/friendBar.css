@@ -60,9 +60,10 @@
     background-color: #248046;
     color: #fff;
     border-radius: 8px;
+    box-sizing: border-box;
+    transition: all 0.2s ease;
 }
 
 .view-bar .add-friend:hover{
-    color: rgb(0, 165, 0);
-    border: 1px solid rgb(0, 165, 0);
+    background-color: #2fa75b;
 }

@@ -8,8 +8,8 @@ export const receiveInvites = invites => ({
     invites
 })
 
-const getInvites = () => (
-    csrfFetch('/api/memberships')
+const getInvites = (serverId) => (
+    csrfFetch(`/api/server/${serverId}/memberships`)
 )
 
 export const postInvite = (invite) => (
@@ -27,8 +27,8 @@ const patchInvite = invite => (
 )
 
 
-export const loadInvites = () => dispatch => (
-    getInvites().then(res => {
+export const loadInvites = (serverId) => dispatch => (
+    getInvites(serverId).then(res => {
         if (res.ok) {
             return res.json()
         }else{
