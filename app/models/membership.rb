@@ -9,9 +9,10 @@
 #  updated_at :datetime         not null
 #
 class Membership < ApplicationRecord
-    validates :user_id, :server_id, presence: true
+    validates :server_id, presence: true
     validates :status, inclusion: {in: %w(accepted pending rejected)}
- 
+    validates :user_id, presence: true, uniqueness: {scope: :server_id}
+    
     belongs_to :user
 
     belongs_to :server
