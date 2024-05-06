@@ -32,13 +32,14 @@ const ChannelItem = ( { channel, server, currentUser } ) => {
                             onClick={handleDelete}/>
                     </>
                 ) 
-        }else{
-               return(
+        }else if (currentUser.id !== server.ownerId && channel.id !== server.defaultChannelId){
+           return(
                 <img src="https://dischord-clone-seeds.s3.us-west-1.amazonaws.com/icons/icon-edit.png" 
                         className="channel-setting"
                         onClick={()=> setModalState('edit')} />
-            ) 
+            )  
         }
+        
     }
     
     return(

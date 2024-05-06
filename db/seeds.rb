@@ -117,7 +117,7 @@ end
 User.all.each do |user|
      server = Server.create(name: Faker::Games::FinalFantasyXIV.zone, owner_id: user.id )
      Membership.create(user_id: user.id, server_id: server.id, status: 'accepted')
-     Channel.create(server_id: server.id, name: 'general')
+     server.default_channel = Channel.create(server_id: server.id, name: 'general')
 end
 
 #create messages
