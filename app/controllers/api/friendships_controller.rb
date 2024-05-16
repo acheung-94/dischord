@@ -11,6 +11,12 @@ class Api::FriendshipsController < ApplicationController
         @friendship = Friendship.new(friendship_params)
         if @friendship.save
             @current_user = current_user
+            UsersChannel.broadcast_to(@current_user, {
+                id: @friendship.id,
+                sender_id: @friendship.sender_id,
+                recipient_id: @friendship.recipient_id,
+                username: @friendship.
+            })
             render :index
         else
             render json: @friendship.errors.full_messages, status: 422
