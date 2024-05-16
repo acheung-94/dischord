@@ -48,6 +48,7 @@
         json.extract! request, :id, :status
         json.recipient request.recipient.username
         json.displayName request.recipient.display_name
+        json.userId request.recipient.id
         json.joinDate request.recipient.created_at.to_time.localtime.strftime('%B %_e,%Y')
         if request.recipient.avatar.attached?
             json.avatarUrl url_for(request.recipient.avatar)
@@ -64,6 +65,7 @@ end
         json.extract! request, :id, :status
         json.sender request.sender.username
         json.displayName request.sender.display_name
+        json.userId request.sender.id
         json.joinDate request.sender.created_at.to_time.localtime.strftime('%B %_e,%Y')
         if request.sender.avatar.attached?
             json.avatarUrl url_for(request.sender.avatar)

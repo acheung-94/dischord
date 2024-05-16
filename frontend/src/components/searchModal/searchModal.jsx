@@ -6,7 +6,7 @@ import Result from '../result/result'
 import { selectSearchResults } from '../../store/searchReducer'
 import { selectServer } from '../../store/serverReducer'
 import { resetResults } from '../../store/searchReducer'
-import { selectAccepted, fetchFriends } from '../../store/friendsReducer'
+import { fetchFriends, selectFriends } from '../../store/friendsReducer'
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router'
 
@@ -21,7 +21,7 @@ const SearchModal = ({searchModal,setSearchModal}) => {
                 return useSelector(selectSearchResults)
             case 'server':
                 const server = useSelector(selectServer(parseInt(serverId)))
-                const friends = useSelector(selectAccepted)
+                const friends = useSelector(selectFriends)
                 const filteredFriends = friends.filter((friend) => 
                     !server.members.includes(friend.id) && 
                     !server.pendingMembers.includes(friend.id))

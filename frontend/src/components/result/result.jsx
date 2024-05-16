@@ -22,7 +22,7 @@ const Result = ({user, setSearchModal}) => {
             setSearchModal(false)
         }else if (searchMode === 'server'){
             const membership = {
-                userId : user.id,
+                userId : user.userId,
                 serverId : serverId,
                 status: 'pending'
             }
@@ -40,7 +40,7 @@ const Result = ({user, setSearchModal}) => {
                     <img className='status' src="https://dischord-clone-seeds.s3.us-west-1.amazonaws.com/icons/icon-on.png" />
                 </div>
                 <div className="user-icon-text">
-                    <h4>{user.username}</h4>
+                    <h4>{user.username || user.sender || user.recipient}</h4>
                 </div>
             </div>
                 <div className="initiate-request">

@@ -15,7 +15,7 @@ class Api::FriendshipsController < ApplicationController
                 id: @friendship.id,
                 sender_id: @friendship.sender_id,
                 recipient_id: @friendship.recipient_id,
-                status: @friendship.status
+                status: @friendship.status,
                 username: @current_user.id != @friendship.sender_id ? @friendship.sender.username : @friendship.recipient.username,
                 displayName: @current_user.id != @friendship.sender_id ? @friendsdhip.sender.display_name : @friendship.recipient.display_name,
                 outgoing: @friendship.status == 'pending' && @current_user.id == @friendship.sender_id,
