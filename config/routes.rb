@@ -23,7 +23,7 @@ Rails.application.routes.draw do
     
     resources :friendships, only: [:index, :create, :update, :destroy]
   end
-  
+  get '/cron', to: "static_pages#cron"
   get '*path', to: "static_pages#frontend_index"
 end
 
