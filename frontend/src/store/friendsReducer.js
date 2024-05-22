@@ -1,18 +1,23 @@
 import {createSelector} from 'reselect'
 import { csrfFetch } from '../utils/csrfUtils'
 const ADD_FRIENDS = 'friends/ADD_FRIENDS'
-const ADD_REQUEST = 'friends/ADD_REQUEST'
+const ADD_FRIEND = 'friends/ADD_FRIEND'
 
 export const addFriends = (friends) => ({
     type: ADD_FRIENDS,
     friends
 })
 
+export const addFriend = (friend) => ({
+    type: ADD_FRIEND,
+    friend
+})
+
 const getFriends = () => (
     fetch('/api/friendships')
 )
 
-const postFriends = (friendship) => (
+export const postFriends = (friendship) => (
     csrfFetch('/api/friendships', {
         method: 'post',
         body: JSON.stringify(friendship) // not an instance of FormData
@@ -75,6 +80,8 @@ const friendsReducer = (state = {}, action) => {
     switch(action.type){
         case ADD_FRIENDS:
             return action.friends;
+        case ADD_FRIEND:
+            return {...newState, [action.friend.id] : action.friend}
         default:
             return state;
     }

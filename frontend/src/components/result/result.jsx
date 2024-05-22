@@ -1,4 +1,4 @@
-import { makeFriends } from '../../store/friendsReducer'
+import { postFriends } from '../../store/friendsReducer'
 import { postInvite } from '../../store/serverInviteReducer'
 import { selectCurrentUser } from '../../store/sessionReducer'
 import { searchState } from '../../store/uiReducer'
@@ -18,7 +18,7 @@ const Result = ({user, setSearchModal}) => {
                 recipientId : user.id,
                 status: 'pending'
             }
-            dispatch(makeFriends(friendship))
+            postFriends(friendship)
             setSearchModal(false)
         }else if (searchMode === 'server'){
             const membership = {
