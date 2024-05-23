@@ -71,7 +71,6 @@ const Layout = ({type}) => {
                 <Left type={type}/>
                 <Middle type={type}/>
                 <Top type={type} />
-
             </div>
         </div>
     )}
