@@ -35,8 +35,6 @@ class Api::FriendshipsController < ApplicationController
                 avatarUrl: url_for(@friendship.sender.avatar),
                 joinDate: @friendship.sender.created_at.to_time.localtime.strftime('%B %_e,%Y')
             })
-
-            # render :index
         else
             render json: @friendship.errors.full_messages, status: 422
         end
@@ -56,7 +54,6 @@ class Api::FriendshipsController < ApplicationController
         @friendship = Friendship.find_by(id: params[:id])
         if @friendship
             @friendship.destroy
-            @current_user = current_user
             head :no_content
         else
             render json: {errors: 'could not destroy'}, status: 404
