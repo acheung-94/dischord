@@ -51,9 +51,10 @@ const Layout = ({type}) => {
     
     useEffect(() => {
         if (currentUser){
-            const sub = consumer.subscriptions.create( {
-                channel: 'UsersChannel'
-            }, {
+            const sub = consumer.subscriptions.create("UsersChannel", {
+                connected(){
+                    console.log('SUBSCRIBED!!!!')
+                },
                 received(friendRequest){
                     console.log("got a friend request!!")
                     dispatch(addFriend(friendRequest))

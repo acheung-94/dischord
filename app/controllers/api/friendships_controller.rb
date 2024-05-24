@@ -11,7 +11,8 @@ class Api::FriendshipsController < ApplicationController
         @friendship = Friendship.new(friendship_params)
         if @friendship.save
             @current_user = current_user
-            UsersChannel.broadcast_to(@current_user, {
+            puts @friendship.sender.username
+            UsersChannel.broadcast_to(@friendship.sender, {
                 id: @friendship.id,
                 sender_id: @friendship.sender_id,
                 recipient_id: @friendship.recipient_id,
