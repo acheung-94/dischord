@@ -17,13 +17,14 @@ class Api::FriendshipsController < ApplicationController
                 sender_id: @friendship.sender_id,
                 recipient_id: @friendship.recipient_id,
                 status: @friendship.status,
-                username: @current_user.id != @friendship.sender_id ? @friendship.sender.username : @friendship.recipient.username,
+                recipient: @friendship.recipient.username,
                 displayName: @current_user.id != @friendship.sender_id ? @friendsdhip.sender.display_name : @friendship.recipient.display_name,
                 outgoing: @friendship.status == 'pending' && @current_user.id == @friendship.sender_id,
                 incoming: @friendship.status == 'pending' && @current_user.id == @friendship.recipient_id,
                 avatarUrl: @current_user.id != @friendship.sender_id ? url_for(@friendship.sender.avatar) : url_for(@friendship.recipient.avatar),
                 joinDate: @current_user.id != @friendship.sender_id ? @friendship.sender.created_at.to_time.localtime.strftime('%B %_e,%Y') : @friendship.recipient.created_at.to_time.localtime.strftime('%B %_e,%Y')
             })
+            
             # render :index
         else
             render json: @friendship.errors.full_messages, status: 422
