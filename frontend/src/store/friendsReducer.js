@@ -2,6 +2,7 @@ import {createSelector} from 'reselect'
 import { csrfFetch } from '../utils/csrfUtils'
 const ADD_FRIENDS = 'friends/ADD_FRIENDS'
 const ADD_FRIEND = 'friends/ADD_FRIEND'
+const REMOVE_REQUEST = 'friends/REMOVE_REQUEST'
 
 export const addFriends = (friends) => ({
     type: ADD_FRIENDS,
@@ -11,6 +12,11 @@ export const addFriends = (friends) => ({
 export const addFriend = (friend) => ({
     type: ADD_FRIEND,
     friend
+})
+
+export const removeRequest = (requestId) => ({
+    type: REMOVE_REQUEST,
+    requestId
 })
 
 const getFriends = () => (
@@ -69,7 +75,8 @@ export const updateFriends = friendship => dispatch => (
 export const deleteRequest = requestId => dispatch => (
     deleteFriendship(requestId).then(res => {
         if (res.ok) {
-            dispatch(fetchFriends())
+            console.log('removing request from state...')
+            dispatch(removeRequest(requestId))
         }
     })
 )
@@ -81,7 +88,10 @@ const friendsReducer = (state = {}, action) => {
         case ADD_FRIENDS:
             return action.friends;
         case ADD_FRIEND:
-            return {...newState, [action.friend.id] : action.friend}
+            return {...newState, [action.friend.id] : action.friend};
+        case REMOVE_REQUEST:
+            delete newState[action.requestId]
+            return newState
         default:
             return state;
     }
