@@ -12,13 +12,14 @@ import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { getUserServers } from "../../store/serverReducer";
 import { getServerChannels } from "../../store/channelReducer";
-import { loadingState, toggleLoading } from "../../store/uiReducer";
+import { loadingState} from "../../store/uiReducer";
+import consumer from "../../utils/consumer";
+import { addFriend } from "../../store/friendsReducer";
 const Layout = ({type}) => {
     // STATE
     const currentUser = useSelector(selectCurrentUser)
     const navigate = useNavigate()
     const dispatch = useDispatch()
-    const [isLoading, setIsLoading] = useState(true)
     const {serverId, channelId} = useParams()
     const loading = useSelector(loadingState)
     const isValid = () => {
@@ -47,7 +48,21 @@ const Layout = ({type}) => {
             dispatch(getUserServers())
         }
     }, [currentUser])
-
+    
+    useEffect(() => {
+        if (currentUser){
+            const sub = consumer.subscriptions.create("UsersChannel", {
+                connected(){
+                    console.log('SUBSCRIBED!!!!')
+                },
+                received(friendRequest){
+                    console.log("got a friend request!!")
+                    dispatch(addFriend(friendRequest))
+                }
+            })
+            return () => consumer.subscriptions.remove(sub)
+        }
+    }, [currentUser, dispatch])
     // RENDER
     
     if (currentUser) {

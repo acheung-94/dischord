@@ -1,6 +1,6 @@
 import './request.css'
 import {useSelector, useDispatch} from 'react-redux'
-import { updateFriends } from '../../store/friendsReducer'
+import { deleteRequest, updateFriends } from '../../store/friendsReducer'
 import { updateInvites } from '../../store/serverInviteReducer'
 import { getUserServers } from '../../store/serverReducer'
 
@@ -25,6 +25,10 @@ const PendingRequest = ( {request, type}) => {
             dispatch(updateFriends(invitation))
         }
     }
+
+    const handleCancel = () => {
+        dispatch(deleteRequest(request.id))
+     }
 
     const conditionalIcon = () => {
         if (type === 'server'){
@@ -62,6 +66,13 @@ const PendingRequest = ( {request, type}) => {
                     <img src='https://dischord-clone-seeds.s3.us-west-1.amazonaws.com/icons/guildCross.png'
                         className='request-deny'
                         onClick={handleReject}/>
+                </div>
+            )}
+            { (request.outgoing) && (
+                <div className="response-icons">
+                    <img src="https://dischord-clone-seeds.s3.us-west-1.amazonaws.com/icons/guildCross.png" 
+                        className='request-deny'
+                        onClick={handleCancel}/>
                 </div>
             )}
         </div>

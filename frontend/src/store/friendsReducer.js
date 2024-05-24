@@ -1,18 +1,29 @@
 import {createSelector} from 'reselect'
 import { csrfFetch } from '../utils/csrfUtils'
 const ADD_FRIENDS = 'friends/ADD_FRIENDS'
-const ADD_REQUEST = 'friends/ADD_REQUEST'
+const ADD_FRIEND = 'friends/ADD_FRIEND'
+const REMOVE_REQUEST = 'friends/REMOVE_REQUEST'
 
 export const addFriends = (friends) => ({
     type: ADD_FRIENDS,
     friends
 })
 
+export const addFriend = (friend) => ({
+    type: ADD_FRIEND,
+    friend
+})
+
+export const removeRequest = (requestId) => ({
+    type: REMOVE_REQUEST,
+    requestId
+})
+
 const getFriends = () => (
     fetch('/api/friendships')
 )
 
-const postFriends = (friendship) => (
+export const postFriends = (friendship) => (
     csrfFetch('/api/friendships', {
         method: 'post',
         body: JSON.stringify(friendship) // not an instance of FormData
@@ -64,20 +75,23 @@ export const updateFriends = friendship => dispatch => (
 export const deleteRequest = requestId => dispatch => (
     deleteFriendship(requestId).then(res => {
         if (res.ok) {
-            dispatch(fetchFriends())
+            console.log('removing request from state...')
+            dispatch(removeRequest(requestId))
         }
     })
 )
 
-export const selectAccepted = createSelector(state => state.friends.accepted, accepted => accepted ? Object.values(accepted) : []) 
-export const selectPending = createSelector(state => state.friends.pending, pending => pending ? Object.values(pending) : [])
-export const selectRejected = createSelector(state => state.friends.rejected, rejected => rejected ? Object.values(rejected) : [])
-
+export const selectFriends = createSelector(state => state.friends, friends => Object.values(friends))
 const friendsReducer = (state = {}, action) => {
     const newState = { ...state }
     switch(action.type){
         case ADD_FRIENDS:
             return action.friends;
+        case ADD_FRIEND:
+            return {...newState, [action.friend.id] : action.friend};
+        case REMOVE_REQUEST:
+            delete newState[action.requestId]
+            return newState
         default:
             return state;
     }

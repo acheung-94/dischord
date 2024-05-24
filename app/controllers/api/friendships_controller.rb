@@ -11,7 +11,30 @@ class Api::FriendshipsController < ApplicationController
         @friendship = Friendship.new(friendship_params)
         if @friendship.save
             @current_user = current_user
-            render :index
+            puts @friendship.sender.username
+            UsersChannel.broadcast_to(@friendship.sender, {
+                id: @friendship.id,
+                sender_id: @friendship.sender_id,
+                recipient_id: @friendship.recipient_id,
+                status: @friendship.status,
+                recipient: @friendship.recipient.username,
+                displayName: @friendship.recipient.display_name,
+                outgoing: true,
+                avatarUrl: url_for(@friendship.recipient.avatar),
+                joinDate: @friendship.recipient.created_at.to_time.localtime.strftime('%B %_e,%Y')
+            })
+
+            UsersChannel.broadcast_to(@friendship.recipient, {
+                id: @friendship.id,
+                sender_id: @friendship.sender_id,
+                recipient_id: @friendship.recipient_id,
+                status: @friendship.status,
+                sender: @friendship.sender.username,
+                displayName: @friendship.sender.display_name,
+                incoming: true,
+                avatarUrl: url_for(@friendship.sender.avatar),
+                joinDate: @friendship.sender.created_at.to_time.localtime.strftime('%B %_e,%Y')
+            })
         else
             render json: @friendship.errors.full_messages, status: 422
         end
@@ -31,7 +54,6 @@ class Api::FriendshipsController < ApplicationController
         @friendship = Friendship.find_by(id: params[:id])
         if @friendship
             @friendship.destroy
-            @current_user = current_user
             head :no_content
         else
             render json: {errors: 'could not destroy'}, status: 404

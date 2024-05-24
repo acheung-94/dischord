@@ -1,25 +1,26 @@
 import './friendsList.css'
 import {useSelector, useDispatch} from 'react-redux'
 import { friendsListState } from '../../store/uiReducer'
-import { selectAccepted, selectPending, selectRejected } from '../../store/friendsReducer'
+import { selectFriends } from '../../store/friendsReducer'
 import UserIcon from '../userIcon/userIcon'
 import PendingRequest from '../pendingRequests/PendingRequest'
 const FriendsList = ({type}) => {
     const view = useSelector(friendsListState)
+    const friends = useSelector(selectFriends)
     let headerText;
     const conditionalList = () => {
         switch(view){
             case "accepted":
                 headerText = "All Friends"
-                return useSelector(selectAccepted);
+                return friends.filter( friendship => friendship.status === 'accepted');
             case "pending":
                 headerText = "Pending Requests"
-                return useSelector(selectPending)
+                return friends.filter( friendship => friendship.status === 'pending')
             case "rejected":
                 headerText = "Blocked Requests"
-                return useSelector(selectRejected);
+                return friends.filter( friendship => friendship.status === 'rejected');
             case "server":
-                return useSelector(selectAccepted);
+                return friends.filter( friendship => friendship.status === 'accepted');
             default:
                 return ["default"]
         }
