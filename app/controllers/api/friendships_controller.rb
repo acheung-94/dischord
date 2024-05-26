@@ -12,7 +12,7 @@ class Api::FriendshipsController < ApplicationController
         if @friendship.save
             @current_user = current_user
             puts @friendship.sender.username
-            UsersChannel.broadcast_to(@friendship.sender, {
+            FriendshipsChannel.broadcast_to(@friendship.sender, {
                 id: @friendship.id,
                 sender_id: @friendship.sender_id,
                 recipient_id: @friendship.recipient_id,
@@ -24,7 +24,7 @@ class Api::FriendshipsController < ApplicationController
                 joinDate: @friendship.recipient.created_at.to_time.localtime.strftime('%B %_e,%Y')
             })
 
-            UsersChannel.broadcast_to(@friendship.recipient, {
+            FriendshipsChannel.broadcast_to(@friendship.recipient, {
                 id: @friendship.id,
                 sender_id: @friendship.sender_id,
                 recipient_id: @friendship.recipient_id,
